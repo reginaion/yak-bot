@@ -82,6 +82,9 @@ async def time_check():
         await channel.send('```客家道場```')
 
 
+activity = discord.Game(name="command list: [;help, ;shutdown]")
+await client.change_presence(status=discord.Status.idle, activity=activity)
+
 time_check.start()
 
 client.run(os.getenv('BOT_TOKEN'))
