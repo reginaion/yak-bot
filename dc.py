@@ -14,6 +14,9 @@ channel_id = 387998196422672386
 
 @client.event
 async def on_ready():
+    activity = discord.Game(name="command list: [;help, ;shutdown]")
+    await client.change_presence(status=discord.Status.idle, activity=activity)
+    #await client.change_presence(activity=discord.Streaming(name='Fortnite', url='https://www.twitch.tv/UR_TWITCH_GOES_HERE You cant do YT only Twitch.'))
     print('Logged in as')
     print(client.user.name)
     print(client.user.id)
@@ -82,8 +85,6 @@ async def time_check():
         await channel.send('```客家道場```')
 
 
-activity = discord.Game(name="command list: [;help, ;shutdown]")
-await client.change_presence(status=discord.Status.idle, activity=activity)
 
 time_check.start()
 
