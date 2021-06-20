@@ -15,8 +15,8 @@ channel_id = 702741572344610910
 @client.event
 async def on_ready():
     activity = discord.Game(name="command list: [;help, ;shutdown]")
-    #await client.change_presence(status=discord.Status.idle, activity=activity)
-    await client.change_presence(activity=activity)
+    await client.change_presence(status=discord.Status.idle, activity=activity)
+    #await client.change_presence(activity=activity)
     #await client.change_presence(activity=discord.Streaming(name='Fortnite', url='https://www.twitch.tv/UR_TWITCH_GOES_HERE You cant do YT only Twitch.'))
     print('Logged in as')
     print(client.user.name)
@@ -80,7 +80,7 @@ async def shutdown(ctx):
 async def time_check():
     cst = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')).time()
     weekday = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')).weekday()
-    if weekday == 6 and cst.hour == 23 and cst.minute == 07:
+    if weekday == 6 and cst.hour == 23 and cst.minute == 10:
         await client.wait_until_ready()
         channel = client.get_channel(channel_id)
         await channel.send('```客家道場```')
