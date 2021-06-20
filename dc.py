@@ -9,8 +9,8 @@ from discord.ext import tasks
 
 client = commands.Bot(command_prefix=';')
 
-alarm_time = '22:58'#24hrs
-channel_id = 387998196422672386
+alarm_time = '23:00'#24hrs
+channel_id = 702741572344610910
 
 @client.event
 async def on_ready():
