@@ -9,7 +9,7 @@ from discord.ext import tasks
 
 client = commands.Bot(command_prefix=';')
 
-alarm_time = '01:22'#24hrs
+alarm_time = '22:55'#24hrs
 channel_id = 387998196422672386
 
 @client.event
