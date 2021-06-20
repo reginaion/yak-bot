@@ -80,7 +80,7 @@ async def shutdown(ctx):
 async def time_check():
     cst = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')).time()
     weekday = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')).weekday()
-    if weekday == 6 and cst.hour == 23 and cst.minute == 15:
+    if weekday == 6 and cst.hour == 22 and cst.minute == 15:
         await client.wait_until_ready()
         channel = client.get_channel(channel_id)
         await channel.send('```客家道場```')
