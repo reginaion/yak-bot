@@ -9,7 +9,7 @@ from discord.ext import tasks
 
 client = commands.Bot(command_prefix=';')
 
-alarm_time = '23:00'#24hrs
+alarm_time = '23:03'#24hrs
 channel_id = 702741572344610910
 
 @client.event
@@ -79,7 +79,7 @@ async def shutdown(ctx):
 async def time_check():
     cst = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')).time()
     weekday = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')).weekday()
-    if weekday == 6 and cst.hour == 23 and cst.minute == 45:
+    if weekday == 0 and cst.hour == 23 and cst.minute == 03:
         await client.wait_until_ready()
         channel = client.get_channel(channel_id)
         await channel.send('```客家道場```')
