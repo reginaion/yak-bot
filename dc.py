@@ -22,6 +22,12 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
+
+@client.command()
+@commands.is_owner()
+async def send(ctx, *, message:str):
+    channel = bot.get_channel(channel_id)
+    await channel.send(message)
 """
 @client.command()
 async def add(ctx, a: int, b: int):
