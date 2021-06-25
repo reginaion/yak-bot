@@ -26,7 +26,7 @@ async def on_ready():
 @client.command()
 @commands.is_owner()
 async def send(ctx, *, message:str):
-    channel = bot.get_channel(channel_id)
+    channel = client.get_channel(channel_id)
     await channel.send(message)
 """
 @client.command()
