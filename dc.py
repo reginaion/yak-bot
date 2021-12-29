@@ -7,10 +7,9 @@ import os
 from discord.ext import commands
 from discord.ext import tasks
 
-#intents = discord.Intents.default()
-#intents.members=True
-
-client = commands.Bot(command_prefix=';')#, intents=intents)
+intents = discord.Intents.default()
+intents.members=True
+client = commands.Bot(command_prefix=';', intents=intents)
 
 alarm_time = '23:03'#24hrs
 channel_id = 387998196422672386
@@ -133,13 +132,13 @@ async def on_message_join(member):
     await channel.send(embed=embed)
 """
 
+#main function
 @client.event
 async def on_member_join(member):
-   await client.get_channel(702741572344610910).send(f"{member.name} has joined")
+    guild = client.get_guild(702741572344610910)                        #server id
+    channel = guild.get_channel(702741572344610910)                     #channel id
+    await channel.send(f'Welcome to the server {member.mention}!  ')     #edit this line to edit message
 
-@client.event
-async def on_member_remove(member):
-   await client.get_channel(702741572344610910).send(f"{member.name} has left")
 
 time_check.start()
 
