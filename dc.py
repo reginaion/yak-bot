@@ -104,7 +104,7 @@ async def on_raw_reaction_remove(payload):
     if payload is not None:
         if payload.message_id == msgID:
             if str(payload.emoji) == "<:geoffory:894246779661484072>":
-                await member.remove_roles(role)
+                await payload.member.remove_roles(role)
 
 
 """
