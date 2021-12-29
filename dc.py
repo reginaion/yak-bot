@@ -28,6 +28,12 @@ async def on_member_join(member):
     await channel.send(embed=embed)
 
 @client.event
+async def on_member_remove(member):
+    channel = client.get_channel(channel_id_test)
+    message = "Recognised that a member called " + member.name + " left"
+    await channel.send(discord.Object(id=channel_id_invent), member.name + ' left')
+
+@client.event
 async def on_ready():
     activity = discord.Game(name="command list: [;help, ;shutdown]")
     await client.change_presence(status=discord.Status.online, activity=activity)
