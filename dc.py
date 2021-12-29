@@ -104,21 +104,21 @@ async def time_check():
         channel = client.get_channel(channel_id_2)
         await channel.send('```客家道場```')
 
-#Public Welcome
-@client.event
-async def on_member_join(member):
-    print("Recognized that " + member.name + " joined")
-    await client.send_message(member, newUserDMMessage)
-    await client.send_message(discord.Object(id=702741572344610910), 'Welcome!')
-    print("Sent message to " + member.name)
-    print("Sent message about " + member.name + " to #CHANNEL")
-
 #Mod Leave Announcement
+"""
 @client.event
 async def on_member_remove(member):
     print("Recognized that " + member.name + " left")
     await client.send_message(discord.Object(id=702741572344610910), '**' + member.mention + '** just left.')
     print("Sent message to #CHANNEL")
+"""
+
+@client.event
+async def on_message_join(member):
+    channel = client.get_channel(702741572344610910)
+    embed=discord.Embed(title=f"Welcome {member.name}", description=f"Thanks for joining {member.guild.name}!") # F-Strings!
+    embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
+    await channel.send(embed=embed)
 
 time_check.start()
 
