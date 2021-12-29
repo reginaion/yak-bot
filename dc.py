@@ -87,6 +87,20 @@ async def edit(ctx):
 
 @client.event
 async def on_raw_reaction_add(payload):
+    guild = client.get_guild(payload.guild_id)
+    member = discord.utils.get(guild.members, id=payload.user_id)
+    # channel and message IDs should be integer:
+    if payload.message_id == channel_id_message_role_1:
+        if str(payload.emoji) == "<:geoffory:894246779661484072>":
+            role = discord.utils.get(guild.roles, name='test_role_1')
+
+        if role is not None:
+            await payload.member.add_roles(role)
+
+
+"""
+@client.event
+async def on_raw_reaction_add(payload):
     msgID = channel_id_message_role_1
     guild = client.get_guild(payload.guild_id)
     role = discord.utils.get(guild.roles, name='test_role_1')
@@ -100,13 +114,13 @@ async def on_raw_reaction_add(payload):
 async def on_raw_reaction_remove(payload):
     msgID = channel_id_message_role_1
     guild = client.get_guild(payload.guild_id)
-    member = get(guild.members, id=payload.user_id)
     role = discord.utils.get(guild.roles, name='test_role_1')
     if payload is not None:
         if payload.message_id == msgID:
             if str(payload.emoji) == "<:geoffory:894246779661484072>":
-                await member.remove_roles(role)
+                await payload.member.remove_roles(role)
 
+"""
 
 """
 @client.event
