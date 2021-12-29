@@ -8,9 +8,10 @@ from discord.ext import commands
 from discord.ext import tasks
 
 
-intents = discord.Intents.default()
-intents.members = True
-intents.reactions = True
+#intents = discord.Intents.default()
+#intents.members = True
+#intents.reactions = True
+intents = Intents.all()
 client = commands.Bot(command_prefix=';', intents=intents)
 
 alarm_time = '23:03'#24hrs
