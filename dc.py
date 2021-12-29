@@ -21,6 +21,8 @@ channel_id_invent = 702741572344610910
 
 @client.event
 async def on_member_join(member):
+    if 702741572344610907 is not member.guild.id:
+        return
     channel = client.get_channel(channel_id_invent)
     #await member.send('Private message')
     embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請至<#925781066990624858>索取身分組") # F-Strings!
