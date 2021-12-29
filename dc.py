@@ -7,9 +7,8 @@ import os
 from discord.ext import commands
 from discord.ext import tasks
 
-intents = discord.Intents.default()
-intents.members=True
-client = commands.Bot(command_prefix=';', intents=intents)
+intents = discord.Intents(members=True)
+client=discord.Client(intents=intents)
 welcomechannel = await client.fetch_channel(702741572344610910)
 
 alarm_time = '23:03'#24hrs
