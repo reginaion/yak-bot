@@ -80,6 +80,45 @@ async def edit(ctx):
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_1)
     await msg.edit(embed=embedvar)
+
+# Assign the role when the role is added as a reaction to the message.
+@client.event
+async def on_raw_reaction_add(payload):
+    guild = client.get_guild(payload.guild_id)
+    member = get(guild.members, id=payload.user_id)
+    # channel and message IDs should be integer:
+    if payload.channel_id == channel_id_message_channel_1 and payload.message_id == channel_id_message_role_1:
+        if str(payload.emoji) == "1️⃣":
+            role = get(payload.member.guild.roles, name='test_role_1')
+        elif str(payload.emoji) == "2️⃣":
+            role = get(payload.member.guild.roles, name='test_role_2')
+        elif str(payload.emoji) == "3️⃣":
+            role = get(payload.member.guild.roles, name='test_role_3')
+        else:
+            role = get(guild.roles, name=payload.emoji)
+
+        if role is not None:
+            await payload.member.add_roles(role)
+
+
+# Assign the role when the role is added as a reaction to the message.
+@client.event
+async def on_raw_reaction_remove(payload):
+    guild = client.get_guild(payload.guild_id)
+    member = get(guild.members, id=payload.user_id)
+    if payload.channel_id == channel_id_message_channel_1 and payload.message_id == channel_id_message_role_1:
+        if str(payload.emoji) == "1️⃣":
+            role = get(payload.member.guild.roles, name='test_role_1')
+        elif str(payload.emoji) == "2️⃣":
+            role = get(payload.member.guild.roles, name='test_role_2')
+        elif str(payload.emoji) == "3️⃣":
+            role = get(payload.member.guild.roles, name='test_role_3')
+        else:
+            role = discord.utils.get(guild.roles, name=payload.emoji)
+
+        if role is not None:
+            await member.remove_roles(role)
+
 """
 @client.command()
 async def add(ctx, a: int, b: int):
