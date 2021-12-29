@@ -87,6 +87,9 @@ async def edit(ctx):
 
 @client.event
 async def on_reaction_add(reaction, user):
+    channel = client.get_channel(channel_id_message_channel_1)
+    await channel.send('{},{}'.format(reaction.message.id,reaction.emoji))
+
     if reaction.message.id == channel_id_message_role_1:
         if reaction.emoji == "<:geoffory:894246779661484072>":
             role = discord.utils.get(user.server.roles, name="test_role_1")
@@ -98,44 +101,6 @@ async def on_reaction_remove(reaction, user):
         if reaction.emoji == "<:geoffory:894246779661484072>":
             role = discord.utils.get(user.server.roles, name="test_role_1")
             await client.remove_roles(user, role)
-
-# Assign the role when the role is added as a reaction to the message.
-@client.event
-async def on_raw_reaction_add(payload):
-    guild = client.get_guild(payload.guild_id)
-    member = get(guild.members, id=payload.user_id)
-    # channel and message IDs should be integer:
-    if payload.channel_id == channel_id_message_channel_1 and payload.message_id == channel_id_message_role_1:
-        if str(payload.emoji) == "<:geoffory:894246779661484072>":
-            role = get(payload.member.guild.roles, name='test_role_1')
-        elif str(payload.emoji) == "<:deA:790809624185536524>":
-            role = get(payload.member.guild.roles, name='test_role_2')
-        elif str(payload.emoji) == "3️⃣":
-            role = get(payload.member.guild.roles, name='test_role_3')
-        else:
-            role = get(guild.roles, name=payload.emoji)
-
-        if role is not None:
-            await payload.member.add_roles(role)
-
-
-# Assign the role when the role is added as a reaction to the message.
-@client.event
-async def on_raw_reaction_remove(payload):
-    guild = client.get_guild(payload.guild_id)
-    member = get(guild.members, id=payload.user_id)
-    if payload.channel_id == channel_id_message_channel_1 and payload.message_id == channel_id_message_role_1:
-        if str(payload.emoji) == "<:geoffory:894246779661484072>":
-            role = get(payload.member.guild.roles, name='test_role_1')
-        elif str(payload.emoji) == "<:deA:790809624185536524>":
-            role = get(payload.member.guild.roles, name='test_role_2')
-        elif str(payload.emoji) == "3️⃣":
-            role = get(payload.member.guild.roles, name='test_role_3')
-        else:
-            role = discord.utils.get(guild.roles, name=payload.emoji)
-
-        if role is not None:
-            await member.remove_roles(role)
 
 """
 @client.command()
