@@ -26,9 +26,16 @@ async def on_ready():
 
 @client.command()
 @commands.is_owner()
-async def send(ctx, *, message:str):
+async def send_2(ctx, *, message:str):
     #channel = client.get_channel(channel_id)
     channel = client.get_channel(channel_id_2)
+    await channel.send(message)
+
+@client.command()
+@commands.is_owner()
+async def send(ctx, *, message:str):
+    #channel = client.get_channel(channel_id)
+    channel = client.get_channel(channel_id)
     await channel.send(message)
 """
 @client.command()
@@ -92,7 +99,7 @@ async def time_check():
         await client.wait_until_ready()
         channel = client.get_channel(channel_id)
         await channel.send('```客家道場```')
-    if weekday == 6 and cst.hour == 22 and cst.minute == 31:
+    if weekday == 6 and cst.hour == 22 and cst.minute == 35:
         await client.wait_until_ready()
         channel = client.get_channel(channel_id_2)
         await channel.send('```客家道場```')
