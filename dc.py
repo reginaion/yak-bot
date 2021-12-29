@@ -18,9 +18,9 @@ channel_id_2 = 925725103801630761
 channel_id_test = 925763452281159680
 
 
-#@client.event
-#async def on_member_join(member):
-#    await member.send('Private message')
+@client.event
+async def on_member_join(member):
+    await member.send('Private message')
 
 @client.event
 async def on_ready():
