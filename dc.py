@@ -89,7 +89,7 @@ async def edit(ctx):
 @client.event
 async def on_raw_reaction_add(payload):
     if payload.message_id == channel_id_message_role_1 and payload.emoji.name == 'geoffory':
-        guild = client.get_guild(guild id)
+        guild = client.get_guild(payload.guild_id)
         role = discord.utils.get(guild.roles, name="test_role_1")
         await payload.member.add_roles(role)
 
