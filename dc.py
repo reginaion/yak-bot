@@ -104,13 +104,21 @@ async def time_check():
         channel = client.get_channel(channel_id_2)
         await channel.send('```客家道場```')
 
-@alfred.event
+#Public Welcome
+@client.event
 async def on_member_join(member):
-    channel = alfred.get_channel(702741572344610910)
-    embed=discord.Embed(title="歡迎",description=f"{member.mention}隊長剛剛著陸下來\n```請到xxx索取身分組```")
-    await channel.send(embed=embed)
+    print("Recognized that " + member.name + " joined")
+    await client.send_message(member, newUserDMMessage)
+    await client.send_message(discord.Object(id=702741572344610910), 'Welcome!')
+    print("Sent message to " + member.name)
+    print("Sent message about " + member.name + " to #CHANNEL")
 
-
+#Mod Leave Announcement
+@client.event
+async def on_member_remove(member):
+    print("Recognized that " + member.name + " left")
+    await client.send_message(discord.Object(id=702741572344610910), '**' + member.mention + '** just left.')
+    print("Sent message to #CHANNEL")
 
 time_check.start()
 
