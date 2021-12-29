@@ -85,7 +85,38 @@ async def edit(ctx):
     await msg.add_reaction('<:deA:790809624185536524>')
     await msg.add_reaction('3️⃣')
 
+@client.event
+async def on_raw_reaction_add(payload):
+    guild = client.get_guild(payload.guild_id)
+    member = get(guild.members, id=payload.user_id)
 
+    channel = client.get_channel(channel_id_message_channel_1)
+    await channel.send('test')
+    """
+    # channel and message IDs should be integer:
+    if payload.message_id == channel_id_message_role_1:
+        if str(payload.emoji) == "<:Apex:745425965764575312>":
+            role = get(payload.member.guild.roles, name='Apex')
+        elif str(payload.emoji) == "<:WarThunder:745425772944162907>":
+            role = get(payload.member.guild.roles, name='War Thunder')
+        elif str(payload.emoji) == "<:ModernWarfare:757104623738814554>":
+            role = get(payload.member.guild.roles, name='Modern Warfare')
+        elif str(payload.emoji) == "<:R6Siege:757030019909550122>":
+            role = get(payload.member.guild.roles, name='R6 Siege')
+        elif str(payload.emoji) == "<:Minecraft:757029546632413346>":
+            role = get(payload.member.guild.roles, name='Minecraft')
+        elif str(payload.emoji) == "<:AmongUs:760192601625591859>":
+            role = get(payload.member.guild.roles, name='Among Us')
+        else:
+            role = get(guild.roles, name=payload.emoji)
+
+        if role is not None:
+            await payload.member.add_roles(role)
+            print(f"Assigned {member} to {role}.")
+    """
+
+
+"""
 @client.event
 async def on_reaction_add(reaction, user):
     channel = client.get_channel(channel_id_message_channel_1)
@@ -102,6 +133,7 @@ async def on_reaction_remove(reaction, user):
         if reaction.emoji == "<:geoffory:894246779661484072>":
             role = discord.utils.get(user.server.roles, name="test_role_1")
             await client.remove_roles(user, role)
+"""
 
 """
 @client.command()
