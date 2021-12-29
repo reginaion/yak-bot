@@ -11,6 +11,7 @@ client = commands.Bot(command_prefix=';')
 
 alarm_time = '23:03'#24hrs
 channel_id = 387998196422672386
+channel_id_2 = 925725103801630761
 
 @client.event
 async def on_ready():
@@ -26,7 +27,8 @@ async def on_ready():
 @client.command()
 @commands.is_owner()
 async def send(ctx, *, message:str):
-    channel = client.get_channel(channel_id)
+    #channel = client.get_channel(channel_id)
+    channel = client.get_channel(channel_id_2)
     await channel.send(message)
 """
 @client.command()
@@ -90,6 +92,11 @@ async def time_check():
         await client.wait_until_ready()
         channel = client.get_channel(channel_id)
         await channel.send('```客家道場```')
+    if weekday == 6 and cst.hour == 22 and cst.minute == 31:
+        await client.wait_until_ready()
+        channel = client.get_channel(channel_id_2)
+        await channel.send('```客家道場```')
+
 
 
 
