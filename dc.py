@@ -93,9 +93,26 @@ async def on_raw_reaction_add(payload):
     if payload.message_id == channel_id_message_role_1:
         if str(payload.emoji) == "<:geoffory:894246779661484072>":
             role = discord.utils.get(guild.roles, name='test_role_1')
+        elif str(payload.emoji) == "<:deA:790809624185536524> ":
+            role = discord.utils.get(guild.roles, name='test_role_2')
 
         if role is not None:
             await payload.member.add_roles(role)
+
+
+@client.event
+async def on_raw_reaction_remove(payload):
+    guild = client.get_guild(payload.guild_id)
+    member = discord.utils.get(guild.members, id=payload.user_id)
+
+    if payload.message_id == channel_id_message_role_1:
+        if str(payload.emoji) == "<:geoffory:894246779661484072>":
+            role = discord.utils.get(guild.roles, name='test_role_1')
+        elif str(payload.emoji) == "<:deA:790809624185536524> ":
+            role = discord.utils.get(guild.roles, name='test_role_2')
+
+        if role is not None:
+            await member.remove_roles(role)
 
 
 """
