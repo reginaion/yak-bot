@@ -6,7 +6,7 @@ import discord
 import asyncio
 intents = discord.Intents(members=True)
 client=discord.Client(intents=intents)
-welcomechannel = await client.fetch_channel(channel_id) # https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID
+welcomechannel = await client.fetch_channel(702741572344610910) # https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID
 # Make sure you get the ID of your channel by right-clicking it and clicking `Copy ID`. Make sure developer mode is on!
 @client.event
 async def on_ready():
