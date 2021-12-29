@@ -10,6 +10,7 @@ from discord.ext import tasks
 
 intents = discord.Intents.default()
 intents.members = True
+intents.reactions = True
 client = commands.Bot(command_prefix=';', intents=intents)
 
 alarm_time = '23:03'#24hrs
