@@ -74,7 +74,7 @@ async def send_t(ctx, *, message:str):
 async def edit(ctx):
     embedvar = discord.Embed(title="請選取身分組!",
                               description="Click the corresponding emoji to receive your role.\n"
-                                          "1️⃣ - test_role_1\n"
+                                          "<:geoffory:894246779661484072> - test_role_1\n"
                                           "2️⃣ - test_role_2\n"
                                           "3️⃣ - test_role_3", color=0x00ff00)
     channel = client.get_channel(channel_id_message_channel_1)
@@ -88,7 +88,7 @@ async def on_raw_reaction_add(payload):
     member = get(guild.members, id=payload.user_id)
     # channel and message IDs should be integer:
     if payload.channel_id == channel_id_message_channel_1 and payload.message_id == channel_id_message_role_1:
-        if str(payload.emoji) == "1️⃣":
+        if str(payload.emoji) == "<:geoffory:894246779661484072>":
             role = get(payload.member.guild.roles, name='test_role_1')
         elif str(payload.emoji) == "2️⃣":
             role = get(payload.member.guild.roles, name='test_role_2')
@@ -107,7 +107,7 @@ async def on_raw_reaction_remove(payload):
     guild = client.get_guild(payload.guild_id)
     member = get(guild.members, id=payload.user_id)
     if payload.channel_id == channel_id_message_channel_1 and payload.message_id == channel_id_message_role_1:
-        if str(payload.emoji) == "1️⃣":
+        if str(payload.emoji) == "<:geoffory:894246779661484072>":
             role = get(payload.member.guild.roles, name='test_role_1')
         elif str(payload.emoji) == "2️⃣":
             role = get(payload.member.guild.roles, name='test_role_2')
