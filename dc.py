@@ -87,17 +87,17 @@ async def edit(ctx):
 
 @client.event
 async def on_reaction_add(reaction, user):
-    if reaction.message.channel.id == channel_id_message_channel_1 and reaction.message.id == channel_id_message_role_1:
+    if reaction.message.id == channel_id_message_role_1:
         if reaction.emoji == "<:geoffory:894246779661484072>":
             role = discord.utils.get(user.server.roles, name="test_role_1")
-            await client.add_roles(user, Role)
+            await client.add_roles(user, role)
 
 @client.event
 async def on_reaction_remove(reaction, user):
-    if reaction.message.channel.id == channel_id_message_channel_1 and reaction.message.id == channel_id_message_role_1:
+    if reaction.message.id == channel_id_message_role_1:
         if reaction.emoji == "<:geoffory:894246779661484072>":
             role = discord.utils.get(user.server.roles, name="test_role_1")
-            await client.remove_roles(user, verified)
+            await client.remove_roles(user, role)
 
 # Assign the role when the role is added as a reaction to the message.
 @client.event
