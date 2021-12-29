@@ -8,10 +8,9 @@ from discord.ext import commands
 from discord.ext import tasks
 
 
-#intents = discord.Intents.default()
-#intents.members = True
-#intents.reactions = True
-intents = discord.Intents.all()
+intents = discord.Intents.default()
+intents.members = True
+intents.reactions = True
 client = commands.Bot(command_prefix=';', intents=intents)
 
 alarm_time = '23:03'#24hrs
@@ -95,38 +94,6 @@ async def on_raw_reaction_add(payload):
         if str(payload.emoji) == "<:geoffory:894246779661484072>":
             role = get(payload.member.guild.roles, name='test_role_1')
             await payload.member.add_roles(role)
-
-"""
-@client.event
-async def on_raw_reaction_add(payload):
-    if payload.message_id == channel_id_message_role_1 and payload.emoji.name == 'geoffory':
-        guild = client.get_guild(payload.guild_id)
-        role = discord.utils.get(guild.roles, name="test_role_1")
-        await payload.member.add_roles(role)
-"""
-
-    """
-    # channel and message IDs should be integer:
-    if payload.message_id == channel_id_message_role_1:
-        if str(payload.emoji) == "<:Apex:745425965764575312>":
-            role = get(payload.member.guild.roles, name='Apex')
-        elif str(payload.emoji) == "<:WarThunder:745425772944162907>":
-            role = get(payload.member.guild.roles, name='War Thunder')
-        elif str(payload.emoji) == "<:ModernWarfare:757104623738814554>":
-            role = get(payload.member.guild.roles, name='Modern Warfare')
-        elif str(payload.emoji) == "<:R6Siege:757030019909550122>":
-            role = get(payload.member.guild.roles, name='R6 Siege')
-        elif str(payload.emoji) == "<:Minecraft:757029546632413346>":
-            role = get(payload.member.guild.roles, name='Minecraft')
-        elif str(payload.emoji) == "<:AmongUs:760192601625591859>":
-            role = get(payload.member.guild.roles, name='Among Us')
-        else:
-            role = get(guild.roles, name=payload.emoji)
-
-        if role is not None:
-            await payload.member.add_roles(role)
-            print(f"Assigned {member} to {role}.")
-    """
 
 
 """
