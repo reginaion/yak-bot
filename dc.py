@@ -100,11 +100,12 @@ async def on_raw_reaction_add(payload):
 async def on_raw_reaction_remove(payload):
     msgID = channel_id_message_role_1
     guild = client.get_guild(payload.guild_id)
+    member = get(guild.members, id=payload.user_id)
     role = discord.utils.get(guild.roles, name='test_role_1')
     if payload is not None:
         if payload.message_id == msgID:
             if str(payload.emoji) == "<:geoffory:894246779661484072>":
-                await payload.member.remove_roles(role)
+                await member.remove_roles(role)
 
 
 """
