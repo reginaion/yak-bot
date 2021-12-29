@@ -7,7 +7,10 @@ import os
 from discord.ext import commands
 from discord.ext import tasks
 
-client = commands.Bot(command_prefix=';')
+intents = discord.Intents.default()
+intents.members=True
+
+client = commands.Bot(command_prefix=';', intents=intents)
 
 alarm_time = '23:03'#24hrs
 channel_id = 387998196422672386
