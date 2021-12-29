@@ -75,14 +75,29 @@ async def edit(ctx):
     embedvar = discord.Embed(title="請選取身分組!",
                               description="Click the corresponding emoji to receive your role.\n"
                                           "<:geoffory:894246779661484072> - test_role_1\n"
-                                          "2️⃣ - test_role_2\n"
+                                          "<:deA:790809624185536524> - test_role_2\n"
                                           "3️⃣ - test_role_3", color=0x00ff00)
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_1)
     await msg.edit(embed=embedvar)
     await msg.add_reaction('<:geoffory:894246779661484072>')
-    await msg.add_reaction('2️⃣')
+    await msg.add_reaction('<:deA:790809624185536524>')
     await msg.add_reaction('3️⃣')
+
+
+@client.event
+async def on_reaction_add(reaction, user):
+    if reaction.message.channel.id == channel_id_message_channel_1 and reaction.message.id == channel_id_message_role_1:
+        if reaction.emoji == "<:geoffory:894246779661484072>":
+            role = discord.utils.get(user.server.roles, name="test_role_1")
+            await client.add_roles(user, Role)
+
+@client.event
+async def on_reaction_remove(reaction, user):
+    if reaction.message.channel.id == channel_id_message_channel_1 and reaction.message.id == channel_id_message_role_1:
+        if reaction.emoji == "<:geoffory:894246779661484072>":
+            role = discord.utils.get(user.server.roles, name="test_role_1")
+            await client.remove_roles(user, verified)
 
 # Assign the role when the role is added as a reaction to the message.
 @client.event
@@ -93,7 +108,7 @@ async def on_raw_reaction_add(payload):
     if payload.channel_id == channel_id_message_channel_1 and payload.message_id == channel_id_message_role_1:
         if str(payload.emoji) == "<:geoffory:894246779661484072>":
             role = get(payload.member.guild.roles, name='test_role_1')
-        elif str(payload.emoji) == "2️⃣":
+        elif str(payload.emoji) == "<:deA:790809624185536524>":
             role = get(payload.member.guild.roles, name='test_role_2')
         elif str(payload.emoji) == "3️⃣":
             role = get(payload.member.guild.roles, name='test_role_3')
@@ -112,7 +127,7 @@ async def on_raw_reaction_remove(payload):
     if payload.channel_id == channel_id_message_channel_1 and payload.message_id == channel_id_message_role_1:
         if str(payload.emoji) == "<:geoffory:894246779661484072>":
             role = get(payload.member.guild.roles, name='test_role_1')
-        elif str(payload.emoji) == "2️⃣":
+        elif str(payload.emoji) == "<:deA:790809624185536524>":
             role = get(payload.member.guild.roles, name='test_role_2')
         elif str(payload.emoji) == "3️⃣":
             role = get(payload.member.guild.roles, name='test_role_3')
