@@ -104,6 +104,11 @@ async def time_check():
         channel = client.get_channel(channel_id_2)
         await channel.send('```客家道場```')
 
+@alfred.event
+async def on_member_join(member):
+    channel = alfred.get_channel(channel_id_2)
+    embed=discord.Embed(title="歡迎",description=f"{member.mention}隊長剛剛著陸下來\n```請到xxx索取身分組```")
+    await channel.send(embed=embed)
 
 
 
