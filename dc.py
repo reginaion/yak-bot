@@ -17,6 +17,8 @@ channel_id = 387998196422672386
 channel_id_2 = 925725103801630761
 channel_id_test = 925763452281159680
 channel_id_invent = 702741572344610910
+channel_id_message_channel_1 = 925763452281159680
+channel_id_message_role_1 = 925783864092270672
 
 
 @client.event
@@ -66,6 +68,18 @@ async def send_t(ctx, *, message:str):
     #channel = client.get_channel(channel_id)
     channel = client.get_channel(channel_id_test)
     await channel.send(message)
+
+@client.command()
+@commands.is_owner()
+async def edit(ctx):
+    embedvar = discord.Embed(title="請選取身分組!",
+                              description="Click the corresponding emoji to receive your role.\n"
+                                          "1️⃣ - test_role_1\n"
+                                          "2️⃣ - test_role_2\n"
+                                          "3️⃣ - test_role_3", color=0x00ff00)
+    channel = client.get_channel(channel_id_message_channel_1)
+    msg = await channel.fetch_message(channel_id_message_role_1)
+    await msg.edit(embed=embedvar)
 """
 @client.command()
 async def add(ctx, a: int, b: int):
