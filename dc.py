@@ -7,15 +7,20 @@ import os
 from discord.ext import commands
 from discord.ext import tasks
 
-intents = discord.Intents.default()
-intents.members=True
 
+intents = discord.Intents()
+intents.members = True
 client = commands.Bot(command_prefix=';', intents=intents)
 
 alarm_time = '23:03'#24hrs
 channel_id = 387998196422672386
 channel_id_2 = 925725103801630761
 channel_id_test = 925763452281159680
+
+
+@client.event
+async def on_member_join(member):
+    await member.send('Private message')
 
 @client.event
 async def on_ready():
@@ -125,12 +130,6 @@ async def on_member_remove(member):
     print("Sent message to #CHANNEL")
 """
 
-@client.event
-async def on_message_join(member):
-    channel = client.get_channel(702741572344610910)
-    embed=discord.Embed(title=f"Welcome {member.name}", description=f"Thanks for joining {member.guild.name}!") # F-Strings!
-    embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
-    await channel.send(embed=embed)
 
 time_check.start()
 
