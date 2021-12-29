@@ -87,13 +87,14 @@ async def edit(ctx):
 
 @client.event
 async def on_raw_reaction_add(payload):
-    guild = client.get_guild(payload.guild_id)
-    member = get(guild.members, id=payload.user_id)
-    # channel and message IDs should be integer:
-    if payload.message_id == channel_id_message_role_1:
-        if str(payload.emoji) == "<:geoffory:894246779661484072>":
-            role = get(payload.member.guild.roles, name='test_role_1')
-            await payload.member.add_roles(role)
+    channel = self.bot.get_channel(payload.channel_id)
+    message = await channel.fetch_message(payload.message_id)
+    user = self.bot.get_user(payload.user_id)
+    if not user:
+        user = await self.bot.fetch_user(payload.user_id)
+    # instead of reaction we should use payload.emoji
+    # for example:
+    await message.remove_reaction(payload.emoji, user)
 
 
 """
