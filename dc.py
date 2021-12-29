@@ -86,12 +86,14 @@ async def edit(ctx):
     await msg.add_reaction('<:deA:790809624185536524>')
     await msg.add_reaction('3️⃣')
 
+"""
 @client.event
 async def on_raw_reaction_add(payload):
     if payload.message_id == channel_id_message_role_1 and payload.emoji.name == 'geoffory':
         guild = client.get_guild(payload.guild_id)
         role = discord.utils.get(guild.roles, name="test_role_1")
         await payload.member.add_roles(role)
+"""
 
     """
     # channel and message IDs should be integer:
