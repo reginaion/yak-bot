@@ -80,6 +80,9 @@ async def edit(ctx):
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_1)
     await msg.edit(embed=embedvar)
+    await client.add_reaction(msg, '<:geoffory:894246779661484072>')
+    await client.add_reaction(msg, '2️⃣')
+    await client.add_reaction(msg, '3️⃣')
 
 # Assign the role when the role is added as a reaction to the message.
 @client.event
