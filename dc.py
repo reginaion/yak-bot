@@ -15,6 +15,7 @@ client = commands.Bot(command_prefix=';', intents=intents)
 alarm_time = '23:03'#24hrs
 channel_id = 387998196422672386
 channel_id_2 = 925725103801630761
+channel_id_test = 925763452281159680
 
 @client.event
 async def on_ready():
@@ -39,6 +40,14 @@ async def send_2(ctx, *, message:str):
 async def send(ctx, *, message:str):
     #channel = client.get_channel(channel_id)
     channel = client.get_channel(channel_id)
+    await channel.send(message)
+
+
+@client.command()
+@commands.is_owner()
+async def send_t(ctx, *, message:str):
+    #channel = client.get_channel(channel_id)
+    channel = client.get_channel(channel_id_test)
     await channel.send(message)
 """
 @client.command()
