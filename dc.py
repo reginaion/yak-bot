@@ -11,7 +11,7 @@ from discord.ext import tasks
 #intents = discord.Intents.default()
 #intents.members = True
 #intents.reactions = True
-intents = Intents.all()
+intents = discord.Intents.all()
 client = commands.Bot(command_prefix=';', intents=intents)
 
 alarm_time = '23:03'#24hrs
@@ -85,6 +85,16 @@ async def edit(ctx):
     await msg.add_reaction('<:geoffory:894246779661484072>')
     await msg.add_reaction('<:deA:790809624185536524>')
     await msg.add_reaction('3️⃣')
+
+@client.event
+async def on_raw_reaction_add(payload):
+    guild = client.get_guild(payload.guild_id)
+    member = get(guild.members, id=payload.user_id)
+    # channel and message IDs should be integer:
+    if payload.message_id == channel_id_message_role_1:
+        if str(payload.emoji) == "<:geoffory:894246779661484072>":
+            role = get(payload.member.guild.roles, name='test_role_1')
+            await payload.member.add_roles(role)
 
 """
 @client.event
