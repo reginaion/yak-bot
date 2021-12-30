@@ -20,6 +20,9 @@ channel_id_test = 925763452281159680
 guild_id = 702741572344610910
 channel_id_message_channel_1 = 925763452281159680
 channel_id_message_role_1 = 925783864092270672
+#guild_id = 925717530545377331
+#channel_id_message_channel_1 = 925732268197167125
+#channel_id_message_role_1 = 925960555943051284
 
 role_id = ["探險隊隊長","KemoV粉絲"]
 role_emoji = ["<:geoffory:894246779661484072>","<:deA:790809624185536524>"]
