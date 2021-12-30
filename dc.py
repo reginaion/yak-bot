@@ -87,7 +87,7 @@ async def edit(ctx):
                                           "3️⃣ - test_role_3", color=0x00ff00)
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_1)
-    await msg.edit("",embed=embedvar)
+    await msg.edit(content="　",embed=embedvar)
     await msg.add_reaction('<:geoffory:894246779661484072>')
     await msg.add_reaction('<:deA:790809624185536524>')
     await msg.add_reaction('3️⃣')
