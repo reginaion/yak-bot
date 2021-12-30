@@ -72,6 +72,13 @@ async def send_t(ctx, *, message:str):
 
 @client.command()
 @commands.is_owner()
+async def send_s(ctx, channel_id_s:int, *, message:str):
+    #channel = client.get_channel(channel_id)
+    channel = client.get_channel(channel_id_s)
+    await channel.send(message)
+
+@client.command()
+@commands.is_owner()
 async def edit(ctx):
     embedvar = discord.Embed(title="請選取身分組!",
                               description="Click the corresponding emoji to receive your role.\n"
