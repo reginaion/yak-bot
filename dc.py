@@ -21,12 +21,13 @@ invite_guild_id = 702741572344610907
 invite_channel_id = 702741572344610910
 channel_id_message_channel_1 = 925763452281159680
 channel_id_message_role_1 = 925783864092270672
-#guild_id = 925717530545377331
+#invite_guild_id = 925717530545377331
+#invite_channel_id = 925725103801630761
 #channel_id_message_channel_1 = 925732268197167125
 #channel_id_message_role_1 = 925960555943051284
 
 role_id = ["探險隊隊長","KemoV粉絲"]
-role_emoji = ["<:geoffory:894246779661484072>","<:deA:790809624185536524>"]
+role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>"]
 
 
 @client.event
@@ -34,7 +35,7 @@ async def on_member_join(member):
     if member.guild.id == invite_guild_id:
         channel = client.get_channel(invite_channel_id)
         #await member.send('Private message')
-        embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請至<#925779385729032262>閱讀守則\n請至<#925781066990624858>索取身分組") # F-Strings!
+        embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請至<#925779385729032262>閱讀守則\n請至<#925732268197167125>索取身分組") # F-Strings!
         embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
         await channel.send(embed=embed)
 
@@ -89,8 +90,8 @@ async def send_s(ctx, channel_id_s:int, *, message:str):
 async def edit_invite(ctx):
     embedvar = discord.Embed(title="請選取身分組!",
                               description="Click the corresponding emoji to receive your role.\n"
-                                          "<:geoffory:894246779661484072> - 探險隊隊長\n"
-                                          "<:deA:790809624185536524> - KemoV粉絲", color=0x00ff00)
+                                          "<:geofforyA:925962558349934593> - 探險隊隊長\n"
+                                          "<:dholeA:925962613718929490> - KemoV粉絲", color=0x00ff00)
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_1)
     await msg.edit(content="",embed=embedvar)
@@ -103,9 +104,9 @@ async def on_raw_reaction_add(payload):
     member = discord.utils.get(guild.members, id=payload.user_id)
     # channel and message IDs should be integer:
     if payload.message_id == channel_id_message_role_1:
-        if str(payload.emoji) == "<:geoffory:894246779661484072>":
+        if str(payload.emoji) == "<:geofforyA:925962558349934593>":
             role = discord.utils.get(guild.roles, name='探險隊隊長')
-        elif str(payload.emoji) == "<:deA:790809624185536524>":
+        elif str(payload.emoji) == "<:dholeA:925962613718929490>":
             role = discord.utils.get(guild.roles, name='KemoV粉絲')
 
         if role is not None:
@@ -118,9 +119,9 @@ async def on_raw_reaction_remove(payload):
     member = discord.utils.get(guild.members, id=payload.user_id)
 
     if payload.message_id == channel_id_message_role_1:
-        if str(payload.emoji) == "<:geoffory:894246779661484072>":
+        if str(payload.emoji) == "<:geofforyA:925962558349934593>":
             role = discord.utils.get(guild.roles, name='探險隊隊長')
-        elif str(payload.emoji) == "<:deA:790809624185536524>":
+        elif str(payload.emoji) == "<:dholeA:925962613718929490>":
             role = discord.utils.get(guild.roles, name='KemoV粉絲')
 
         if role is not None:
