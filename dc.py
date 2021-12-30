@@ -30,10 +30,10 @@ role_emoji = ["<:geoffory:894246779661484072>","<:deA:790809624185536524>"]
 
 @client.event
 async def on_member_join(member):
-    if member.guild.id == guild_id:
-        channel = client.get_channel(guild_id)
+    if member.guild.id == 702741572344610907:
+        channel = client.get_channel(702741572344610910)
         #await member.send('Private message')
-        embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請在<#925779385729032262>閱讀守則\n請至<#925781066990624858>索取身分組") # F-Strings!
+        embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請至<#925781066990624858>索取身分組") # F-Strings!
         embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
         await channel.send(embed=embed)
 
