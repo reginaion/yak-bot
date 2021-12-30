@@ -96,7 +96,7 @@ async def edit_invite(ctx):
     embedvar = discord.Embed(title="請選取身分組!",
                               description="Click the corresponding emoji to receive your role.\n\
                                           {} - {}\n\
-                                          {} - {}".format(role_emoji[0],role_id[0],role_emoji[1],role_id[1]), color=0x00ff00)
+                                          {} - {}".format(role_emoji[0],"<@&925727966137290774>",role_emoji[1],"<@&925729158577930310>"), color=0x00ff00)
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_1)
     await msg.edit(content="<@&925727966137290774> - 動物朋友3玩家\n\
