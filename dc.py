@@ -17,7 +17,8 @@ alarm_time = '23:03'#24hrs
 channel_id = 387998196422672386
 channel_id_2 = 925725103801630761
 channel_id_test = 925763452281159680
-guild_id = 702741572344610910
+invite_guild_id = 702741572344610907
+invite_channel_id = 702741572344610910
 channel_id_message_channel_1 = 925763452281159680
 channel_id_message_role_1 = 925783864092270672
 #guild_id = 925717530545377331
@@ -30,10 +31,10 @@ role_emoji = ["<:geoffory:894246779661484072>","<:deA:790809624185536524>"]
 
 @client.event
 async def on_member_join(member):
-    if member.guild.id == 702741572344610907:
-        channel = client.get_channel(702741572344610910)
+    if member.guild.id == invite_guild_id:
+        channel = client.get_channel(invite_channel_id)
         #await member.send('Private message')
-        embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請至<#925781066990624858>索取身分組") # F-Strings!
+        embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請至<#925779385729032262>閱讀守則\n請至<#925781066990624858>索取身分組") # F-Strings!
         embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
         await channel.send(embed=embed)
 
