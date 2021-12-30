@@ -89,14 +89,14 @@ async def send_s(ctx, channel_id_s:int, *, message:str):
 @commands.is_owner()
 async def edit_invite(ctx):
     embedvar = discord.Embed(title="請選取身分組!",
-                              description="Click the corresponding emoji to receive your role.\n"
-                                          "<:geofforyA:925962558349934593> - 探險隊隊長\n"
-                                          "<:dholeA:925962613718929490> - KemoV粉絲", color=0x00ff00)
+                              description="Click the corresponding emoji to receive your role.\n\
+                                          {} - {}\n\
+                                          {} - {}".format(role_id[0],role_emoji[0],role_id[1],role_emoji[1]), color=0x00ff00)
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_1)
     await msg.edit(content="",embed=embedvar)
-    await msg.add_reaction('<:geoffory:894246779661484072>')
-    await msg.add_reaction('<:deA:790809624185536524>')
+    await msg.add_reaction(role_emoji[0])
+    await msg.add_reaction(role_emoji[1])
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -104,10 +104,10 @@ async def on_raw_reaction_add(payload):
     member = discord.utils.get(guild.members, id=payload.user_id)
     # channel and message IDs should be integer:
     if payload.message_id == channel_id_message_role_1:
-        if str(payload.emoji) == "<:geofforyA:925962558349934593>":
-            role = discord.utils.get(guild.roles, name='探險隊隊長')
-        elif str(payload.emoji) == "<:dholeA:925962613718929490>":
-            role = discord.utils.get(guild.roles, name='KemoV粉絲')
+        if str(payload.emoji) == role_emoji[0]:
+            role = discord.utils.get(guild.roles, name=role_id[0])
+        elif str(payload.emoji) == role_emoji[1]:
+            role = discord.utils.get(guild.roles, name=role_id[1])
 
         if role is not None:
             await payload.member.add_roles(role)
@@ -119,10 +119,10 @@ async def on_raw_reaction_remove(payload):
     member = discord.utils.get(guild.members, id=payload.user_id)
 
     if payload.message_id == channel_id_message_role_1:
-        if str(payload.emoji) == "<:geofforyA:925962558349934593>":
-            role = discord.utils.get(guild.roles, name='探險隊隊長')
-        elif str(payload.emoji) == "<:dholeA:925962613718929490>":
-            role = discord.utils.get(guild.roles, name='KemoV粉絲')
+        if str(payload.emoji) == role_emoji[0]:
+            role = discord.utils.get(guild.roles, name=role_id[0])
+        elif str(payload.emoji) == role_emoji[1]:
+            role = discord.utils.get(guild.roles, name=role_id[1])
 
         if role is not None:
             await member.remove_roles(role)
