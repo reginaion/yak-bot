@@ -33,11 +33,16 @@ role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>"]
 @client.event
 async def on_member_join(member):
     if member.guild.id == invite_guild_id:
+        guild = client.get_guild(invite_guild_id)
+        role = discord.utils.get(guild.roles, name="遊客")
+        await member.add_roles(role)
+        
         channel = client.get_channel(invite_channel_id)
         #await member.send('Private message')
         embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請至<#925779385729032262>閱讀守則\n請至<#925732268197167125>索取身分組") # F-Strings!
         embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
         await channel.send(embed=embed)
+
 
 #@client.event
 #async def on_member_remove(member):
@@ -91,7 +96,7 @@ async def edit_invite(ctx):
     embedvar = discord.Embed(title="請選取身分組!",
                               description="Click the corresponding emoji to receive your role.\n\
                                           {} - {}\n\
-                                          {} - {}".format(role_id[0],role_emoji[0],role_id[1],role_emoji[1]), color=0x00ff00)
+                                          {} - {}".format(role_emoji[0],role_id[0],role_emoji[1],role_id[1]), color=0x00ff00)
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_1)
     await msg.edit(content="",embed=embedvar)
