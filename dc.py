@@ -25,9 +25,12 @@ invite_guild_id = 925717530545377331
 invite_channel_id = 925725103801630761
 channel_id_message_channel_1 = 925732268197167125
 channel_id_message_role_1 = 925960555943051284
+channel_id_message_role_2 = 926769088980738108
 
 role_id = ["探險隊隊長","KemoV粉絲","禁區許可證"]
 role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞"]
+role_color_id = ["難聽鳥紅","鴕鳥橘","藪ㄇ黃","嘶嘶綠","海豚藍","呼嚕嚕紫"]
+role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣"]
 
 
 @client.event
@@ -114,6 +117,31 @@ async def edit_invite(ctx):
     await msg.add_reaction(role_emoji[1])
     await msg.add_reaction(role_emoji[2])
 
+@client.command()
+@commands.is_owner()
+async def edit_color(ctx):
+    embedvar = discord.Embed(title="請選取顏色身分組!",
+                              description="{} - {}\n\
+                                          {} - {}\n\
+                                          {} - {}\n\
+                                          {} - {}\n\
+                                          {} - {}\n\
+                                          {} - {}".format(role_color_emoji[0],"<@&926766604602200074>",
+                                                          role_color_emoji[1],"<@&926765413856067595>",
+                                                          role_color_emoji[2],"<@&926767008891162674>",
+                                                          role_color_emoji[3],"<@&926767203695611914>",
+                                                          role_color_emoji[4],"<@&926767499914117131>",
+                                                          role_color_emoji[5],"<@&926767717011316746>"), color=0x00ff00)
+    channel = client.get_channel(channel_id_message_channel_1)
+    msg = await channel.fetch_message(channel_id_message_role_2)
+    await msg.edit(embed=embedvar)
+    await msg.add_reaction(role_color_emoji[0])
+    await msg.add_reaction(role_color_emoji[1])
+    await msg.add_reaction(role_color_emoji[2])
+    await msg.add_reaction(role_color_emoji[3])
+    await msg.add_reaction(role_color_emoji[4])
+    await msg.add_reaction(role_color_emoji[5])
+
 @client.event
 async def on_raw_reaction_add(payload):
     guild = client.get_guild(payload.guild_id)
@@ -126,6 +154,23 @@ async def on_raw_reaction_add(payload):
             role = discord.utils.get(guild.roles, name=role_id[1])
         elif str(payload.emoji) == role_emoji[2]:
             role = discord.utils.get(guild.roles, name=role_id[2])
+
+        if role is not None:
+            await payload.member.add_roles(role)
+
+    if payload.message_id == channel_id_message_role_2:
+        if str(payload.emoji) == role_color_emoji[0]:
+            role = discord.utils.get(guild.roles, name=role_color_id[0])
+        elif str(payload.emoji) == role_color_emoji[1]:
+            role = discord.utils.get(guild.roles, name=role_color_id[1])
+        elif str(payload.emoji) == role_color_emoji[2]:
+            role = discord.utils.get(guild.roles, name=role_color_id[2])
+        elif str(payload.emoji) == role_color_emoji[3]:
+            role = discord.utils.get(guild.roles, name=role_color_id[3])
+        elif str(payload.emoji) == role_color_emoji[4]:
+            role = discord.utils.get(guild.roles, name=role_color_id[4])
+        elif str(payload.emoji) == role_color_emoji[5]:
+            role = discord.utils.get(guild.roles, name=role_color_id[5])
 
         if role is not None:
             await payload.member.add_roles(role)
@@ -146,6 +191,23 @@ async def on_raw_reaction_remove(payload):
 
         if role is not None:
             await member.remove_roles(role)
+
+    if payload.message_id == channel_id_message_role_2:
+        if str(payload.emoji) == role_color_emoji[0]:
+            role = discord.utils.get(guild.roles, name=role_color_id[0])
+        elif str(payload.emoji) == role_color_emoji[1]:
+            role = discord.utils.get(guild.roles, name=role_color_id[1])
+        elif str(payload.emoji) == role_color_emoji[2]:
+            role = discord.utils.get(guild.roles, name=role_color_id[2])
+        elif str(payload.emoji) == role_color_emoji[3]:
+            role = discord.utils.get(guild.roles, name=role_color_id[3])
+        elif str(payload.emoji) == role_color_emoji[4]:
+            role = discord.utils.get(guild.roles, name=role_color_id[4])
+        elif str(payload.emoji) == role_color_emoji[5]:
+            role = discord.utils.get(guild.roles, name=role_color_id[5])
+
+        if role is not None:
+            await payload.member.add_roles(role)
 
 """
 @client.event
