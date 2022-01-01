@@ -149,6 +149,7 @@ async def on_raw_reaction_remove(payload):
 
 
 async def on_message_delete(message):
+    await channel.send(f"{deleter.name} deleted message by {message.author.name}")
     if message.guild.id == 702741572344610907:
         async for entry in message.guild.audit_logs(limit=1,action=discord.AuditLogAction.message_delete):
             deleter = entry.user
