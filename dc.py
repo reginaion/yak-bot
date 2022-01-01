@@ -207,7 +207,7 @@ async def on_raw_reaction_remove(payload):
             role = discord.utils.get(guild.roles, name=role_color_id[5])
 
         if role is not None:
-            await payload.member.add_roles(role)
+            await member.remove_roles(role)
 
 """
 @client.event
