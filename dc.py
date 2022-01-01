@@ -101,7 +101,15 @@ async def edit_invite(ctx):
     msg = await channel.fetch_message(channel_id_message_role_1)
     await msg.edit(content="<@&925727966137290774> - 動物朋友3玩家\n\
 <@&925729158577930310> - 動物朋友V粉絲\n\
-<@&925895939628105778> - R18閱覽權限，請向<@&925728547966943292>領取",embed=embedvar)
+<@&925895939628105778> - R18頻道閱覽權限，請向<@&925728547966943292>領取\n\
+頻道群組介紹︰\n\
+```\n\
+<#925733227841343508> - けもフレ3\n\
+<#925722952568279091> - けもV\n\
+<#926054063102107779> - けもV twitter推送\n\
+<#925720172059308112> - R18\n\
+```\n\
+",embed=embedvar)
     await msg.add_reaction(role_emoji[0])
     await msg.add_reaction(role_emoji[1])
 
