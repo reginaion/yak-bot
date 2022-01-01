@@ -121,7 +121,8 @@ async def edit_invite(ctx):
 @commands.is_owner()
 async def edit_color(ctx):
     embedvar = discord.Embed(title="請選取顏色身分組!",
-                              description="{} - {}\n\
+                              description="Click the corresponding emoji to receive your role.\n\
+                                          {} - {}\n\
                                           {} - {}\n\
                                           {} - {}\n\
                                           {} - {}\n\
