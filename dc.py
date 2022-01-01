@@ -101,6 +101,7 @@ async def edit_invite(ctx):
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_1)
     await msg.edit(content="頻道群組︰\n\
+<#926715406683615294> - 閒聊\n\
 <#925733227841343508> - けもフレ3\n\
 <#925722952568279091> - けもV\n\
 <#926054063102107779> - けもV twitter推送\n\
