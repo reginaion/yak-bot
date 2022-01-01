@@ -26,8 +26,8 @@ invite_channel_id = 925725103801630761
 channel_id_message_channel_1 = 925732268197167125
 channel_id_message_role_1 = 925960555943051284
 
-role_id = ["探險隊隊長","KemoV粉絲"]
-role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>"]
+role_id = ["探險隊隊長","KemoV粉絲","禁區許可證"]
+role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞"]
 
 
 @client.event
@@ -96,7 +96,8 @@ async def edit_invite(ctx):
     embedvar = discord.Embed(title="請選取身分組!",
                               description="Click the corresponding emoji to receive your role.\n\
                                           {} - {}\n\
-                                          {} - {}".format(role_emoji[0],"<@&925727966137290774>",role_emoji[1],"<@&925729158577930310>"), color=0x00ff00)
+                                          {} - {}\n\
+                                          {} - {}".format(role_emoji[0],"<@&925727966137290774>",role_emoji[1],"<@&925729158577930310>",role_emoji[2],"<@&925895939628105778>"), color=0x00ff00)
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_1)
     await msg.edit(content="頻道群組︰\n\
@@ -108,10 +109,11 @@ async def edit_invite(ctx):
 身分組︰\n\
 <@&925727966137290774> - 動物朋友3玩家\n\
 <@&925729158577930310> - 動物朋友V粉絲\n\
-<@&925895939628105778> - R18頻道閱覽權限，請向<@&925728547966943292>領取\n\
+<@&925895939628105778> - R18頻道\n\
 ",embed=embedvar)
     await msg.add_reaction(role_emoji[0])
     await msg.add_reaction(role_emoji[1])
+    await msg.add_reaction(role_emoji[2])
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -123,6 +125,8 @@ async def on_raw_reaction_add(payload):
             role = discord.utils.get(guild.roles, name=role_id[0])
         elif str(payload.emoji) == role_emoji[1]:
             role = discord.utils.get(guild.roles, name=role_id[1])
+        elif str(payload.emoji) == role_emoji[2]:
+            role = discord.utils.get(guild.roles, name=role_id[2])
 
         if role is not None:
             await payload.member.add_roles(role)
@@ -138,6 +142,8 @@ async def on_raw_reaction_remove(payload):
             role = discord.utils.get(guild.roles, name=role_id[0])
         elif str(payload.emoji) == role_emoji[1]:
             role = discord.utils.get(guild.roles, name=role_id[1])
+        elif str(payload.emoji) == role_emoji[2]:
+            role = discord.utils.get(guild.roles, name=role_id[2])
 
         if role is not None:
             await member.remove_roles(role)
