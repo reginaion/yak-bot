@@ -95,6 +95,14 @@ async def send_s(ctx, channel_id_s:int, *, message:str):
 
 @client.command()
 @commands.is_owner()
+async def delete_s(ctx, channel_id_s:int, message_id_s:int):
+    #channel = client.get_channel(channel_id)
+    channel = client.get_channel(channel_id_s)
+    msg = await channel.fetch_message(message_id_s)
+    await msg.delete()
+
+@client.command()
+@commands.is_owner()
 async def edit_invite(ctx):
     embedvar = discord.Embed(title="請選取身分組!",
                               description="Click the corresponding emoji to receive your role.\n\
