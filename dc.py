@@ -147,7 +147,7 @@ async def on_raw_reaction_remove(payload):
         if role is not None:
             await member.remove_roles(role)
 
-
+@client.event
 async def on_message_delete(message):
     channel = client.get_channel(925763452281159680)
     await channel.send(f"{deleter.name} deleted message by {message.author.name}")
