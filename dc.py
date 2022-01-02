@@ -323,15 +323,7 @@ async def time_check():
         await client.wait_until_ready()
         channel = client.get_channel(channel_id)
         await channel.send('```客家道場```')
-    if weekday == 6 and cst.hour == 22 and cst.minute == 35:
-        await client.wait_until_ready()
         channel = client.get_channel(channel_id_2)
-        await channel.send('```客家道場```')
-    if weekday == 6 and cst.hour == 22 and cst.minute == 8:
-        await client.wait_until_ready()
-        channel = client.get_channel(702741572344610910)
-        await channel.send('```客家道場```')
-        channel = client.get_channel(925763452281159680)
         await channel.send('```客家道場```')
 
 #Mod Leave Announcement
