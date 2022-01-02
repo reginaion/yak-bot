@@ -15,7 +15,7 @@ client = commands.Bot(command_prefix=';', intents=intents)
 
 alarm_time = '23:03'#24hrs
 channel_id = 387998196422672386
-channel_id_2 = 925725103801630761
+channel_id_2 = 925717531082235935
 channel_id_test = 925763452281159680
 #invite_guild_id = 702741572344610907
 #invite_channel_id = 702741572344610910
@@ -326,6 +326,12 @@ async def time_check():
     if weekday == 6 and cst.hour == 22 and cst.minute == 35:
         await client.wait_until_ready()
         channel = client.get_channel(channel_id_2)
+        await channel.send('```客家道場```')
+    if weekday == 6 and cst.hour == 22 and cst.minute == 8:
+        await client.wait_until_ready()
+        channel = client.get_channel(702741572344610910)
+        await channel.send('```客家道場```')
+        channel = client.get_channel(925763452281159680)
         await channel.send('```客家道場```')
 
 #Mod Leave Announcement
