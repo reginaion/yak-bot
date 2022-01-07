@@ -13,7 +13,7 @@ intents = discord.Intents.all()
 intents.members = True
 intents.reactions = True
 client = commands.Bot(command_prefix=';', intents=intents)
-slash = SlashCommand(client, sync_commands=True)
+slash = SlashCommand(client)
 
 alarm_time = '23:03'#24hrs
 channel_id = 387998196422672386
