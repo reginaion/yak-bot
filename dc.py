@@ -6,6 +6,7 @@ import pytz
 import os
 from discord.ext import commands
 from discord.ext import tasks
+import discord_slash
 from discord_slash import SlashCommand
 
 
