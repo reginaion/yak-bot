@@ -7,14 +7,13 @@ import os
 from discord.ext import commands
 from discord.ext import tasks
 import discord_slash
-from discord_slash import SlashCommand
 
 
 intents = discord.Intents.all()
 intents.members = True
 intents.reactions = True
 client = commands.Bot(command_prefix=';', intents=intents)
-slash = SlashCommand(client, sync_commands=True)
+slash = discord_slash.SlashCommand(client, sync_commands=True)
 
 alarm_time = '23:03'#24hrs
 channel_id = 387998196422672386
