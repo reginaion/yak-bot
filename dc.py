@@ -12,7 +12,6 @@ intents = discord.Intents.all()
 intents.members = True
 intents.reactions = True
 client = commands.Bot(command_prefix=';', intents=intents)
-slash = SlashCommand(client, sync_commands=True)
 
 alarm_time = '23:03'#24hrs
 channel_id = 387998196422672386
@@ -226,9 +225,9 @@ async def on_raw_reaction_remove(payload):
     """Say hello to the bot"""  # the command description can be supplied as the docstring
 #    await ctx.respond(f"Hello {ctx.author}!")
 
-#@client.command(name="test") # Test command which works
-#async def test(ctx):
-#    await ctx.send("test")
+@client.command(name="test") # Test command which works
+async def test(ctx):
+    await ctx.send("test")
 
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
