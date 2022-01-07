@@ -222,8 +222,7 @@ async def on_raw_reaction_remove(payload):
         if role is not None:
             await member.remove_roles(role)
 
-@slash.slash(name="test",
-             description="This is just a test command, nothing more.", guild_ids=guild_ids)
+@slash.slash(name="test", guild_ids=[702741572344610907])
 async def test(ctx):
     await ctx.send(content="Hello World!")
 
