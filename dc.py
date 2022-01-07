@@ -218,6 +218,11 @@ async def on_raw_reaction_remove(payload):
         if role is not None:
             await member.remove_roles(role)
 
+@client.slash_command()
+async def hello(ctx, name: str = None):
+    name = name or ctx.author.name
+    await ctx.respond(f"Hello {name}!")
+
 """
 @client.event
 async def on_raw_reaction_add(payload):
