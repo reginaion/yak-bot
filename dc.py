@@ -6,7 +6,6 @@ import pytz
 import os
 from discord.ext import commands
 from discord.ext import tasks
-from discord_slash import SlashCommand
 
 
 intents = discord.Intents.all()
