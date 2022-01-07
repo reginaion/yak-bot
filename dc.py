@@ -222,9 +222,9 @@ async def on_raw_reaction_remove(payload):
         if role is not None:
             await member.remove_roles(role)
 
-#@slash.slash(name="Ping", description="Ping command", guild_ids=guild_ids)
-#async def _ping(ctx):  # Defines a new "context" (ctx) command called "ping."
-#    await ctx.send("Pong!")
+@slash.slash(name="Ping", description="Ping command", guild_ids=guild_ids)
+async def _ping(ctx):  # Defines a new "context" (ctx) command called "ping."
+    await ctx.send("Pong!")
 
 
 @client.command(name="test") # Test command which works
