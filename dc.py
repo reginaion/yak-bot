@@ -34,6 +34,8 @@ role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","
 role_color_id = ["難聽鳥紅","鴕鳥橘","藪ㄇ黃","嘶嘶綠","海豚藍","呼嚕嚕紫"]
 role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣"]
 
+guilds_ids = [702741572344610907]
+
 
 @client.event
 async def on_member_join(member):
@@ -221,7 +223,7 @@ async def on_raw_reaction_remove(payload):
             await member.remove_roles(role)
 
 @slash.slash(name="test_a",
-             description="This is just a test command, nothing more.")
+             description="This is just a test command, nothing more.", guild_ids=guild_ids)
 async def test_a(ctx):
     await ctx.send(content="Hello World!")
 
