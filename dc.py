@@ -220,10 +220,10 @@ async def on_raw_reaction_remove(payload):
         if role is not None:
             await member.remove_roles(role)
 
-#@bot.slash_command(guild_ids=guild_ids)  # create a slash command for the supplied guilds
-#async def hello(ctx):
+@bot.slash_command(guild_ids=guild_ids)  # create a slash command for the supplied guilds
+async def hello(ctx):
     """Say hello to the bot"""  # the command description can be supplied as the docstring
-#    await ctx.respond(f"Hello {ctx.author}!")
+    await ctx.respond(f"Hello {ctx.author}!")
 
 @client.command(name="test") # Test command which works
 async def test(ctx):
