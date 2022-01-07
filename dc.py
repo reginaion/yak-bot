@@ -13,7 +13,7 @@ intents = discord.Intents.all()
 intents.members = True
 intents.reactions = True
 client = commands.Bot(command_prefix=';', intents=intents)
-slash = SlashCommand(client)
+slash = SlashCommand(client, sync_commands=True)
 
 alarm_time = '23:03'#24hrs
 channel_id = 387998196422672386
@@ -222,9 +222,10 @@ async def on_raw_reaction_remove(payload):
         if role is not None:
             await member.remove_roles(role)
 
-@slash.slash(name="test", guild_ids=[702741572344610907])
-async def test(ctx):
-    await ctx.send(content="Hello World!")
+@slash.slash(name="test", description="Those burgers look tasty",        # Adding a new slash command with our slash variable
+             options=[discord_slash.manage_commands.create_option(name="first_option", description="Please enter what you want on your burger", option_type=3, required=False)])
+async def test(ctx: discord_slash.SlashContext, first_option):               # You have to name the function the 
+    await ctx.send(f'I am now gonna get you a burger with {first_option}')   # same as the command
 
 @client.command(name="ping") # Test command which works
 async def ping(ctx):
