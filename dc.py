@@ -221,7 +221,7 @@ async def on_raw_reaction_remove(payload):
 
 @slash.slash(name="test",
              description="This is just a test command, nothing more.")
-async def test(ctx):
+async def test_a(ctx):
     await ctx.send(content="Hello World!")
 
 
