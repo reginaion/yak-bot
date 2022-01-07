@@ -1,4 +1,5 @@
-py-cord
+discord.py
+discord-py-slash-command
 aiohttp
 async-timeout
 attrs

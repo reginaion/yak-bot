@@ -6,12 +6,14 @@ import pytz
 import os
 from discord.ext import commands
 from discord.ext import tasks
+from discord_slash import SlashCommand
 
 
 intents = discord.Intents.all()
 intents.members = True
 intents.reactions = True
 client = commands.Bot(command_prefix=';', intents=intents)
+slash = SlashCommand(client, sync_commands=True)
 
 alarm_time = '23:03'#24hrs
 channel_id = 387998196422672386
@@ -220,10 +222,10 @@ async def on_raw_reaction_remove(payload):
         if role is not None:
             await member.remove_roles(role)
 
-@client.slash_command(guild_ids=guild_ids)  # create a slash command for the supplied guilds
-async def hello(ctx):
-    """Say hello to the bot"""  # the command description can be supplied as the docstring
-    await ctx.respond(f"Hello {ctx.author}!")
+@slash.slash(name="test",
+             description="This is just a test command, nothing more.", guild_ids=guild_ids)
+async def test(ctx):
+    await ctx.send(content="Hello World!")
 
 @client.command(name="test") # Test command which works
 async def test(ctx):
