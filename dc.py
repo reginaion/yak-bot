@@ -29,8 +29,8 @@ channel_id_message_channel_1 = 925732268197167125
 channel_id_message_role_1 = 925960555943051284
 channel_id_message_role_2 = 926769088980738108
 
-role_id = ["探險隊隊長","KemoV粉絲","禁區許可證"]
-role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞"]
+role_id = ["探險隊隊長","KemoV粉絲","禁區許可證","客家道場"]
+role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔"]
 role_color_id = ["難聽鳥紅","鴕鳥橘","藪ㄇ黃","嘶嘶綠","海豚藍","呼嚕嚕紫"]
 role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣"]
 
@@ -124,10 +124,12 @@ async def edit_invite(ctx):
 <@&925727966137290774> - 動物朋友3玩家\n\
 <@&925729158577930310> - 動物朋友V粉絲\n\
 <@&925895939628105778> - R18頻道\n\
+<@&929747501727244368> - 客家道場提醒\n\
 ",embed=embedvar)
     await msg.add_reaction(role_emoji[0])
     await msg.add_reaction(role_emoji[1])
     await msg.add_reaction(role_emoji[2])
+    await msg.add_reaction(role_emoji[3])
 
 @client.command()
 @commands.is_owner()
@@ -167,6 +169,8 @@ async def on_raw_reaction_add(payload):
             role = discord.utils.get(guild.roles, name=role_id[1])
         elif str(payload.emoji) == role_emoji[2]:
             role = discord.utils.get(guild.roles, name=role_id[2])
+        elif str(payload.emoji) == role_emoji[3]:
+            role = discord.utils.get(guild.roles, name=role_id[3])
 
         if role is not None:
             await payload.member.add_roles(role)
@@ -201,6 +205,8 @@ async def on_raw_reaction_remove(payload):
             role = discord.utils.get(guild.roles, name=role_id[1])
         elif str(payload.emoji) == role_emoji[2]:
             role = discord.utils.get(guild.roles, name=role_id[2])
+        elif str(payload.emoji) == role_emoji[3]:
+            role = discord.utils.get(guild.roles, name=role_id[3])
 
         if role is not None:
             await member.remove_roles(role)
@@ -342,6 +348,10 @@ async def time_check():
         await channel.send('```客家道場```')
         channel = client.get_channel(channel_id_2)
         await channel.send('```客家道場```')
+    if weekday == 6 and cst.hour == 22 and cst.minute == 50:
+        await client.wait_until_ready()
+        channel = client.get_channel(channel_id_2)
+        await channel.send('<@&929747501727244368>```客家道場```')
 
 #Mod Leave Announcement
 """
