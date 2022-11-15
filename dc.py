@@ -113,6 +113,7 @@ async def edit_invite(ctx):
                                           {} - {}\n\
                                           {} - {}\n\
                                           {} - {}\n\
+                                          {} - {}\n\
                                           {} - {}".format(role_emoji[0],"<@&925727966137290774>",
                                                           role_emoji[1],"<@&925729158577930310>",
                                                           role_emoji[4],"<@&1042010855396622407>",
@@ -247,6 +248,10 @@ async def test(ctx: discord_slash.SlashContext, first_option):               # Y
 @client.command(name="ping") # Test command which works
 async def ping(ctx):
     await ctx.send("ping")
+
+@client.command(name="check_version") # Test command which works
+async def check_version(ctx):
+    await ctx.send("ver 0.0.6, date 221115, add new role and fix bug")
 
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
