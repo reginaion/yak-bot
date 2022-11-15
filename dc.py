@@ -30,7 +30,7 @@ channel_id_message_role_1 = 925960555943051284
 channel_id_message_role_2 = 926769088980738108
 
 role_id = ["探險隊隊長","KemoV粉絲","禁區許可證","客家道場"]
-role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔"]
+role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑"]
 role_color_id = ["難聽鳥紅","鴕鳥橘","藪ㄇ黃","嘶嘶綠","海豚藍","呼嚕嚕紫"]
 role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣"]
 
@@ -113,7 +113,11 @@ async def edit_invite(ctx):
                                           {} - {}\n\
                                           {} - {}\n\
                                           {} - {}\n\
-                                          {} - {}".format(role_emoji[0],"<@&925727966137290774>",role_emoji[1],"<@&925729158577930310>",role_emoji[2],"<@&925895939628105778>",role_emoji[3],"<@&929747501727244368>"), color=0x00ff00)
+                                          {} - {}".format(role_emoji[0],"<@&925727966137290774>",
+                                                          role_emoji[1],"<@&925729158577930310>",
+                                                          role_emoji[4],"<@&1042010855396622407>",
+                                                          role_emoji[2],"<@&925895939628105778>",
+                                                          role_emoji[3],"<@&929747501727244368>"), color=0x00ff00)
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_1)
     await msg.edit(content="頻道群組︰\n\
@@ -124,6 +128,7 @@ async def edit_invite(ctx):
 身分組︰\n\
 <@&925727966137290774> - 動物朋友3玩家\n\
 <@&925729158577930310> - 動物朋友V粉絲\n\
+<@&1042010855396622407> - 動物朋友王國玩家\n\
 <@&925895939628105778> - R18頻道\n\
 <@&929747501727244368> - 客家道場提醒\n\
 ",embed=embedvar)
@@ -131,6 +136,7 @@ async def edit_invite(ctx):
     await msg.add_reaction(role_emoji[1])
     await msg.add_reaction(role_emoji[2])
     await msg.add_reaction(role_emoji[3])
+    await msg.add_reaction(role_emoji[4])
 
 @client.command()
 @commands.is_owner()
@@ -172,6 +178,8 @@ async def on_raw_reaction_add(payload):
             role = discord.utils.get(guild.roles, name=role_id[2])
         elif str(payload.emoji) == role_emoji[3]:
             role = discord.utils.get(guild.roles, name=role_id[3])
+        elif str(payload.emoji) == role_emoji[4]:
+            role = discord.utils.get(guild.roles, name=role_id[4])
 
         if role is not None:
             await payload.member.add_roles(role)
@@ -208,6 +216,8 @@ async def on_raw_reaction_remove(payload):
             role = discord.utils.get(guild.roles, name=role_id[2])
         elif str(payload.emoji) == role_emoji[3]:
             role = discord.utils.get(guild.roles, name=role_id[3])
+        elif str(payload.emoji) == role_emoji[4]:
+            role = discord.utils.get(guild.roles, name=role_id[4])
 
         if role is not None:
             await member.remove_roles(role)
