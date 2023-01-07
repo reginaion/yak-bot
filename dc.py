@@ -30,7 +30,7 @@ channel_id_message_role_1 = 925960555943051284
 channel_id_message_role_2 = 926769088980738108
 
 role_id = ["探險隊隊長","KemoV粉絲","禁區許可證","客家道場","王國旅人","Irodori奇緣"]
-role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑"]
+role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>"]
 role_color_id = ["難聽鳥紅","鴕鳥橘","藪ㄇ黃","嘶嘶綠","海豚藍","呼嚕嚕紫"]
 role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣"]
 
@@ -139,7 +139,7 @@ async def edit_invite(ctx):
     await msg.add_reaction(role_emoji[2])
     await msg.add_reaction(role_emoji[3])
     await msg.add_reaction(role_emoji[4])
-    await msg.add_reaction(role_emoji[5])
+    await msg.remove_reaction(role_emoji[5])
 
 @client.command()
 @commands.is_owner()
@@ -221,6 +221,8 @@ async def on_raw_reaction_remove(payload):
             role = discord.utils.get(guild.roles, name=role_id[3])
         elif str(payload.emoji) == role_emoji[4]:
             role = discord.utils.get(guild.roles, name=role_id[4])
+        elif str(payload.emoji) == role_emoji[5]:
+            role = discord.utils.get(guild.roles, name=role_id[5])
 
         if role is not None:
             await member.remove_roles(role)
