@@ -117,6 +117,7 @@ async def edit_invite(ctx):
                                           {} - {}".format(role_emoji[0],"<@&925727966137290774>",
                                                           role_emoji[1],"<@&925729158577930310>",
                                                           role_emoji[4],"<@&1042010855396622407>",
+                                                          role_emoji[5],"<@&1061269715584036884>"
                                                           role_emoji[2],"<@&925895939628105778>",
                                                           role_emoji[3],"<@&929747501727244368>"), color=0x00ff00)
     channel = client.get_channel(channel_id_message_channel_1)
@@ -131,6 +132,7 @@ async def edit_invite(ctx):
 <@&925727966137290774> - 動物朋友3玩家\n\
 <@&925729158577930310> - 動物朋友V粉絲\n\
 <@&1042010855396622407> - 動物朋友王國玩家\n\
+<@&1061269715584036884> - 動物朋友粉絲\n\
 <@&925895939628105778> - R18頻道\n\
 <@&929747501727244368> - 客家道場提醒\n\
 ",embed=embedvar)
@@ -139,8 +141,9 @@ async def edit_invite(ctx):
     await msg.add_reaction(role_emoji[2])
     await msg.add_reaction(role_emoji[3])
     await msg.add_reaction(role_emoji[4])
-    user = client.get_user(853662081991311371)
-    await msg.remove_reaction(role_emoji[5],user)
+    await msg.add_reaction(role_emoji[5])
+    #user = client.get_user(853662081991311371)
+    #await msg.remove_reaction(role_emoji[5],user)
 
 @client.command()
 @commands.is_owner()
@@ -184,6 +187,8 @@ async def on_raw_reaction_add(payload):
             role = discord.utils.get(guild.roles, name=role_id[3])
         elif str(payload.emoji) == role_emoji[4]:
             role = discord.utils.get(guild.roles, name=role_id[4])
+        elif str(payload.emoji) == role_emoji[5]:
+            role = discord.utils.get(guild.roles, name=role_id[5])
 
         if role is not None:
             await payload.member.add_roles(role)
