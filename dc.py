@@ -117,7 +117,7 @@ async def edit_invite(ctx):
                                           {} - {}".format(role_emoji[0],"<@&925727966137290774>",
                                                           role_emoji[1],"<@&925729158577930310>",
                                                           role_emoji[4],"<@&1042010855396622407>",
-                                                          role_emoji[5],"<@&1061269715584036884>"
+                                                          role_emoji[5],"<@&1061269715584036884>",
                                                           role_emoji[2],"<@&925895939628105778>",
                                                           role_emoji[3],"<@&929747501727244368>"), color=0x00ff00)
     channel = client.get_channel(channel_id_message_channel_1)
