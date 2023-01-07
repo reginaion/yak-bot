@@ -139,7 +139,8 @@ async def edit_invite(ctx):
     await msg.add_reaction(role_emoji[2])
     await msg.add_reaction(role_emoji[3])
     await msg.add_reaction(role_emoji[4])
-    await msg.remove_reaction(role_emoji[5])
+    user = client.get_user(853662081991311371)
+    await msg.remove_reaction(role_emoji[5],user)
 
 @client.command()
 @commands.is_owner()
