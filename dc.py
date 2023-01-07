@@ -118,9 +118,9 @@ async def edit_invite(ctx):
                                           {} - {}".format(role_emoji[0],"<@&925727966137290774>",
                                                           role_emoji[1],"<@&925729158577930310>",
                                                           role_emoji[4],"<@&1042010855396622407>",
+                                                          role_emoji[5],"<@&1061155255880007771>",
                                                           role_emoji[2],"<@&925895939628105778>",
-                                                          role_emoji[3],"<@&929747501727244368>",
-                                                          role_emoji[5],"<@&1061155255880007771>"), color=0x00ff00)
+                                                          role_emoji[3],"<@&929747501727244368>"), color=0x00ff00)
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_1)
     await msg.edit(content="頻道群組︰\n\
