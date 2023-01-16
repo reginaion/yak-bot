@@ -50,8 +50,9 @@ async def on_member_join(member):
         embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
         message="歡迎大大的加入，群組介面操作上有任何疑難雜症都可以詢問~\n\
 閒聊總大廳在這裡︰<#925717531082235935>\n\
-kemov聊天大廳在這裡︰<#1064459641196642334>\n\
-群組上有任何問題歡迎提出，或是至<#1064524691370422392>反應"
+kemov聊天大廳在這裡︰<#925722682178293782>\n\
+群組上有任何問題歡迎提出，或是至<#1042429222154678312>反應\n\
+再次感謝大大的加入~"
         await channel.send(content=message,embed=embed)
 
 
@@ -265,7 +266,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.6, date 221115, add new role and fix bug")
+    await ctx.send("ver 0.0.8, date 230116, edit invite message")
 
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
