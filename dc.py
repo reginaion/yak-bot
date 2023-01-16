@@ -46,15 +46,14 @@ async def on_member_join(member):
 
         channel = client.get_channel(invite_channel_id)
         #await member.send('Private message')
-        embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n\
-請至<#925779385729032262>閱讀守則\n\
-請至<#925732268197167125>釘選處索取身分組以取得頻道瀏覽權限\n\n\
-歡迎大大的加入，群組介面操作上有任何疑難雜症都可以詢問~\n\
+        embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請至<#925779385729032262>閱讀守則\n請至<#925732268197167125>釘選處索取身分組以取得頻道瀏覽權限") # F-Strings!
+        embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
+        message="歡迎大大的加入，群組介面操作上有任何疑難雜症都可以詢問~\n\
 閒聊總大廳在這裡︰<#925717531082235935>\n\
 kemov聊天大廳在這裡︰<#1064459641196642334>\n\
-群組上有任何問題歡迎提出，或是至<#1064524691370422392>反應") # F-Strings!
-        embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
-        await channel.send(embed=embed)
+群組上有任何問題歡迎提出，或是至<#1064524691370422392>反應"
+        await channel.send(content=message,embed=embed)
+
 
 #@client.event
 #async def on_member_remove(member):
