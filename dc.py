@@ -136,11 +136,11 @@ async def edit_invite(ctx):
 <#925733227841343508> - けものフレンズキングダム\n\
 　\n\
 身分組︰\n\
-<@&925727966137290774> - 動物朋友3玩家\n\
-<@&925729158577930310> - 動物朋友V粉絲\n\
-<@&1042010855396622407> - 動物朋友王國玩家\n\
-<@&1061155255880007771> - 動物朋友粉絲\n\
-<@&925895939628105778> - R18頻道\n\
+<@&925727966137290774> - 動物朋友3玩家 (kemono friends 3 player)\n\
+<@&925729158577930310> - 動物朋友V粉絲 (kemov fans)\n\
+<@&1042010855396622407> - 動物朋友王國玩家 (kemono friends kingdom player)\n\
+<@&1061155255880007771> - 動物朋友粉絲 (kemono fans)\n\
+<@&925895939628105778> - R18頻道 (access r18 channel)\n\
 <@&929747501727244368> - 客家道場提醒\n\
 ",embed=embedvar)
     await msg.add_reaction(role_emoji[0])
@@ -268,7 +268,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.8.2, date 230116, edit invite message")
+    await ctx.send("ver 0.0.8.3, date 230116, edit invite message")
 
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
