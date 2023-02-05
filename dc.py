@@ -133,7 +133,7 @@ async def edit_invite(ctx):
 <#926715406683615294> - 閒聊\n\
 <#925733227841343508> - けもフレ3\n\
 <#925722952568279091> - けもV\n\
-<#925733227841343508> - けものフレンズキングダム\n\
+<#1042336425808511016> - けものフレンズキングダム\n\
 　\n\
 身分組︰\n\
 <@&925727966137290774> - 動物朋友3玩家 (kemono friends 3 player)\n\
@@ -268,7 +268,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.8.3, date 230116, edit invite message")
+    await ctx.send("ver 0.0.8.4, date 230205, edit invite message")
 
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
@@ -377,10 +377,12 @@ async def time_check():
     weekday = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')).weekday()
     if weekday == 6 and cst.hour == 22 and cst.minute == 30:
         await client.wait_until_ready()
-        channel = client.get_channel(channel_id)
-        await channel.send('```客家道場```')
         channel = client.get_channel(channel_id_2)
         await channel.send('<@&929747501727244368>```客家道場```')
+    if weekday == 6 and cst.hour == 22 and cst.minute == 31:
+        await client.wait_until_ready()
+        channel = client.get_channel(channel_id)
+        await channel.send('```客家道場```')
 
 #Mod Leave Announcement
 """
