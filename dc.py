@@ -268,12 +268,12 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.8.6, date 230212, add on_message_delete")
+    await ctx.send("ver 0.0.8.7, date 230212, add on_message_delete")
 
 @client.event
 async def on_message_delete(message):
     channel = client.get_channel(1074333559596273715)
-    await channel.send(f'<#{message.channel.id}> <{message.channel}>: {message.author}: {message.content}')
+    await channel.send(f'<#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content}')
 
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
