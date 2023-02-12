@@ -270,6 +270,11 @@ async def ping(ctx):
 async def check_version(ctx):
     await ctx.send("ver 0.0.8.4, date 230205, edit invite message")
 
+@client.event
+async def on_message_delete(message):
+    channel = client.get_channel(1074333559596273715)
+    await channel.send(f'message: {message.content} by {message.author} was deleted in {message.channel}')
+
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
 #    await ctx.respond(f"Hello {ctx.author}!")
