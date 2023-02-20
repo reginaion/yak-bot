@@ -276,8 +276,9 @@ async def check_version(ctx):
 async def on_message_delete(message):
     channel = client.get_channel(channel_message_backup_delete)
     mca = message.created_at.astimezone(pytz.timezone('Asia/Taipei'))
+    mea = message.edied_at.astimezone(pytz.timezone('Asia/Taipei'))
     period = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')) - mca
-    await channel.send(f'delete: <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} ({period.total_seconds():.2f}s) ({mca:%Y-%m-%d %H:%M:%S %p})')
+    await channel.send(f'[Delete] <#{message.channel.id}> ({message.channel}) --- {message.author}: {message.content} ({period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S %p}, E: {mea:%Y-%m-%d %H:%M:%S %p})')
 
 @client.event
 async def on_message_edit(message_before, message_after):
