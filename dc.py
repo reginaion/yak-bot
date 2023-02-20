@@ -30,6 +30,8 @@ channel_id_message_role_1 = 925960555943051284
 channel_id_message_role_2 = 926769088980738108
 channel_message_backup_delete = 1074333559596273715
 channel_message_backup_edit   = 1077264038888734810
+channel_message_backup_delete_simp = 1077265391031685301
+channel_message_backup_edit_simp   = 1077288231613247529
 
 role_id = ["探險隊隊長","KemoV粉絲","禁區許可證","客家道場","王國旅人","Friends"]
 role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>"]
@@ -270,7 +272,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.4, date 230221, add on_message_edit")
+    await ctx.send("ver 0.0.9.5, date 230221, add on_message_edit")
 
 @client.event
 async def on_message_delete(message):
@@ -284,8 +286,8 @@ async def on_message_delete(message):
     except:
         pass
     period = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')) - mca
-    channel_2 = client.get_channel(1077265391031685301)
-    await channel_2.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content}')
+    channel_simp = client.get_channel(channel_message_backup_delete_simp)
+    await channel_simp.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content}')
     await channel.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S.%f %p}{mea_msg})')
 
 @client.event
@@ -294,11 +296,12 @@ async def on_message_edit(message_before, message_after):
     mcab = message_before.created_at.astimezone(pytz.timezone('Asia/Taipei'))
     mcaa = message_after.edited_at.astimezone(pytz.timezone('Asia/Taipei'))
     period = mcaa - mcab
-    channel_2 = client.get_channel(1077288231613247529)
-    await channel_2.send(f'[Edit Before] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content}\n\
-                         [Edit After] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content}')
-    await channel.send(f'[Edit Before] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content} (C: {mcab:%Y-%m-%d %H:%M:%S.%f %p})\n\
-                         [Edit After] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mcaa:%Y-%m-%d %H:%M:%S.%f %p})')
+    channel_simp = client.get_channel(channel_message_backup_edit_simp)
+    await channel_simp.send(f'[Edit][Before] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content}\n\
+[Edit][After] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content}')
+
+    await channel.send(f'[Edit][Before] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content} (C: {mcab:%Y-%m-%d %H:%M:%S.%f %p})\n\
+[Edit][After] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mcaa:%Y-%m-%d %H:%M:%S.%f %p})')
 
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
