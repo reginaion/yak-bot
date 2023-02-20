@@ -270,7 +270,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.2, date 230221, add on_message_edit")
+    await ctx.send("ver 0.0.9.3, date 230221, add on_message_edit")
 
 @client.event
 async def on_message_delete(message):
@@ -293,8 +293,8 @@ async def on_message_edit(message_before, message_after):
     mcaa = message_after.created_at.astimezone(pytz.timezone('Asia/Taipei'))
     period = mcaa - mcab
 
-    await channel.send(f'[Edit Before] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content} (C: {mca:%Y-%m-%d %H:%M:%S.%f %p})\
-                         [Edit After] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S.%f %p})')
+    await channel.send(f'[Edit Before] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content} (C: {mcab:%Y-%m-%d %H:%M:%S.%f %p})\
+                         [Edit After] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mcaa:%Y-%m-%d %H:%M:%S.%f %p})')
 
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
