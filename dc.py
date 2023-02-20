@@ -284,16 +284,20 @@ async def on_message_delete(message):
     except:
         pass
     period = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')) - mca
+    channel_2 = client.get_channel(1077265391031685301)
+    await channel_2.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content}')
     await channel.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S.%f %p}{mea_msg})')
 
 @client.event
 async def on_message_edit(message_before, message_after):
     channel = client.get_channel(channel_message_backup_edit)
     mcab = message_before.created_at.astimezone(pytz.timezone('Asia/Taipei'))
-    mcaa = message_after.created_at.astimezone(pytz.timezone('Asia/Taipei'))
+    mcaa = message_after.edited_at.astimezone(pytz.timezone('Asia/Taipei'))
     period = mcaa - mcab
-
-    await channel.send(f'[Edit Before] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content} (C: {mcab:%Y-%m-%d %H:%M:%S.%f %p})\
+    channel_2 = client.get_channel(1077288231613247529)
+    await channel.send(f'[Edit Before] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content}\n\
+                         [Edit After] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content}')
+    await channel.send(f'[Edit Before] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content} (C: {mcab:%Y-%m-%d %H:%M:%S.%f %p})\n\
                          [Edit After] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mcaa:%Y-%m-%d %H:%M:%S.%f %p})')
 
 #@client.slash_command(guild_ids=[702741572344610907])
