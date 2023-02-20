@@ -270,12 +270,12 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.8.9, date 230221, add on_message_delete")
+    await ctx.send("ver 0.0.8.9, date 230221, add on_message_edit")
 
 @client.event
 async def on_message_delete(message):
     channel = client.get_channel(channel_message_backup_delete)
-    mca = message.create_at.now(tz=pytz.timezone('Asia/Taipei'))
+    mca = message.create_at.timestamp()
     #period = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')) - mca
     await channel.send(f'delete: <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content}')
 
