@@ -28,7 +28,7 @@ invite_channel_id = 925725103801630761
 channel_id_message_channel_1 = 925732268197167125
 channel_id_message_role_1 = 925960555943051284
 channel_id_message_role_2 = 926769088980738108
-channel_message_backup_delete = 1077265391031685301
+channel_message_backup_delete = 1074333559596273715
 channel_message_backup_edit   = 1077264038888734810
 
 role_id = ["探險隊隊長","KemoV粉絲","禁區許可證","客家道場","王國旅人","Friends"]
@@ -270,29 +270,21 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.8.8, date 230221, add on_message_edit")
+    await ctx.send("ver 0.0.8.9, date 230221, add on_message_edit")
 
 @client.event
 async def on_message_delete(message):
-    channel = client.get_channel(1074333559596273715)
-    await channel.send(f'<#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content}')
-
-    embed=discord.Embed(title="{} ({}) deleted a message".format(message.member.name, message.author), description="", color="Blue")
-    embed.add_field(name= message.content ,value=f"<#{message.channel.id}> <{message.channel}>", inline=True)
-    channel_2=client.get_channel(channel_message_backup_delete)
-    await channel_2.send(embed=embed)
-    await channel_2.send(f'<#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content}')
+    channel = client.get_channel(channel_message_backup_delete)
+    mca = message.create_at.now(tz=pytz.timezone('Asia/Taipei'))
+    period = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')) - mca
+    await channel.send(f'delete: <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} ({period.total_seconds():.2f}s) ({mca:%Y-%m-%d %H:%M:%S %p})')
 
 @client.event
 async def on_message_edit(message_before, message_after):
-    embed = discord.Embed(title="{} edited a message".format(message_before.author.name),
-                          description="", color=0xFF0000)
-    embed.add_field(name=message_before.content, value="This is the message before any edit",
-                    inline=True)
-    embed.add_field(name=message_after.content, value="This is the message after the edit",
-                    inline=True)
     channel = client.get_channel(channel_message_backup_edit)
     await channel.send(channel, embed=embed)
+    await channel.send(f'<#{message_before.channel.id}> <{message_before.channel}> --- before: {message_before.author}: {message_before.content}\
+                         <#{message_after.channel.id}> <{message_after.channel}> ---  after: {message_after.author}: {message_after.content}')
 
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
