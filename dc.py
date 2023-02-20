@@ -28,6 +28,8 @@ invite_channel_id = 925725103801630761
 channel_id_message_channel_1 = 925732268197167125
 channel_id_message_role_1 = 925960555943051284
 channel_id_message_role_2 = 926769088980738108
+channel_message_backup_delete = 1077265391031685301
+channel_message_backup_edit   = 1077264038888734810
 
 role_id = ["探險隊隊長","KemoV粉絲","禁區許可證","客家道場","王國旅人","Friends"]
 role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>"]
@@ -268,12 +270,27 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.8.7, date 230212, add on_message_delete")
+    await ctx.send("ver 0.0.8.7, date 230221, add on_message_edit")
 
 @client.event
 async def on_message_delete(message):
     channel = client.get_channel(1074333559596273715)
     await channel.send(f'<#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content}')
+
+    embed=discord.Embed(title="{} ({}) deleted a message".format(message.member.name, message.author), description="", color="Blue")
+    embed.add_field(name= message.content ,value=f"<#{message.channel.id}> <{message.channel}>", inline=True)
+    channel_2=client.get_channel(channel_message_backup_delete)
+    await channel_2.send(embed=embed)
+    await channel_2.send(f'<#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content}')
+
+@client.event
+async def on_message_edit(message_before, message_after):
+    embed=discord.Embed(title="{} ({}) edited a message".format(message_before.member.name, message_before.author), 
+    description="", color="Blue")
+    embed.add_field(name= message_before.content ,value=f"<#{message.channel.id}> <{message.channel}> Before", inline=True)
+    embed.add_field(name= message_after.content ,value=f"<#{message.channel.id}> <{message.channel}> After", inline=True)
+    channel=client.get_channel(channel_message_backup_edit)
+    await channel.send(embed=embed)
 
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
