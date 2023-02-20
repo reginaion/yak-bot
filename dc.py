@@ -278,7 +278,7 @@ async def on_message_delete(message):
     mca = message.created_at.astimezone(pytz.timezone('Asia/Taipei'))
     mea = message.edied_at.astimezone(pytz.timezone('Asia/Taipei'))
     period = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')) - mca
-    await channel.send(f'[Delete] <#{message.channel.id}> ({message.channel}) --- {message.author}: {message.content} ({period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S %p}, E: {mea:%Y-%m-%d %H:%M:%S %p})')
+    await channel.send(f'[Delete] <#{message.channel.id}> ({message.channel}) --- {message.author}: {message.content} ({period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S.%.2f %p}, E: {mea:%Y-%m-%d %H:%M:%S.%.2f %p})')
 
 @client.event
 async def on_message_edit(message_before, message_after):
