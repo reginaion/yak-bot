@@ -272,7 +272,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.5, date 230221, add on_message_edit")
+    await ctx.send("ver 0.0.9.6, date 230221, add on_message_edit")
 
 @client.event
 async def on_message_delete(message):
@@ -283,11 +283,13 @@ async def on_message_delete(message):
     try:
         mea = message.edited_at.astimezone(pytz.timezone('Asia/Taipei'))
         mea_msg = f', E: {mea:%Y-%m-%d %H:%M:%S.%f %p}'
+        mea_prx = "->E"
+        mea_msg_simp = f' -> ({mea:%H:%M})'
     except:
         pass
     period = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')) - mca
     channel_simp = client.get_channel(channel_message_backup_delete_simp)
-    await channel_simp.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content}')
+    await channel_simp.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C{mea_prx}: ({mca:%H:%M}){mea_msg_simp}')
     await channel.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S.%f %p}{mea_msg})')
 
 @client.event
@@ -297,11 +299,11 @@ async def on_message_edit(message_before, message_after):
     mcaa = message_after.edited_at.astimezone(pytz.timezone('Asia/Taipei'))
     period = mcaa - mcab
     channel_simp = client.get_channel(channel_message_backup_edit_simp)
-    await channel_simp.send(f'[Edit][Before] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content}\n\
-[Edit][After] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content}')
+    await channel_simp.send(f'[Ed][Be] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content}\n\
+[Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C->E: ({mcab:%H:%M}) -> ({mcaa:%H:%M}))')
 
-    await channel.send(f'[Edit][Before] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content} (C: {mcab:%Y-%m-%d %H:%M:%S.%f %p})\n\
-[Edit][After] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mcaa:%Y-%m-%d %H:%M:%S.%f %p})')
+    await channel.send(f'[Ed][Be] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content} (C: {mcab:%Y-%m-%d %H:%M:%S.%f %p})\n\
+[Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mcaa:%Y-%m-%d %H:%M:%S.%f %p})')
 
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
