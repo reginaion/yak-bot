@@ -270,7 +270,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.8.7, date 230221, add on_message_edit")
+    await ctx.send("ver 0.0.8.8, date 230221, add on_message_edit")
 
 @client.event
 async def on_message_delete(message):
@@ -285,12 +285,14 @@ async def on_message_delete(message):
 
 @client.event
 async def on_message_edit(message_before, message_after):
-    embed=discord.Embed(title="{} ({}) edited a message".format(message_before.member.name, message_before.author), 
-    description="", color="Blue")
-    embed.add_field(name= message_before.content ,value=f"<#{message.channel.id}> <{message.channel}> Before", inline=True)
-    embed.add_field(name= message_after.content ,value=f"<#{message.channel.id}> <{message.channel}> After", inline=True)
-    channel=client.get_channel(channel_message_backup_edit)
-    await channel.send(embed=embed)
+    embed = discord.Embed(title="{} edited a message".format(message_before.author.name),
+                          description="", color=0xFF0000)
+    embed.add_field(name=message_before.content, value="This is the message before any edit",
+                    inline=True)
+    embed.add_field(name=message_after.content, value="This is the message after the edit",
+                    inline=True)
+    channel = client.get_channel(channel_message_backup_edit)
+    await channel.send(channel, embed=embed)
 
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
