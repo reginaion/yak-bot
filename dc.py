@@ -106,6 +106,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
 群組上或操作上等有任何問題歡迎提出，或是至 <#1042429222154678312> 反應\n\
 再次感謝大大的加入~"
                 await channel.send(content=(mention_message+message))
+                await member.send(content=message)
 
 
 
