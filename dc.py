@@ -35,6 +35,7 @@ channel_message_backup_edit_simp   = 1077288231613247529
 invide_mode = 2
 guest_role_id = 1079793661304393800
 test_channel_id = 925745745410269224
+help_channel_id = 1079797068043923488
 
 role_id = ["探險隊隊長","KemoV粉絲","禁區許可證","客家道場","王國旅人","Friends"]
 role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>"]
@@ -67,7 +68,8 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
         #role = discord.utils.get(guild.roles, name="遊客")
         #await member.add_roles(role)
 
-        channel = client.get_channel(test_channel_id)
+        channel = client.get_channel(invite_channel_id)
+        channel_2 = client.get_channel(help_channel_id)
         #await member.send('Private message')
         embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請至<#925779385729032262>閱讀守則\n請至<#925732268197167125>釘選處索取身分組以取得頻道瀏覽權限") # F-Strings!
         embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
@@ -81,6 +83,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
 群組上或操作上等有任何問題歡迎提出，或是至 <#1079797068043923488> 反應\n\
 再次感謝大大的加入~"
         await channel.send(content=message,embed=embed)
+        await channel_2.send(content=message,embed=embed)
         await member.send(content=message,embed=embed)
         guest_role = member.guild.get_role(guest_role_id)
         await member.add_roles(guest_role)
