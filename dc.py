@@ -73,6 +73,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
         #await member.send('Private message')
         embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請至<#925779385729032262>閱讀守則\n請至<#925732268197167125>釘選處索取身分組以取得頻道瀏覽權限") # F-Strings!
         embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
+        mention_message = f'<@{member.id}>\n'
         message="歡迎浮蓮子的加入~\n\
 你現在看不到所有的頻道。待人工審核過後STAFF會給你瀏覽權限\n\
 請抽時間讀 <#925779385729032262> 跟填寫入園申請~\n\
@@ -83,7 +84,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
 群組上或操作上等有任何問題歡迎提出，或是至 <#1079797068043923488> 反應\n\
 再次感謝大大的加入~"
         await channel.send(content=message,embed=embed)
-        await channel_2.send(content=message,embed=embed)
+        await channel_2.send(content=(mention_message+message),embed=embed)
         await member.send(content=message,embed=embed)
         guest_role = member.guild.get_role(guest_role_id)
         await member.add_roles(guest_role)
