@@ -92,7 +92,7 @@ https://forms.gle/gxhFzuYCEemtfaWC7\n\
 
 @client.event
 async def on_member_update(before, after):
-    if (member.guild.id == invite_guild_id) and (invide_mode == 2):
+    if (after.guild.id == invite_guild_id) and (invide_mode == 2):
         if [i.id for i in before.roles].count(guest_role_id) == 1:
             if [i.id for i in after.roles].count(guest_role_id) == 0:
                 channel = client.get_channel(invite_channel_id)
