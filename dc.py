@@ -83,11 +83,11 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
 王國聊天大廳在這裡︰<#981035850429251594>\n\
 群組上或操作上等有任何問題歡迎提出，或是至 <#1079797068043923488> 反應\n\
 再次感謝大大的加入~"
-        await channel.send(content=message,embed=embed)
+        await member.add_roles(guest_role)
         await channel_2.send(content=(mention_message+message),embed=embed)
+        await channel.send(content=message,embed=embed)
         await member.send(content=message,embed=embed)
         guest_role = member.guild.get_role(guest_role_id)
-        await member.add_roles(guest_role)
 
 
 #@client.event
