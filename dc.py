@@ -62,7 +62,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
 群組上或操作上等有任何問題歡迎提出，或是至 <#1042429222154678312> 反應\n\
 再次感謝大大的加入~"
         await channel.send(content=message,embed=embed)
-    else if (member.guild.id == invite_guild_id) and (invide_mode == 2):
+    elif (member.guild.id == invite_guild_id) and (invide_mode == 2):
         #guild = client.get_guild(invite_guild_id)
         #role = discord.utils.get(guild.roles, name="遊客")
         #await member.add_roles(role)
