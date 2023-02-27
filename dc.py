@@ -32,6 +32,9 @@ channel_message_backup_delete = 1074333559596273715
 channel_message_backup_edit   = 1077264038888734810
 channel_message_backup_delete_simp = 1077265391031685301
 channel_message_backup_edit_simp   = 1077288231613247529
+invide_mode = 2
+guest_role_id = 1079793661304393800
+test_channel_id = 925745745410269224
 
 role_id = ["探險隊隊長","KemoV粉絲","禁區許可證","客家道場","王國旅人","Friends"]
 role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>"]
@@ -43,7 +46,7 @@ guild_ids = [702741572344610907]
 
 @client.event
 async def on_member_join(member):
-    if member.guild.id == invite_guild_id:
+    if member.guild.id == invite_guild_id and invide_mode == 1:
         #guild = client.get_guild(invite_guild_id)
         #role = discord.utils.get(guild.roles, name="遊客")
         #await member.add_roles(role)
@@ -59,6 +62,27 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
 群組上或操作上等有任何問題歡迎提出，或是至 <#1042429222154678312> 反應\n\
 再次感謝大大的加入~"
         await channel.send(content=message,embed=embed)
+    else if member.guild.id == invite_guild_id and invide_mode == 2:
+        #guild = client.get_guild(invite_guild_id)
+        #role = discord.utils.get(guild.roles, name="遊客")
+        #await member.add_roles(role)
+
+        channel = client.get_channel(test_channel_id)
+        #await member.send('Private message')
+        embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請至<#925779385729032262>閱讀守則\n請至<#925732268197167125>釘選處索取身分組以取得頻道瀏覽權限") # F-Strings!
+        embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
+        message="歡迎浮蓮子的加入~\n\
+你現在看不到所有的頻道。待人工審核過後STAFF會給你瀏覽權限\n\
+請抽時間讀 <#925779385729032262> 跟填寫入園申請~\n\
+https://forms.gle/gxhFzuYCEemtfaWC7\n\n\
+閒聊總大廳在這裡︰<#925717531082235935>\n\
+kemov聊天大廳在這裡︰<#925722682178293782>\n\
+王國聊天大廳在這裡︰<#981035850429251594>\n\
+群組上或操作上等有任何問題歡迎提出，或是至 <#1079797068043923488> 反應\n\
+再次感謝大大的加入~"
+        await channel.send(content=message,embed=embed)
+        await member.send(content=message,embed=embed)
+        await member.add_roles(guest_role_id)
 
 
 #@client.event
@@ -272,7 +296,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.7, date 230221, add on_message_edit")
+    await ctx.send("ver 0.0.9.8, date 230228, edit invite message")
 
 @client.event
 async def on_message_delete(message):
