@@ -81,16 +81,32 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
 https://forms.gle/gxhFzuYCEemtfaWC7\n\
 2. 取得 <#925732268197167125> 瀏覽權限後\n\
 **請至 <#925732268197167125> 釘選處索取身分組以取得頻道瀏覽權限**\n\n\
-閒聊總大廳在這裡︰<#925717531082235935>\n\
-kemov聊天大廳在這裡︰<#925722682178293782>\n\
-王國聊天大廳在這裡︰<#981035850429251594>\n\
-群組上或操作上等有任何問題歡迎提出，或是至 <#1079797068043923488> 反應\n\
+如果需要幫助的話，請至 <#1079797068043923488> 反應~\n\
 再次感謝大大的加入~"
         guest_role = member.guild.get_role(guest_role_id)
         await member.add_roles(guest_role)
         await channel_2.send(content=(mention_message+message),embed=embed)
         await channel.send(content=message,embed=embed)
         await member.send(content=message,embed=embed)
+
+
+@client.event
+async def on_member_update(before, after):
+    if (member.guild.id == invite_guild_id) and (invide_mode == 2):
+        if [i.id for i in before.roles].count(guest_role_id) == 1:
+            if [i.id for i in after.roles].count(guest_role_id) == 0:
+                channel = client.get_channel(invite_channel_id)
+                mention_message = f'<@{after.id}>\n'
+                message="感謝浮蓮子的加入，群組介面操作上有任何疑難雜症都可以詢問~\n\n\
+重要!!\n\
+請至 <#925732268197167125> 釘選處索取身分組以取得頻道瀏覽權限\n\n\
+閒聊總大廳在這裡︰<#925717531082235935>\n\
+kemov聊天大廳在這裡︰<#925722682178293782>\n\
+王國聊天大廳在這裡︰<#981035850429251594>\n\
+群組上或操作上等有任何問題歡迎提出，或是至 <#1042429222154678312> 反應\n\
+再次感謝大大的加入~"
+                await channel.send(content=(mention_message+message))
+
 
 
 #@client.event
