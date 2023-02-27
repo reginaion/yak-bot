@@ -82,7 +82,8 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
 再次感謝大大的加入~"
         await channel.send(content=message,embed=embed)
         await member.send(content=message,embed=embed)
-        await member.add_roles(guest_role_id)
+        guest_role = member.guild.get_role(guest_role_id)
+        await member.add_roles(guest_role)
 
 
 #@client.event
