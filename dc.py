@@ -75,9 +75,11 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
         embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
         mention_message = f'<@{member.id}>\n'
         message="歡迎浮蓮子的加入~\n\
-你現在看不到所有的頻道。待人工審核過後STAFF會給你瀏覽權限\n\n\
-**重要!! 請抽時間讀 <#925779385729032262> 跟填寫入園申請~**\n\
-https://forms.gle/gxhFzuYCEemtfaWC7\n\n\
+你現在看不到所有的頻道。待人工審核過後STAFF會給你 <#925732268197167125> 瀏覽權限\n\n\
+重要!!\n\
+**請填寫入園申請跟閱讀公園守則 <#925779385729032262>~**\n\
+https://forms.gle/gxhFzuYCEemtfaWC7\n\
+取得 <#925732268197167125> 瀏覽權限後，**請至 <#925732268197167125> 釘選處索取身分組以取得頻道瀏覽權限**\n\n\
 閒聊總大廳在這裡︰<#925717531082235935>\n\
 kemov聊天大廳在這裡︰<#925722682178293782>\n\
 王國聊天大廳在這裡︰<#981035850429251594>\n\
