@@ -38,9 +38,10 @@ no_welcome_msg_role_id = 1080847909513330759
 test_channel_id = 925745745410269224
 help_channel_id = 1079797068043923488
 
-role_id = ["探險隊隊長","KemoV粉絲","禁區許可證","客家道場","王國旅人","Friends"]
+role_nid = ["探險隊隊長","KemoV粉絲","禁區許可證","客家道場","王國旅人","Friends"]
 role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>"]
 role_color_nid = ["難聽鳥紅","鴕鳥橘","藪ㄇ黃","嘶嘶綠","海豚藍","呼嚕嚕紫"]
+role_id = [925727966137290774,925729158577930310,925895939628105778,929747501727244368,1042010855396622407,1061155255880007771]
 role_color_id = [926766604602200074,926765413856067595,926767008891162674,926767203695611914,926767499914117131,926767717011316746]
 role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣"]
 
@@ -247,17 +248,17 @@ async def on_raw_reaction_add(payload):
     # channel and message IDs should be integer:
     if payload.message_id == channel_id_message_role_1:
         if str(payload.emoji) == role_emoji[0]:
-            role = discord.utils.get(guild.roles, name=role_id[0])
+            role = guild.get_role(role_id[0])
         elif str(payload.emoji) == role_emoji[1]:
-            role = discord.utils.get(guild.roles, name=role_id[1])
+            role = guild.get_role(role_id[1])
         elif str(payload.emoji) == role_emoji[2]:
-            role = discord.utils.get(guild.roles, name=role_id[2])
+            role = guild.get_role(role_id[2])
         elif str(payload.emoji) == role_emoji[3]:
-            role = discord.utils.get(guild.roles, name=role_id[3])
+            role = guild.get_role(role_id[3])
         elif str(payload.emoji) == role_emoji[4]:
-            role = discord.utils.get(guild.roles, name=role_id[4])
+            role = guild.get_role(role_id[4])
         elif str(payload.emoji) == role_emoji[5]:
-            role = discord.utils.get(guild.roles, name=role_id[5])
+            role = guild.get_role(role_id[5])
 
         if role is not None:
             await payload.member.add_roles(role)
@@ -287,17 +288,17 @@ async def on_raw_reaction_remove(payload):
 
     if payload.message_id == channel_id_message_role_1:
         if str(payload.emoji) == role_emoji[0]:
-            role = discord.utils.get(guild.roles, name=role_id[0])
+            role = guild.get_role(role_id[0])
         elif str(payload.emoji) == role_emoji[1]:
-            role = discord.utils.get(guild.roles, name=role_id[1])
+            role = guild.get_role(role_id[1])
         elif str(payload.emoji) == role_emoji[2]:
-            role = discord.utils.get(guild.roles, name=role_id[2])
+            role = guild.get_role(role_id[2])
         elif str(payload.emoji) == role_emoji[3]:
-            role = discord.utils.get(guild.roles, name=role_id[3])
+            role = guild.get_role(role_id[3])
         elif str(payload.emoji) == role_emoji[4]:
-            role = discord.utils.get(guild.roles, name=role_id[4])
+            role = guild.get_role(role_id[4])
         elif str(payload.emoji) == role_emoji[5]:
-            role = discord.utils.get(guild.roles, name=role_id[5])
+            role = guild.get_role(role_id[5])
 
         if role is not None:
             await member.remove_roles(role)
