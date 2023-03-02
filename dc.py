@@ -270,7 +270,6 @@ async def on_raw_reaction_add(payload):
         elif str(payload.emoji) == role_color_emoji[5]:
             role = guild.get_role(role_color_id[5])
 
-        guest_role = member.guild.get_role(guest_role_id)
         await member.add_roles(guest_role)
         if role is not None:
             await payload.member.add_roles(role)
