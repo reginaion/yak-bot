@@ -42,9 +42,12 @@ role_nid = ["探險隊隊長","KemoV粉絲","禁區許可證","客家道場","�
 role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>"]
 role_color_nid = ["難聽鳥紅","鴕鳥橘","藪ㄇ黃","嘶嘶綠","海豚藍","呼嚕嚕紫"]
 role_id = [925727966137290774,925729158577930310,925895939628105778,929747501727244368,1042010855396622407,1061155255880007771]
-role_color_id = [926766604602200074,926765413856067595,926767008891162674,926767203695611914,926767499914117131,926767717011316746]
-role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣"]
-
+role_color_id = [926766604602200074,926765413856067595,926767008891162674,926767203695611914,926767499914117131,926767717011316746,\
+1080844701306986556,1080859136465584210,1080845993169399910,1080857106019799080,1080852277117591552,1080852769646325820,\
+1080853366843899925,1080856574135910480,1080857411130232864,1080858479494959184,1080858658344288348]
+role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","<:cape_confuse:926401561125601310>","<:hululu_happy:926399458764263494>","<:shimahai_hai:926405048706166784>","<:coyote_sleepy:926397039393263636>",\
+"<:dire_3:1080865933591052388>","<:caracal_3:1080862045563523134>","<:geoffory_worry:1080862839079706716>","<:genet_XD:1080865745195503667>","<:shimarisu_happy:1080863928160100403>",\
+"<:junglecat_x:1080865791550963752>","<:usako_3~1:1080863905858986154>"]
 guild_ids = [702741572344610907]
 
 
@@ -232,12 +235,14 @@ async def edit_color(ctx):
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_2)
     await msg.edit(content="這是看起來很棒的顏色身分組，歡迎領取 (無額外權限功能)\n",embed=embedvar)
-    await msg.add_reaction(role_color_emoji[0])
-    await msg.add_reaction(role_color_emoji[1])
-    await msg.add_reaction(role_color_emoji[2])
-    await msg.add_reaction(role_color_emoji[3])
-    await msg.add_reaction(role_color_emoji[4])
-    await msg.add_reaction(role_color_emoji[5])
+    for i in range(len(role_color_emoji)):
+        await msg.add_reaction(role_color_emoji[i])
+#    await msg.add_reaction(role_color_emoji[0])
+#    await msg.add_reaction(role_color_emoji[1])
+#    await msg.add_reaction(role_color_emoji[2])
+#    await msg.add_reaction(role_color_emoji[3])
+#    await msg.add_reaction(role_color_emoji[4])
+#    await msg.add_reaction(role_color_emoji[5])
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -262,18 +267,24 @@ async def on_raw_reaction_add(payload):
             await payload.member.add_roles(role)
 
     if payload.message_id == channel_id_message_role_2:
-        if str(payload.emoji) == role_color_emoji[0]:
-            role = guild.get_role(role_color_id[0])
-        elif str(payload.emoji) == role_color_emoji[1]:
-            role = guild.get_role(role_color_id[1])
-        elif str(payload.emoji) == role_color_emoji[2]:
-            role = guild.get_role(role_color_id[2])
-        elif str(payload.emoji) == role_color_emoji[3]:
-            role = guild.get_role(role_color_id[3])
-        elif str(payload.emoji) == role_color_emoji[4]:
-            role = guild.get_role(role_color_id[4])
-        elif str(payload.emoji) == role_color_emoji[5]:
-            role = guild.get_role(role_color_id[5])
+        for i in range(len(role_color_emoji)):
+            if str(payload.emoji) == role_color_emoji[i]:
+                role = guild.get_role(role_color_id[i])
+                break
+
+
+#        if str(payload.emoji) == role_color_emoji[0]:
+#            role = guild.get_role(role_color_id[0])
+#        elif str(payload.emoji) == role_color_emoji[1]:
+#            role = guild.get_role(role_color_id[1])
+#        elif str(payload.emoji) == role_color_emoji[2]:
+#            role = guild.get_role(role_color_id[2])
+#        elif str(payload.emoji) == role_color_emoji[3]:
+#            role = guild.get_role(role_color_id[3])
+#        elif str(payload.emoji) == role_color_emoji[4]:
+#            role = guild.get_role(role_color_id[4])
+#        elif str(payload.emoji) == role_color_emoji[5]:
+#            role = guild.get_role(role_color_id[5])
 
         if role is not None:
             await payload.member.add_roles(role)
@@ -302,18 +313,24 @@ async def on_raw_reaction_remove(payload):
             await member.remove_roles(role)
 
     if payload.message_id == channel_id_message_role_2:
-        if str(payload.emoji) == role_color_emoji[0]:
-            role = guild.get_role(role_color_id[0])
-        elif str(payload.emoji) == role_color_emoji[1]:
-            role = guild.get_role(role_color_id[1])
-        elif str(payload.emoji) == role_color_emoji[2]:
-            role = guild.get_role(role_color_id[2])
-        elif str(payload.emoji) == role_color_emoji[3]:
-            role = guild.get_role(role_color_id[3])
-        elif str(payload.emoji) == role_color_emoji[4]:
-            role = guild.get_role(role_color_id[4])
-        elif str(payload.emoji) == role_color_emoji[5]:
-            role = guild.get_role(role_color_id[5])
+        for i in range(len(role_color_emoji)):
+            if str(payload.emoji) == role_color_emoji[i]:
+                role = guild.get_role(role_color_id[i])
+                break
+
+
+#        if str(payload.emoji) == role_color_emoji[0]:
+#            role = guild.get_role(role_color_id[0])
+#        elif str(payload.emoji) == role_color_emoji[1]:
+#            role = guild.get_role(role_color_id[1])
+#        elif str(payload.emoji) == role_color_emoji[2]:
+#            role = guild.get_role(role_color_id[2])
+#        elif str(payload.emoji) == role_color_emoji[3]:
+#            role = guild.get_role(role_color_id[3])
+#        elif str(payload.emoji) == role_color_emoji[4]:
+#            role = guild.get_role(role_color_id[4])
+#        elif str(payload.emoji) == role_color_emoji[5]:
+#            role = guild.get_role(role_color_id[5])
 
         if role is not None:
             await member.remove_roles(role)
