@@ -173,11 +173,11 @@ async def delete_s(ctx, channel_id_s:int, message_id_s:int):
 @commands.is_owner()
 async def edit_invite(ctx):
     embedvar = discord.Embed(title="請選取身分組!",
-                              description="Click the corresponding emoji to receive your role (Select at least one).\n\
+                              description="Click the corresponding emoji to receive your role (select at least one).\n\
                                           {} - {}\n\
                                           {} - {}\n\
                                           {} - {}\n\
-                                          {} - {}\n\
+                                          {} - {}\n\n\
 Click the corresponding emoji to receive your role.\n\
                                           {} - {}\n\
                                           {} - {}".format(role_emoji[0],"<@&925727966137290774>",
