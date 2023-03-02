@@ -116,7 +116,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
 王國聊天大廳在這裡︰<#981035850429251594>\n\
 群組上或操作上等有任何問題歡迎提出，或是至 <#1042429222154678312> 反應\n\
 再次感謝大大的加入~"
-                if [i.id for i in after.foles].count(no_welcome_msg_role_id) == 0:
+                if [i.id for i in after.roles].count(no_welcome_msg_role_id) == 0:
                     await channel.send(content=(mention_message+message),embed=embed)
                 await after.send(content=message)
 
