@@ -238,14 +238,14 @@ async def edit_color(ctx):
     colour = discord.Colour(0x00FF00)
     ) 
 
-message_normal = f"{role_color_emoji[0]} - {"<@&926766604602200074>"}\n\
+    message_normal = f"{role_color_emoji[0]} - {"<@&926766604602200074>"}\n\
 {role_color_emoji[1]} - {"<@&926765413856067595>"}\n\
 {role_color_emoji[2]} - {"<@&926767008891162674>"}\n\
 {role_color_emoji[3]} - {"<@&926767203695611914>"}\n\
 {role_color_emoji[4]} - {"<@&926767499914117131>"}\n\
 {role_color_emoji[5]} - {"<@&926767717011316746>"}\n"
 
-message_kemov = f"{role_color_emoji[6]} - {"<@&1080844701306986556>"}\n\
+    message_kemov = f"{role_color_emoji[6]} - {"<@&1080844701306986556>"}\n\
 {role_color_emoji[7]} - {"<@&1080859136465584210>"}\n\
 {role_color_emoji[8]} - {"<@&1080845993169399910>"}\n\
 {role_color_emoji[9]} - {"<@&1080857106019799080>"}\n\
