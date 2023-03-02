@@ -41,7 +41,7 @@ help_channel_id = 1079797068043923488
 role_id = ["探險隊隊長","KemoV粉絲","禁區許可證","客家道場","王國旅人","Friends"]
 role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>"]
 role_color_nid = ["難聽鳥紅","鴕鳥橘","藪ㄇ黃","嘶嘶綠","海豚藍","呼嚕嚕紫"]
-role_color_id = [926769088980738108,926769088980738108,926769088980738108,926769088980738108,926769088980738108,926769088980738108]
+role_color_id = [926766604602200074,926765413856067595,926767008891162674,926767203695611914,926767499914117131,926767717011316746]
 role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣"]
 
 guild_ids = [702741572344610907]
@@ -96,7 +96,7 @@ https://forms.gle/JVxeWbQ2E4wkb3Ee6\n\
 async def on_member_update(before, after):
     if (after.guild.id == invite_guild_id) and (invide_mode == 2):
         if [i.id for i in before.roles].count(guest_role_id) == 1:
-            if [i.id for i in after.roles].count(guest_role_id) == 0 and [i.id for i in after.foles].count(no_welcome_msg_role_id) == 0:
+            if [i.id for i in after.roles].count(guest_role_id) == 0:
                 channel = client.get_channel(invite_channel_id)
                 embed=discord.Embed(title=f"ようこそジャパリパークへ! {after.name}", description=f"感謝您加入 {after.guild.name}!\n請至<#925779385729032262>閱讀守則\n請至<#925732268197167125>釘選處索取身分組以取得頻道瀏覽權限") # F-Strings!
                 embed.set_thumbnail(url=after.avatar_url) # Set the embed's thumbnail to the member's avatar image!
@@ -109,7 +109,8 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
 王國聊天大廳在這裡︰<#981035850429251594>\n\
 群組上或操作上等有任何問題歡迎提出，或是至 <#1042429222154678312> 反應\n\
 再次感謝大大的加入~"
-                await channel.send(content=(mention_message+message),embed=embed)
+                if [i.id for i in after.foles].count(no_welcome_msg_role_id) == 0:
+                    await channel.send(content=(mention_message+message),embed=embed)
                 await after.send(content=message)
 
 #@client.event
@@ -269,6 +270,8 @@ async def on_raw_reaction_add(payload):
         elif str(payload.emoji) == role_color_emoji[5]:
             role = guild.get_role(role_color_id[5])
 
+        guest_role = member.guild.get_role(guest_role_id)
+        await member.add_roles(guest_role)
         if role is not None:
             await payload.member.add_roles(role)
 
