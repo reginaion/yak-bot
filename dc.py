@@ -193,7 +193,7 @@ async def edit_invite(ctx):
 <#925722952568279091> - けもV\n\
 <#1042336425808511016> - けものフレンズキングダム\n\
 　\n\
-➡身分組(至少領取以下四個其中之一身份組)⬅️\n\
+➡權限功能身分組(至少領取以下四個其中之一身份組)⬅️\n\
 <@&925727966137290774> - 動物朋友3玩家 (Kemono friends 3 player)\n\
 <@&925729158577930310> - 動物朋友V粉絲 (Kemov fans)\n\
 <@&1042010855396622407> - 動物朋友王國玩家 (Kemono friends kingdom player)\n\
@@ -215,7 +215,7 @@ async def edit_invite(ctx):
 @client.command()
 @commands.is_owner()
 async def edit_color(ctx):
-    embedvar = discord.Embed(title="請選取顏色身分組!",
+    embedvar = discord.Embed(title="請選取顏色身分組 (無額外權限功能)!",
                               description="Click the corresponding emoji to receive your role.\n\
                                           {} - {}\n\
                                           {} - {}\n\
