@@ -103,7 +103,13 @@ async def on_member_update(before, after):
                 mention_message = f'<@{after.id}>\n'
                 message="感謝浮蓮子的加入，群組介面操作上有任何疑難雜症都可以詢問~\n\n\
 重要!!\n\
-➡️**請至 <#925732268197167125> 釘選處索取身分組以取得頻道瀏覽權限**⬅️\n\n\
+➡️**請至 <#925732268197167125> 釘選處領取身分組以取得頻道瀏覽權限**⬅️\n\
+記得領取以下至少一個身分組喔~\n\
+<@&925727966137290774> - 動物朋友3玩家 (kemono friends 3 player)\n\
+<@&925729158577930310> - 動物朋友V粉絲 (kemov fans)\n\
+<@&1042010855396622407> - 動物朋友王國玩家 (kemono friends kingdom player)\n\
+<@&1061155255880007771> - 動物朋友粉絲 (kemono fans)\n\
+\n\
 閒聊總大廳在這裡︰<#925717531082235935>\n\
 kemov聊天大廳在這裡︰<#925722682178293782>\n\
 王國聊天大廳在這裡︰<#981035850429251594>\n\
@@ -270,7 +276,6 @@ async def on_raw_reaction_add(payload):
         elif str(payload.emoji) == role_color_emoji[5]:
             role = guild.get_role(role_color_id[5])
 
-        await member.add_roles(guest_role)
         if role is not None:
             await payload.member.add_roles(role)
 
