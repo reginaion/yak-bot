@@ -105,11 +105,6 @@ async def on_member_update(before, after):
                 message="感謝浮蓮子的加入，群組介面操作上有任何疑難雜症都可以詢問~\n\n\
 重要!!\n\
 ➡️**請至 <#925732268197167125> 釘選處領取身分組以取得頻道瀏覽權限**⬅️\n\
-記得領取以下至少一個身分組喔~\n\
-<@&925727966137290774> - 動物朋友3玩家 (kemono friends 3 player)\n\
-<@&925729158577930310> - 動物朋友V粉絲 (kemov fans)\n\
-<@&1042010855396622407> - 動物朋友王國玩家 (kemono friends kingdom player)\n\
-<@&1061155255880007771> - 動物朋友粉絲 (kemono fans)\n\
 \n\
 閒聊總大廳在這裡︰<#925717531082235935>\n\
 kemov聊天大廳在這裡︰<#925722682178293782>\n\
@@ -198,13 +193,15 @@ async def edit_invite(ctx):
 <#925722952568279091> - けもV\n\
 <#1042336425808511016> - けものフレンズキングダム\n\
 　\n\
-身分組︰\n\
-<@&925727966137290774> - 動物朋友3玩家 (kemono friends 3 player)\n\
-<@&925729158577930310> - 動物朋友V粉絲 (kemov fans)\n\
-<@&1042010855396622407> - 動物朋友王國玩家 (kemono friends kingdom player)\n\
-<@&1061155255880007771> - 動物朋友粉絲 (kemono fans)\n\
-<@&925895939628105778> - R18頻道 (access r18 channel)\n\
-<@&929747501727244368> - 客家道場提醒\n\
+➡身分組(至少領取以下四個其中之一身份組)⬅️\n\
+<@&925727966137290774> - 動物朋友3玩家 (Kemono friends 3 player)\n\
+<@&925729158577930310> - 動物朋友V粉絲 (Kemov fans)\n\
+<@&1042010855396622407> - 動物朋友王國玩家 (Kemono friends kingdom player)\n\
+<@&1061155255880007771> - 動物朋友粉絲 (Kemono fans)\n\
+　\n\
+額外功能身份組\n\
+<@&925895939628105778> - R18頻道 (Access r18 channel)\n\
+<@&929747501727244368> - 客家道場提醒 (For KF3 only, reminded every Sunday at 22:30 (UTC+8))\n\
 ",embed=embedvar)
     await msg.add_reaction(role_emoji[0])
     await msg.add_reaction(role_emoji[1])
