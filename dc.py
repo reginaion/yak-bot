@@ -173,11 +173,12 @@ async def delete_s(ctx, channel_id_s:int, message_id_s:int):
 @commands.is_owner()
 async def edit_invite(ctx):
     embedvar = discord.Embed(title="請選取身分組!",
-                              description="Click the corresponding emoji to receive your role.\n\
+                              description="Click the corresponding emoji to receive your role (Select at least one).\n\
                                           {} - {}\n\
                                           {} - {}\n\
                                           {} - {}\n\
                                           {} - {}\n\
+Click the corresponding emoji to receive your role.\n\
                                           {} - {}\n\
                                           {} - {}".format(role_emoji[0],"<@&925727966137290774>",
                                                           role_emoji[1],"<@&925729158577930310>",
@@ -215,7 +216,7 @@ async def edit_invite(ctx):
 @client.command()
 @commands.is_owner()
 async def edit_color(ctx):
-    embedvar = discord.Embed(title="請選取顏色身分組 (無額外權限功能)!",
+    embedvar = discord.Embed(title="請選取顏色身分組!",
                               description="Click the corresponding emoji to receive your role.\n\
                                           {} - {}\n\
                                           {} - {}\n\
@@ -230,7 +231,7 @@ async def edit_color(ctx):
                                                           role_color_emoji[5],"<@&926767717011316746>"), color=0x00ff00)
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_2)
-    await msg.edit(embed=embedvar)
+    await msg.edit(content="這是看起來很棒的顏色身分組，歡迎領取 (無額外權限功能)\n",embed=embedvar)
     await msg.add_reaction(role_color_emoji[0])
     await msg.add_reaction(role_color_emoji[1])
     await msg.add_reaction(role_color_emoji[2])
