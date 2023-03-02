@@ -232,9 +232,39 @@ async def edit_color(ctx):
                                                           role_color_emoji[3],"<@&926767203695611914>",
                                                           role_color_emoji[4],"<@&926767499914117131>",
                                                           role_color_emoji[5],"<@&926767717011316746>"), color=0x00ff00)
+
+    embed = discord.Embed(title="請選取顏色身分組!",
+    description="Click the corresponding emoji to receive your role.",
+    colour = discord.Colour(0x00FF00)
+    ) 
+
+message_normal = f"{role_color_emoji[0]} - {"<@&926766604602200074>"}\n\
+{role_color_emoji[1]} - {"<@&926765413856067595>"}\n\
+{role_color_emoji[2]} - {"<@&926767008891162674>"}\n\
+{role_color_emoji[3]} - {"<@&926767203695611914>"}\n\
+{role_color_emoji[4]} - {"<@&926767499914117131>"}\n\
+{role_color_emoji[5]} - {"<@&926767717011316746>"}\n"
+
+message_kemov = f"{role_color_emoji[6]} - {"<@&1080844701306986556>"}\n\
+{role_color_emoji[7]} - {"<@&1080859136465584210>"}\n\
+{role_color_emoji[8]} - {"<@&1080845993169399910>"}\n\
+{role_color_emoji[9]} - {"<@&1080857106019799080>"}\n\
+{role_color_emoji[10]} - {"<@&1080852277117591552>"}\n\
+{role_color_emoji[11]} - {"<@&1080852769646325820>"}\n\
+{role_color_emoji[12]} - {"<@&1080853366843899925>"}\n\
+{role_color_emoji[13]} - {"<@&1080856574135910480>"}\n\
+{role_color_emoji[14]} - {"<@&1080857411130232864>"}\n\
+{role_color_emoji[15]} - {"<@&1080858479494959184>"}\n\
+{role_color_emoji[16]} - {"<@&1080858658344288348>"}\n"
+
+    embed.add_field(value=message_normal, inline=False)
+    embed.add_field(value=message_kemov, inline=False)
+
+
+
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_2)
-    await msg.edit(content="這是看起來很棒的顏色身分組，歡迎領取 (無額外權限功能)\n",embed=embedvar)
+    await msg.edit(content="這是看起來很棒的顏色身分組，歡迎領取 (無額外權限功能)\n",embed=embed)
     for i in range(len(role_color_emoji)):
         await msg.add_reaction(role_color_emoji[i])
 #    await msg.add_reaction(role_color_emoji[0])
