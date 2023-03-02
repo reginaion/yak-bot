@@ -34,12 +34,14 @@ channel_message_backup_delete_simp = 1077265391031685301
 channel_message_backup_edit_simp   = 1077288231613247529
 invide_mode = 2
 guest_role_id = 1079793661304393800
+no_welcome_msg_role_id = 1080847909513330759
 test_channel_id = 925745745410269224
 help_channel_id = 1079797068043923488
 
 role_id = ["探險隊隊長","KemoV粉絲","禁區許可證","客家道場","王國旅人","Friends"]
 role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>"]
-role_color_id = ["難聽鳥紅","鴕鳥橘","藪ㄇ黃","嘶嘶綠","海豚藍","呼嚕嚕紫"]
+role_color_nid = ["難聽鳥紅","鴕鳥橘","藪ㄇ黃","嘶嘶綠","海豚藍","呼嚕嚕紫"]
+role_color_id = [926769088980738108,926769088980738108,926769088980738108,926769088980738108,926769088980738108,926769088980738108]
 role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣"]
 
 guild_ids = [702741572344610907]
@@ -68,11 +70,11 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
         #role = discord.utils.get(guild.roles, name="遊客")
         #await member.add_roles(role)
 
-        channel = client.get_channel(invite_channel_id)
+        #channel = client.get_channel(invite_channel_id)
         channel_2 = client.get_channel(help_channel_id)
         #await member.send('Private message')
-        embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請至<#925779385729032262>閱讀守則\n請至<#925732268197167125>釘選處索取身分組以取得頻道瀏覽權限") # F-Strings!
-        embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
+        #embed=discord.Embed(title=f"ようこそジャパリパークへ! {member.name}", description=f"感謝您加入 {member.guild.name}!\n請至<#925779385729032262>閱讀守則\n請至<#925732268197167125>釘選處索取身分組以取得頻道瀏覽權限") # F-Strings!
+        #embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
         mention_message = f'<@{member.id}>\n'
         message="歡迎浮蓮子的加入~\n\
 你現在看不到所有的頻道。待人工審核過後STAFF會給你 <#925732268197167125> 瀏覽權限\n\n\
@@ -81,34 +83,34 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
 https://forms.gle/JVxeWbQ2E4wkb3Ee6\n\
 2. 取得 <#925732268197167125> 瀏覽權限後\n\
 **請至 <#925732268197167125> 釘選處索取身分組以取得頻道瀏覽權限**\n\n\
-如果需要幫助的話，請至 <#1079797068043923488> 反應~\n\
+➡️如果需要幫助的話，請至 <#1079797068043923488> 反應~⬅️\n\
 再次感謝大大的加入~"
         guest_role = member.guild.get_role(guest_role_id)
         await member.add_roles(guest_role)
-        await channel_2.send(content=(mention_message+message),embed=embed)
-        await channel.send(content=message,embed=embed)
-        await member.send(content=message,embed=embed)
+        await channel_2.send(content=(mention_message+message))#,embed=embed)
+        #await channel.send(content=message,embed=embed)
+        await member.send(content=message)#,embed=embed)
 
 
 @client.event
 async def on_member_update(before, after):
     if (after.guild.id == invite_guild_id) and (invide_mode == 2):
         if [i.id for i in before.roles].count(guest_role_id) == 1:
-            if [i.id for i in after.roles].count(guest_role_id) == 0:
+            if [i.id for i in after.roles].count(guest_role_id) == 0 and [i.id for i in after.foles].count(no_welcome_msg_role_id) == 0:
                 channel = client.get_channel(invite_channel_id)
+                embed=discord.Embed(title=f"ようこそジャパリパークへ! {after.name}", description=f"感謝您加入 {after.guild.name}!\n請至<#925779385729032262>閱讀守則\n請至<#925732268197167125>釘選處索取身分組以取得頻道瀏覽權限") # F-Strings!
+                embed.set_thumbnail(url=after.avatar_url) # Set the embed's thumbnail to the member's avatar image!
                 mention_message = f'<@{after.id}>\n'
                 message="感謝浮蓮子的加入，群組介面操作上有任何疑難雜症都可以詢問~\n\n\
 重要!!\n\
-**請至 <#925732268197167125> 釘選處索取身分組以取得頻道瀏覽權限**\n\n\
+➡️**請至 <#925732268197167125> 釘選處索取身分組以取得頻道瀏覽權限**⬅️\n\n\
 閒聊總大廳在這裡︰<#925717531082235935>\n\
 kemov聊天大廳在這裡︰<#925722682178293782>\n\
 王國聊天大廳在這裡︰<#981035850429251594>\n\
 群組上或操作上等有任何問題歡迎提出，或是至 <#1042429222154678312> 反應\n\
 再次感謝大大的加入~"
-                await channel.send(content=(mention_message+message))
+                await channel.send(content=(mention_message+message),embed=embed)
                 await after.send(content=message)
-
-
 
 #@client.event
 #async def on_member_remove(member):
@@ -255,17 +257,17 @@ async def on_raw_reaction_add(payload):
 
     if payload.message_id == channel_id_message_role_2:
         if str(payload.emoji) == role_color_emoji[0]:
-            role = discord.utils.get(guild.roles, name=role_color_id[0])
+            role = guild.get_role(role_color_id[0])
         elif str(payload.emoji) == role_color_emoji[1]:
-            role = discord.utils.get(guild.roles, name=role_color_id[1])
+            role = guild.get_role(role_color_id[1])
         elif str(payload.emoji) == role_color_emoji[2]:
-            role = discord.utils.get(guild.roles, name=role_color_id[2])
+            role = guild.get_role(role_color_id[2])
         elif str(payload.emoji) == role_color_emoji[3]:
-            role = discord.utils.get(guild.roles, name=role_color_id[3])
+            role = guild.get_role(role_color_id[3])
         elif str(payload.emoji) == role_color_emoji[4]:
-            role = discord.utils.get(guild.roles, name=role_color_id[4])
+            role = guild.get_role(role_color_id[4])
         elif str(payload.emoji) == role_color_emoji[5]:
-            role = discord.utils.get(guild.roles, name=role_color_id[5])
+            role = guild.get_role(role_color_id[5])
 
         if role is not None:
             await payload.member.add_roles(role)
@@ -295,17 +297,17 @@ async def on_raw_reaction_remove(payload):
 
     if payload.message_id == channel_id_message_role_2:
         if str(payload.emoji) == role_color_emoji[0]:
-            role = discord.utils.get(guild.roles, name=role_color_id[0])
+            role = guild.get_role(role_color_id[0])
         elif str(payload.emoji) == role_color_emoji[1]:
-            role = discord.utils.get(guild.roles, name=role_color_id[1])
+            role = guild.get_role(role_color_id[1])
         elif str(payload.emoji) == role_color_emoji[2]:
-            role = discord.utils.get(guild.roles, name=role_color_id[2])
+            role = guild.get_role(role_color_id[2])
         elif str(payload.emoji) == role_color_emoji[3]:
-            role = discord.utils.get(guild.roles, name=role_color_id[3])
+            role = guild.get_role(role_color_id[3])
         elif str(payload.emoji) == role_color_emoji[4]:
-            role = discord.utils.get(guild.roles, name=role_color_id[4])
+            role = guild.get_role(role_color_id[4])
         elif str(payload.emoji) == role_color_emoji[5]:
-            role = discord.utils.get(guild.roles, name=role_color_id[5])
+            role = guild.get_role(role_color_id[5])
 
         if role is not None:
             await member.remove_roles(role)
