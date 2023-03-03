@@ -81,7 +81,8 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
         #embed.set_thumbnail(url=member.avatar_url) # Set the embed's thumbnail to the member's avatar image!
         mention_message = f'<@{member.id}>\n'
         message="歡迎浮蓮子的加入~\n\
-你現在看不到所有的頻道。待人工審核過後STAFF會給你 <#925732268197167125> 瀏覽權限\n\n\
+你現在看不到所有的頻道。\n\
+請先閱讀版規及填寫下方連結問卷，問卷提交後待STAFF審核，通過後我們會給你 <#925732268197167125> 選擇權限\n\n\
 重要!!\n\
 1. **請填寫入園申請跟閱讀公園守則 <#925779385729032262>~**\n\
 https://forms.gle/JVxeWbQ2E4wkb3Ee6\n\
@@ -257,7 +258,7 @@ async def edit_color(ctx):
 
     channel = client.get_channel(channel_id_message_channel_1)
     msg = await channel.fetch_message(channel_id_message_role_2)
-    await msg.edit(content="這是看起來很棒的顏色身分組，歡迎領取 (無額外權限功能)\n",embed=embedvar)
+    await msg.edit(content="這是看起來很棒的顏色身分組，可以為你的名字染色。歡迎領取 (無額外權限功能)\n",embed=embedvar)
     for i in range(len(role_color_emoji)):
         await msg.add_reaction(role_color_emoji[i])
 #    await msg.add_reaction(role_color_emoji[0])
