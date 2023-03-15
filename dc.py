@@ -182,7 +182,32 @@ Click the corresponding emoji to receive your role.\n\
                                                              self.role_color_emoji[15],self.role_color_id[15],
                                                              self.role_color_emoji[16],self.role_color_id[16])
 
-
+s1 = server_item()
+s1.invite_guild_id = 925717530545377331
+s1.channel_id['help'] = 1079797068043923488
+s1.channel_id['suggestion'] = 1042429222154678312
+s1.channel_id['invite'] = 925725103801630761
+s1.channel_id['rule'] = 925779385729032262
+s1.channel_id['select_role'] = 925732268197167125
+s1.channel_id['main_chat_list'] = [925717531082235935,925722682178293782,981035850429251594]
+s1.message_id['role_main'] = 925960555943051284
+s1.message_id['role_color'] = 926769088980738108
+s1.guest_role_id = 1079793661304393800
+s1.no_welcome_msg_role_id = 1080847909513330759
+s1.role_id = [925727966137290774,925729158577930310,925895939628105778,929747501727244368,1042010855396622407,1061155255880007771]
+s1.role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>"]
+s1.role_color_id = [926766604602200074,926765413856067595,926767008891162674,926767203695611914,926767499914117131,926767717011316746,\
+1080844701306986556,1080859136465584210,1080845993169399910,1080857106019799080,1080852277117591552,1080852769646325820,\
+1080853366843899925,1080856574135910480,1080857411130232864,1080858479494959184,1080858658344288348]
+s1.role_color_emoji = role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","<:cape_confuse:926401561125601310>","<:hululu_happy:926399458764263494>","<:shimahai_hai:926405048706166784>","<:coyote_sleepy:926397039393263636>",\
+"<:dire_3:1080865933591052388>","<:caracal_3:1080862045563523134>","<:geoffory_worry:1080862839079706716>","<:genet_XD:1080865745195503667>","<:shimarisu_happy:1080863928160100403>",\
+"<:junglecat_x:1080865791550963752>","<:usako_3:1080863905858986154>"]
+s1.set_on_member_join()
+s1.set_on_member_update()
+s1.set_edit_invite()
+s1.set_edit_color()
+#s1.embed_on_member_update = s1.embed_on_member_update.format(">2351<")
+s1.embed_edit_invite = s1.embed_edit_invite.format("926715406683615294","925733227841343508","925722952568279091","1042336425808511016")
 
 s2 = server_item()
 s2.invite_guild_id = 1085468421870845952
@@ -212,7 +237,7 @@ s2.set_edit_color()
 #s2.embed_on_member_update = s2.embed_on_member_update.format(">2352<")
 s2.embed_edit_invite = s2.embed_edit_invite.format("1085468422743277602","1085468423041056822","1085468424190296074","1085468423334662199")
 
-guild_list = {s2.invite_guild_id: s2}
+guild_list = {s1.invite_guild_id: s1, s2.invite_guild_id: s2}
 
 
 @client.event
@@ -233,7 +258,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
 群組上或操作上等有任何問題歡迎提出，或是至 <#1042429222154678312> 反應\n\
 再次感謝大大的加入~"
         await channel.send(content=message,embed=embed)
-    elif (member.guild.id == invite_guild_id) and (invide_mode == 2):
+    elif (member.guild.id == invite_guild_id) and (invide_mode == 3):
         #guild = client.get_guild(invite_guild_id)
         #role = discord.utils.get(guild.roles, name="遊客")
         #await member.add_roles(role)
@@ -270,7 +295,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
 
 @client.event
 async def on_member_update(before, after):
-    if (after.guild.id == invite_guild_id) and (invide_mode == 2):
+    if (after.guild.id == invite_guild_id) and (invide_mode == 3):
         if [i.id for i in before.roles].count(guest_role_id) == 1:
             if [i.id for i in after.roles].count(guest_role_id) == 0:
                 channel = client.get_channel(invite_channel_id)
@@ -638,7 +663,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.8, date 230515, add new server")
+    await ctx.send("ver 0.0.9.8, date 230315, add new server")
 
 @client.event
 async def on_message_delete(message):
