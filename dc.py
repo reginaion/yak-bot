@@ -787,7 +787,10 @@ async def time_check():
         await client.wait_until_ready()
         channel = client.get_channel(channel_id)
         await channel.send('```客家道場```')
-
+    if cst.hour == 22 and cst.minute == 40:
+        await client.wait_until_ready()
+        channel_2 = client.get_channel(1085468422743277603)
+        await channel_2.send('<@&1085495104762032178>```客家道場 (JP dojo)```')
 #Mod Leave Announcement
 """
 @client.event
