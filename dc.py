@@ -571,7 +571,7 @@ async def on_raw_reaction_remove(payload):
                     role = guild.get_role(svr.role_id[i])
                     break
             if role is not None:
-                await payload.member.remove_roles(role)
+                await member.remove_roles(role)
 
         elif payload.message_id == svr.message_id['role_color']:
             for i in range(len(svr.role_color_emoji)):
@@ -579,7 +579,7 @@ async def on_raw_reaction_remove(payload):
                     role = guild.get_role(svr.role_color_id[i])
                     break
             if role is not None:
-                await payload.member.remove_roles(role)
+                await member.remove_roles(role)
 
         return
 
