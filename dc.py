@@ -328,7 +328,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
                     await channel.send(content=(mention_message+message),embed=embed)
                 await after.send(content=message)
 
-                if (after.guild.id == test_guild)
+                if (after.guild.id == test_guild):
                     friend_role = member.guild.get_role(svr.role_id[5]) # @friend role
                     await member.add_roles(friend_role)
 
