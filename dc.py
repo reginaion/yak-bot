@@ -88,7 +88,7 @@ kemov聊天大廳在這裡︰<#{}>\n\
 群組上或操作上等有任何問題歡迎提出，或是至 <#{}> 反應\n\
 再次感謝大大的加入~"
         self.embed_on_member_update = "感謝您加入 {}!\n請至<#{}>閱讀守則\n請至<#{}>釘選處索取身分組以取得頻道瀏覽權限"
-        self.message_edit_invite = "Click the corresponding emoji to receive your role (select at least one).\n\
+        self.embed_edit_invite = "Click the corresponding emoji to receive your role (select at least one).\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>\n\
@@ -96,7 +96,7 @@ kemov聊天大廳在這裡︰<#{}>\n\
 Click the corresponding emoji to receive your role.\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>"
-        self.embed_edit_invite = "頻道群組︰\n\
+        self.message_edit_invite = "頻道群組︰\n\
 <#{}> - 閒聊\n\
 <#{}> - けもフレ3\n\
 <#{}> - けもV\n\
@@ -149,19 +149,19 @@ Click the corresponding emoji to receive your role.\n\
         
         
     def set_edit_invite(self):
-        self.message_edit_invite = self.message_edit_invite.format(self.role_emoji[0],self.role_id[0],
-                                                                   self.role_emoji[1],self.role_id[1],
-                                                                   self.role_emoji[4],self.role_id[4],
-                                                                   self.role_emoji[5],self.role_id[5],
-                                                                   self.role_emoji[2],self.role_id[2],
-                                                                   self.role_emoji[3],self.role_id[3])
+        self.embed_edit_invite = self.embed_edit_invite.format(self.role_emoji[0],self.role_id[0],
+                                                               self.role_emoji[1],self.role_id[1],
+                                                               self.role_emoji[4],self.role_id[4],
+                                                               self.role_emoji[5],self.role_id[5],
+                                                               self.role_emoji[2],self.role_id[2],
+                                                               self.role_emoji[3],self.role_id[3])
         
-        self.embed_edit_invite = self.embed_edit_invite.format("{}","{}","{}","{}",self.role_id[0],
-                                                                                   self.role_id[1],
-                                                                                   self.role_id[4],
-                                                                                   self.role_id[5],
-                                                                                   self.role_id[2],
-                                                                                   self.role_id[3])
+        self.message_edit_invite = self.message_edit_invite.format("{}","{}","{}","{}",self.role_id[0],
+                                                                                       self.role_id[1],
+                                                                                       self.role_id[4],
+                                                                                       self.role_id[5],
+                                                                                       self.role_id[2],
+                                                                                       self.role_id[3])
     
     def set_edit_color(self):
         self.embed_edit_color = self.embed_edit_color.format(self.role_color_emoji[0],self.role_color_id[0],
@@ -181,6 +181,7 @@ Click the corresponding emoji to receive your role.\n\
                                                              self.role_color_emoji[14],self.role_color_id[14],
                                                              self.role_color_emoji[15],self.role_color_id[15],
                                                              self.role_color_emoji[16],self.role_color_id[16])
+test_guild = 1085468421870845952
 
 s1 = server_item()
 s1.invite_guild_id = 925717530545377331
@@ -327,6 +328,9 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
                     await channel.send(content=(mention_message+message),embed=embed)
                 await after.send(content=message)
 
+                if (after.guild.id == test_guild)
+                    friend_role = member.guild.get_role(svr.role_id[5]) # @friend role
+                    await member.add_roles(friend_role)
 
 
 #@client.event
@@ -485,13 +489,13 @@ async def edit_invite_s(ctx, guild_id:int):
         return
     svr = guild_list[guild_id]
     embedvar = discord.Embed(title="請選取身分組!",
-                              description=svr.embed_edit_invite.format("1085468422743277602",
-                                                                       "1085468423041056822",
-                                                                       "1085468424190296074",
-                                                                       "1085468423334662199"), color=0x00ff00)
+                              description=svr.embed_edit_invite, color=0x00ff00)
     channel = client.get_channel(svr.channel_id['select_role'])
     msg = await channel.fetch_message(svr.message_id['role_main'])
-    await msg.edit(content=svr.message_edit_invite,embed=embedvar)
+    await msg.edit(content=svr.message_edit_invite.format("1085468422743277602",
+                                                          "1085468423041056822",
+                                                          "1085468424190296074",
+                                                          "1085468423334662199"),embed=embedvar)
     await msg.add_reaction(role_emoji[0])
     await msg.add_reaction(role_emoji[1])
     await msg.add_reaction(role_emoji[2])
