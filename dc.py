@@ -309,10 +309,10 @@ async def on_member_remove(member):
             svr        = guild_list[member.guild.id]
             channel_ji = client.get_channel(svr.channel_id['join_leave'])
             mja        = member.joined_at.astimezone(pytz.timezone('Asia/Taipei'))
-            #tn         = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei'))
+            tn         = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei'))
             #period     = tn - mca
             #await channel_ji.send(f'[-][Lv] {member.guild.name} --- <@{member.id}> ({member}, nickname: {member.nick}) (P: {period.total_seconds():.2f}s) (J->L: ({mja:%Y-%m-%d %H:%M:%S.%f %p}) -> ({tn:%Y-%m-%d %H:%M:%S.%f %p}))')
-            await channel_ji.send(f'[-][Lv] {member.guild.name} --- <@{member.id}> ({member}, nickname: {member.nick}) (J: ({mja:%Y-%m-%d %H:%M:%S.%f %p}))')
+            await channel_ji.send(f'[-][Lv] {member.guild.name} --- <@{member.id}> ({member}, nickname: {member.nick}) (J->L: ({mja:%Y-%m-%d %H:%M:%S.%f %p}) -> ({tn:%Y-%m-%d %H:%M:%S.%f %p}))')
 
 @client.event
 async def on_member_update(before, after):
