@@ -296,24 +296,22 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
         await channel.send(content=(mention_message+message))#,embed=embed)
         await member.send(content=message)#,embed=embed)
 
-        if (member.guild.id == test_guild):
-            channel_ji = client.get_channel(svr.channel_id['join_leave'])
-            mja        = member.joined_at.astimezone(pytz.timezone('Asia/Taipei'))
-            await channel_ji.send(f'[+][Jn] {member.guild.name} --- <@{member.id}> ({member}) (J: ({mja:%Y-%m-%d %H:%M:%S.%f %p}))')
+        channel_ji = client.get_channel(svr.channel_id['join_leave'])
+        mja        = member.joined_at.astimezone(pytz.timezone('Asia/Taipei'))
+        await channel_ji.send(f'[+][Jn] {member.guild.name} --- <@{member.id}> ({member}) (J: ({mja:%Y-%m-%d %H:%M:%S.%f %p}))')
 
 @client.event
 async def on_member_remove(member):
     if (member.guild.id in guild_list) and (invide_mode == 2):
-        if (member.guild.id == test_guild):
-            svr        = guild_list[member.guild.id]
-            channel_ji = client.get_channel(svr.channel_id['join_leave'])
-            mja        = member.joined_at.astimezone(pytz.timezone('Asia/Taipei'))
-            tn         = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei'))
-            period     = tn - mja
-            nk_message = ""
-            if member.nick:
-                nk_message = f", nickname: {member.nick}"
-            await channel_ji.send(f'[-][Lv] {member.guild.name} --- <@{member.id}> ({member}{nk_message}) (P: {period.total_seconds():.2f}s) (J->L: ({mja:%Y-%m-%d %H:%M:%S.%f %p}) -> ({tn:%Y-%m-%d %H:%M:%S.%f %p}))')
+        svr        = guild_list[member.guild.id]
+        channel_ji = client.get_channel(svr.channel_id['join_leave'])
+        mja        = member.joined_at.astimezone(pytz.timezone('Asia/Taipei'))
+        tn         = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei'))
+        period     = tn - mja
+        nk_message = ""
+        if member.nick:
+            nk_message = f", nickname: {member.nick}"
+        await channel_ji.send(f'[-][Lv] {member.guild.name} --- <@{member.id}> ({member}{nk_message}) (P: {period.total_seconds():.2f}s) (J->L: ({mja:%Y-%m-%d %H:%M:%S.%f %p}) -> ({tn:%Y-%m-%d %H:%M:%S.%f %p}))')
 
 @client.event
 async def on_member_update(before, after):
