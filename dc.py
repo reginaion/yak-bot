@@ -60,6 +60,7 @@ class server_item:
                            'invite':0,
                            'rule':0,
                            'select_role':0,
+                           'join_leave':0,
                            'main_chat_list':[]}
         self.message_id = {'role_main':0,
                            'role_color':0}
@@ -190,6 +191,7 @@ s1.channel_id['suggestion'] = 1042429222154678312
 s1.channel_id['invite'] = 925725103801630761
 s1.channel_id['rule'] = 925779385729032262
 s1.channel_id['select_role'] = 925732268197167125
+s1.channel_id['join_leave'] = 925745745410269224
 s1.channel_id['main_chat_list'] = [925717531082235935,925722682178293782,981035850429251594]
 s1.message_id['role_main'] = 925960555943051284
 s1.message_id['role_color'] = 926769088980738108
@@ -217,6 +219,7 @@ s2.channel_id['suggestion'] = 1085468422743277599
 s2.channel_id['invite'] = 1085468422474829828
 s2.channel_id['rule']  = 1085468422474829827
 s2.channel_id['select_role'] = 1085468422474829830
+s2.channel_id['join_leave'] = 1085468422743277601
 s2.channel_id['main_chat_list'] = [1085468422743277603,1085468422743277604,1085468423812825159]
 s2.message_id['role_main'] = 1085495104762032178
 s2.message_id['role_color'] = 1085495131081289738
@@ -293,6 +296,23 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
         await member.add_roles(guest_role)
         await channel.send(content=(mention_message+message))#,embed=embed)
         await member.send(content=message)#,embed=embed)
+
+        if (member.guild.id == test_guild):
+            channel_ji = client.get_channel(svr.channel_id['join_leave'])
+            mja        = member.joined_at.astimezone(pytz.timezone('Asia/Taipei'))
+            await channel_ji.send(f'[+][Jn] {member.guild.name} --- <@{member.id}> ({member}, nickname: {member.nick}) (J: ({mja:%Y-%m-%d %H:%M:%S.%f %p}))')
+
+
+@client.event
+async def on_member_remove(member):
+    if (member.guild.id in guild_list) and (invide_mode == 2):
+        if (member.guild.id == test_guild):
+            svr        = guild_list[member.guild.id]
+            channel_ji = client.get_channel(svr.channel_id['join_leave'])
+            mja        = member.joined_at.astimezone(pytz.timezone('Asia/Taipei'))
+            tn         = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei'))
+            period     = tn - mca
+            await channel_ji.send(f'[-][Lv] {member.guild.name} --- <@{member.id}> ({member}, nickname: {member.nick}) (P: {period.total_seconds():.2f}s) (J->L: ({mja:%Y-%m-%d %H:%M:%S.%f %p}) -> ({tn:%Y-%m-%d %H:%M:%S.%f %p}))')
 
 @client.event
 async def on_member_update(before, after):
@@ -666,7 +686,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.8, date 230315, add new server")
+    await ctx.send("ver 0.0.9.8, date 230316, add join/leave")
 
 @client.event
 async def on_message_delete(message):
