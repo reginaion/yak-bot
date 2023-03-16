@@ -299,7 +299,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
         if (member.guild.id == test_guild):
             channel_ji = client.get_channel(svr.channel_id['join_leave'])
             mja        = member.joined_at.astimezone(pytz.timezone('Asia/Taipei'))
-            await channel_ji.send(f'[+][Jn] {member.guild.name} --- <@{member.id}> ({member}, nickname: {member.nick}) (J: ({mja:%Y-%m-%d %H:%M:%S.%f %p}))')
+            await channel_ji.send(f'[+][Jn] {member.guild.name} --- <@{member.id}> ({member}) (J: ({mja:%Y-%m-%d %H:%M:%S.%f %p}))')
 
 @client.event
 async def on_member_remove(member):
@@ -310,7 +310,10 @@ async def on_member_remove(member):
             mja        = member.joined_at.astimezone(pytz.timezone('Asia/Taipei'))
             tn         = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei'))
             period     = tn - mja
-            await channel_ji.send(f'[-][Lv] {member.guild.name} --- <@{member.id}> ({member}, nickname: {member.nick}) (P: {period.total_seconds():.2f}s) (J->L: ({mja:%Y-%m-%d %H:%M:%S.%f %p}) -> ({tn:%Y-%m-%d %H:%M:%S.%f %p}))')
+            nk_message = ""
+            if member.nick:
+                nk_message = f", nickname: {member.nick}"
+            await channel_ji.send(f'[-][Lv] {member.guild.name} --- <@{member.id}> ({member}{nk_message}) (P: {period.total_seconds():.2f}s) (J->L: ({mja:%Y-%m-%d %H:%M:%S.%f %p}) -> ({tn:%Y-%m-%d %H:%M:%S.%f %p}))')
 
 @client.event
 async def on_member_update(before, after):
