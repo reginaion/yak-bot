@@ -233,7 +233,6 @@ s2.role_color_id = [1085468421912805385,1085468421912805384,1085468421912805383,
 s2.role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","<:cape_confuse:926401561125601310>","<:hululu_happy:926399458764263494>","<:shimahai_hai:926405048706166784>","<:coyote_sleepy:926397039393263636>",\
 "<:dire_3:1080865933591052388>","<:caracal_3:1080862045563523134>","<:geoffory_worry:1080862839079706716>","<:genet_XD:1080865745195503667>","<:shimarisu_happy:1080863928160100403>",\
 "<:junglecat_x:1080865791550963752>","<:usako_3:1080863905858986154>"]
-
 s2.set_on_member_join()
 s2.set_on_member_update()
 s2.set_edit_invite()
@@ -310,9 +309,10 @@ async def on_member_remove(member):
             svr        = guild_list[member.guild.id]
             channel_ji = client.get_channel(svr.channel_id['join_leave'])
             mja        = member.joined_at.astimezone(pytz.timezone('Asia/Taipei'))
-            tn         = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei'))
-            period     = tn - mca
-            await channel_ji.send(f'[-][Lv] {member.guild.name} --- <@{member.id}> ({member}, nickname: {member.nick}) (P: {period.total_seconds():.2f}s) (J->L: ({mja:%Y-%m-%d %H:%M:%S.%f %p}) -> ({tn:%Y-%m-%d %H:%M:%S.%f %p}))')
+            #tn         = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei'))
+            #period     = tn - mca
+            #await channel_ji.send(f'[-][Lv] {member.guild.name} --- <@{member.id}> ({member}, nickname: {member.nick}) (P: {period.total_seconds():.2f}s) (J->L: ({mja:%Y-%m-%d %H:%M:%S.%f %p}) -> ({tn:%Y-%m-%d %H:%M:%S.%f %p}))')
+            await channel_ji.send(f'[-][Lv] {member.guild.name} --- <@{member.id}> ({member}, nickname: {member.nick}) (J: ({mja:%Y-%m-%d %H:%M:%S.%f %p}))')
 
 @client.event
 async def on_member_update(before, after):
