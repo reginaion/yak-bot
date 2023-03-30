@@ -112,7 +112,7 @@ Click the corresponding emoji to receive your role.\n\
 　\n\
 額外功能身份組\n\
 <@&{}> - R18頻道 (Access r18 channel)\n\
-<@&{}> - 活動通知提醒 (Send you event notifications (UTC+8))\n\
+<@&{}> - 活動通知提醒 (Send event notifications to you)\n\
 <@&{}> - 客家道場提醒 (For KF3 only, reminded every Sunday at 22:30 (UTC+8))\n\
 "
         self.message_edit_color = "這是看起來很棒的顏色身分組，可以為你的名字染色。歡迎領取 (無額外權限功能)\n"
