@@ -97,6 +97,7 @@ kemov聊天大廳在這裡︰<#{}>\n\
 Click the corresponding emoji to receive your role.\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>\n\
+                                          {} - <@&{}>\n\
                                           {} - <@&{}>"
         self.message_edit_invite = "頻道群組︰\n\
 <#{}> - 閒聊\n\
@@ -114,6 +115,7 @@ Click the corresponding emoji to receive your role.\n\
 <@&{}> - R18頻道 (Access r18 channel)\n\
 <@&{}> - 活動通知提醒 (Send event notifications to you)\n\
 <@&{}> - 日版客家道場提醒 (For KF3 (JP) only, reminded every Sunday at 22:30 (UTC+8))\n\
+<@&{}> - 繁中版客家道場提醒 (For KF3 (ZH) only, reminded every Sunday at 23:30 (UTC+8))\n\
 "
         self.message_edit_color = "這是看起來很棒的顏色身分組，可以為你的名字染色。歡迎領取 (無額外權限功能)\n"
         self.embed_edit_color = "Click the corresponding emoji to receive your role.\n\
@@ -158,7 +160,8 @@ Click the corresponding emoji to receive your role.\n\
                                                                self.role_emoji[5],self.role_id[5],
                                                                self.role_emoji[2],self.role_id[2],
                                                                self.role_emoji[6],self.role_id[6],
-                                                               self.role_emoji[3],self.role_id[3])
+                                                               self.role_emoji[3],self.role_id[3],
+                                                               self.role_emoji[7],self.role_id[7])
         
         self.message_edit_invite = self.message_edit_invite.format("{}","{}","{}","{}",self.role_id[0],
                                                                                        self.role_id[1],
@@ -166,7 +169,8 @@ Click the corresponding emoji to receive your role.\n\
                                                                                        self.role_id[5],
                                                                                        self.role_id[2],
                                                                                        self.role_id[6],
-                                                                                       self.role_id[3])
+                                                                                       self.role_id[3],
+                                                                                       self.role_id[7])
     
     def set_edit_color(self):
         self.embed_edit_color = self.embed_edit_color.format(self.role_color_emoji[0],self.role_color_id[0],
@@ -201,8 +205,8 @@ s1.message_id['role_main'] = 925960555943051284
 s1.message_id['role_color'] = 926769088980738108
 s1.guest_role_id = 1079793661304393800
 s1.no_welcome_msg_role_id = 1080847909513330759
-s1.role_id = [925727966137290774,925729158577930310,925895939628105778,929747501727244368,1042010855396622407,1061155255880007771,1023127510801715201]
-s1.role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>","<:EzoSmug:788033424928669736>"]
+s1.role_id = [925727966137290774,925729158577930310,925895939628105778,929747501727244368,1042010855396622407,1061155255880007771,1023127510801715201,1095689201757995069]
+s1.role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>","<:EzoSmug:788033424928669736>","🔊"]
 s1.role_color_id = [926766604602200074,926765413856067595,926767008891162674,926767203695611914,926767499914117131,926767717011316746,\
 1080844701306986556,1080859136465584210,1080845993169399910,1080857106019799080,1080852277117591552,1080852769646325820,\
 1080853366843899925,1080856574135910480,1080857411130232864,1080858479494959184,1080858658344288348]
@@ -229,8 +233,8 @@ s2.message_id['role_main'] = 1085495104762032178
 s2.message_id['role_color'] = 1085495131081289738
 s2.guest_role_id = 1085468421870845954
 s2.no_welcome_msg_role_id = 1085468421870845953
-s2.role_id = [1085468421891821610,1085468421870845961,1085468421870845957,1085468421870845956,1085468421891821609,1085468421891821608,1090978081033965629]
-s2.role_emoji = ["<:geoffory_A:925962558349934593>","<:dhole_A:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>","<:EzoSmug:788033424928669736>"]
+s2.role_id = [1085468421891821610,1085468421870845961,1085468421870845957,1085468421870845956,1085468421891821609,1085468421891821608,1090978081033965629,1095718252631572563]
+s2.role_emoji = ["<:geoffory_A:925962558349934593>","<:dhole_A:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>","<:EzoSmug:788033424928669736>","🔊"]
 s2.role_color_id = [1085468421912805385,1085468421912805384,1085468421912805383,1085468421912805382,1085468421912805381,1085468421912805380,\
 1085468421912805379,1085468421912805378,1085468421912805377,1085468421912805376,1085468421891821617,1085468421891821616,\
 1085468421891821615,1085468421891821614,1085468421891821613,1085468421891821612,1085468421891821611]
@@ -826,7 +830,11 @@ async def time_check():
     if weekday == 6 and cst.hour == 22 and cst.minute == 30:
         await client.wait_until_ready()
         channel = client.get_channel(channel_id_2)
-        await channel.send('<@&929747501727244368>```客家道場```')
+        await channel.send('<@&929747501727244368>```客家道場 (JP dojo)```')
+    if weekday == 6 and cst.hour == 23 and cst.minute == 30:
+        await client.wait_until_ready()
+        channel = client.get_channel(channel_id_2)
+        await channel.send('<@&1095689201757995069>```客家道場 (ZH dojo)```')
     if weekday == 6 and cst.hour == 22 and cst.minute == 31:
         await client.wait_until_ready()
         channel = client.get_channel(channel_id)
@@ -835,6 +843,10 @@ async def time_check():
     #    await client.wait_until_ready()
     #    channel_2 = client.get_channel(1085468422743277603)
     #    await channel_2.send('<@&1085468421870845956>```客家道場 (JP dojo)```')
+    if cst.hour == 22 and cst.minute == 40:
+        await client.wait_until_ready()
+        channel_2 = client.get_channel(1085468422743277603)
+        await channel_2.send('<@&1095718252631572563>```客家道場 (JP dojo)```')
 #Mod Leave Announcement
 """
 @client.event
