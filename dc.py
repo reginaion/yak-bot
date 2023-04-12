@@ -686,7 +686,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.9, date 230330, add new role")
+    await ctx.send("ver 0.0.9.9, date 230412, add new role")
 
 @client.event
 async def on_message_delete(message):
@@ -843,7 +843,7 @@ async def time_check():
     #    await client.wait_until_ready()
     #    channel_2 = client.get_channel(1085468422743277603)
     #    await channel_2.send('<@&1085468421870845956>```客家道場 (JP dojo)```')
-    if cst.hour == 22 and cst.minute == 40:
+    if cst.hour == 22 and cst.minute == 42:
         await client.wait_until_ready()
         channel_2 = client.get_channel(1085468422743277603)
         await channel_2.send('<@&1095718252631572563>```客家道場 (JP dojo)```')
