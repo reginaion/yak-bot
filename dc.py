@@ -119,8 +119,8 @@ Click the corresponding emoji to receive your role.\n\
 <@&{}> - 活動通知提醒 (Send event notifications to you)\n\
 <@&{}> - 日版客家道場提醒 (For KF3 (JP) only, reminded every Sunday at 22:30 (UTC+8))\n\
 <@&{}> - 繁中版客家道場提醒 (For KF3 (ZH) only, reminded every Sunday at 23:30 (UTC+8))\n\
-<@&{}> - English friends\n\
 <@&{}> - Japanese friends\n\
+<@&{}> - English friends\n\
 <@&{}> - Creator\n\
 "
         self.message_edit_color = "這是看起來很棒的顏色身分組，可以為你的名字染色。歡迎領取 (無額外權限功能)\n"
