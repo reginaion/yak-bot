@@ -117,11 +117,11 @@ Click the corresponding emoji to receive your role.\n\
 額外功能身份組\n\
 <@&{}> - R18頻道 (Access r18 channel)\n\
 <@&{}> - 活動通知提醒 (Send event notifications to you)\n\
+<@&{}> - 日版客家道場提醒 (For KF3 (JP) only, reminded every Sunday at 22:30 (UTC+8))\n\
+<@&{}> - 繁中版客家道場提醒 (For KF3 (ZH) only, reminded every Sunday at 23:30 (UTC+8))\n\
 <@&{}> - English friends\n\
 <@&{}> - Japanese friends\n\
 <@&{}> - Creator\n\
-<@&{}> - 日版客家道場提醒 (For KF3 (JP) only, reminded every Sunday at 22:30 (UTC+8))\n\
-<@&{}> - 繁中版客家道場提醒 (For KF3 (ZH) only, reminded every Sunday at 23:30 (UTC+8))\n\
 "
         self.message_edit_color = "這是看起來很棒的顏色身分組，可以為你的名字染色。歡迎領取 (無額外權限功能)\n"
         self.embed_edit_color = "Click the corresponding emoji to receive your role.\n\
@@ -166,11 +166,11 @@ Click the corresponding emoji to receive your role.\n\
                                                                self.role_emoji[5],self.role_id[5],
                                                                self.role_emoji[2],self.role_id[2],
                                                                self.role_emoji[6],self.role_id[6],
+                                                               self.role_emoji[3],self.role_id[3],
+                                                               self.role_emoji[7],self.role_id[7],
                                                                self.role_emoji[8],self.role_id[8],
                                                                self.role_emoji[9],self.role_id[9],
-                                                               self.role_emoji[10],self.role_id[10],
-                                                               self.role_emoji[3],self.role_id[3],
-                                                               self.role_emoji[7],self.role_id[7])
+                                                               self.role_emoji[10],self.role_id[10])
         
         self.message_edit_invite = self.message_edit_invite.format("{}","{}","{}","{}",self.role_id[0],
                                                                                        self.role_id[1],
@@ -178,11 +178,11 @@ Click the corresponding emoji to receive your role.\n\
                                                                                        self.role_id[5],
                                                                                        self.role_id[2],
                                                                                        self.role_id[6],
+                                                                                       self.role_id[3],
+                                                                                       self.role_id[7],
                                                                                        self.role_id[8],
                                                                                        self.role_id[9],
-                                                                                       self.role_id[10],
-                                                                                       self.role_id[3],
-                                                                                       self.role_id[7])
+                                                                                       self.role_id[10])
     
     def set_edit_color(self):
         self.embed_edit_color = self.embed_edit_color.format(self.role_color_emoji[0],self.role_color_id[0],
