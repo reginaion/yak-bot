@@ -77,6 +77,7 @@ class server_item:
 重要!!\n\
 **請先填寫【入園申請】跟【閱讀 <#{}> 】~**\n\
 ➡️入園申請︰ https://forms.gle/JVxeWbQ2E4wkb3Ee6 ⬅️\n\
+➡️日本語申込用紙︰ https://forms.gle/66dvtVJQCZZP41bS8 ⬅️\n\
 \n\
 ➡️如果需要幫助的話，請至 <#{}> 反應~⬅️\n\
 再次感謝大大的加入~"
@@ -702,7 +703,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.11, date 230422, add new role")
+    await ctx.send("ver 0.0.9.12, date 230703, add new form")
 
 @client.event
 async def on_message_delete(message):
