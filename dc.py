@@ -513,7 +513,7 @@ Click the corresponding emoji to receive your role.\n\
 @client.command()
 @commands.is_owner()
 async def edit_color(ctx):
-        if invide_mode == 2:
+    if invide_mode == 2:
         return
     embedvar = discord.Embed(title="請選取顏色身分組!",
                               description="Click the corresponding emoji to receive your role.\n\
