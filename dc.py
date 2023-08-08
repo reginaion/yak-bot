@@ -212,7 +212,7 @@ Click the corresponding emoji to receive your role.\n\
                                                              self.role_color_emoji[16],self.role_color_id[16])
 
     def set_message_edit_verify_phone_content(self):
-        self.message_edit_verify_phone_content = self.message_edit_verify_phone_content.format(verify_phone_emoji[0])
+        self.message_edit_verify_phone_content = self.message_edit_verify_phone_content.format(self.verify_phone_emoji[0])
 
 test_guild = 1085468421870845952
 
