@@ -709,7 +709,7 @@ async def on_raw_reaction_remove(payload):
                     if i in [0,1,4,5]:
                         total = total - 1
                     break
-            if role is not None and (total || payload.guild_id == s1.invite_guild_id): # 230808
+            if role is not None and (total or payload.guild_id == s1.invite_guild_id): # 230808
                 await member.remove_roles(role)
 
         elif payload.message_id == svr.message_id['role_color']:
