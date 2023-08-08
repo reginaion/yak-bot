@@ -352,7 +352,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
         mention_message = f'<@{member.id}>\n'
         message         = svr.message_verify_phone
         
-        await channel.send(content=(mention_message+message))#,embed=embed)
+        # await channel.send(content=(mention_message+message))#,embed=embed)
         await member.send(content=message)#,embed=embed)
 
         channel_ji = client.get_channel(svr.channel_id['join_leave'])
@@ -646,6 +646,12 @@ async def on_raw_reaction_add(payload):
                     break
             if role is not None:
                 await payload.member.add_roles(role)
+
+                channel         = client.get_channel(svr.channel_id['help'])
+                mention_message = f'<@{member.id}>\n'
+                message         = svr.message_on_member_join
+                await channel.send(content=(mention_message+message))#,embed=embed)
+                await payload.member.send(content=message)#,embed=embed)
 
         return
 
