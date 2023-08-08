@@ -577,7 +577,7 @@ async def edit_verify_phone_s(ctx, guild_id:int): # 230808
     channel = client.get_channel(svr.channel_id['verify_phone'])
     msg = await channel.fetch_message(svr.message_id['role_verify_phone'])
     await msg.edit(content=svr.set_message_edit_verify_phone_content)
-    for i in range(len(svr.role_emoji)):
+    for i in range(len(svr.verify_phone_emoji)):
         await msg.add_reaction(svr.verify_phone_emoji[i])
 
 @client.command()
