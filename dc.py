@@ -726,6 +726,18 @@ async def on_raw_reaction_remove(payload):
             if role is not None:
                 await member.remove_roles(role)
 
+
+        if payload.guild_id == s1.invite_guild_id: # 230808
+            return
+        
+        if payload.message_id == svr.message_id['role_verify_phone']:
+            for i in range(len(svr.verify_phone_emoji)):
+                if str(payload.emoji) == svr.verify_phone_emoji[i]:
+                    role = guild.get_role(svr.guest_role_id)
+                    break
+            if role is not None:
+                await member.remove_roles(role)
+
         return
 
 
