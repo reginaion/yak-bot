@@ -570,7 +570,7 @@ async def edit_verify_phone_s(ctx, guild_id:int): # 230808
         return
     if invide_mode != 2:
         return
-    if member.guild.id == s1.invite_guild_id: # 230808
+    if guild_id == s1.invite_guild_id: # 230808
         return
     
     svr = guild_list[guild_id]
