@@ -224,11 +224,11 @@ s1.channel_id['invite'] = 925725103801630761
 s1.channel_id['rule'] = 925779385729032262
 s1.channel_id['select_role'] = 925732268197167125
 s1.channel_id['join_leave'] = 925745745410269224
-#s1.channel_id['verify_phone'] = 1138450597104853062
+s1.channel_id['verify_phone'] = 1138494443746504724 # 230808
 s1.channel_id['main_chat_list'] = [925717531082235935,925722682178293782,981035850429251594]
 s1.message_id['role_main'] = 925960555943051284
 s1.message_id['role_color'] = 926769088980738108
-#s1.message_id['role_verify_phone'] = 1138451434304720968 # 230808
+s1.message_id['role_verify_phone'] = 1138494764694638613 # 230808
 s1.guest_role_id = 1079793661304393800
 s1.no_welcome_msg_role_id = 1080847909513330759
 s1.role_id = [925727966137290774,925729158577930310,925895939628105778,929747501727244368,1042010855396622407,1061155255880007771,1023127510801715201,1095689201757995069,
@@ -241,13 +241,13 @@ s1.role_color_id = [926766604602200074,926765413856067595,926767008891162674,926
 s1.role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","<:cape_confuse:926401561125601310>","<:hululu_happy:926399458764263494>","<:shimahai_hai:926405048706166784>","<:coyote_sleepy:926397039393263636>",\
 "<:dire_3:1080865933591052388>","<:caracal_3:1080862045563523134>","<:geoffory_worry:1080862839079706716>","<:genet_XD:1080865745195503667>","<:shimarisu_happy:1080863928160100403>",\
 "<:junglecat_x:1080865791550963752>","<:usako_3:1080863905858986154>"]
-#s1.verify_phone_emoji = ["📱"] # 230808
+s1.verify_phone_emoji = ["📱"] # 230808
 s1.set_on_member_join()
-#s1.set_message_verify_phone() # 230808
+s1.set_message_verify_phone() # 230808
 s1.set_on_member_update()
 s1.set_edit_invite()
 s1.set_edit_color()
-#s1.set_message_edit_verify_phone_content() # 230808
+s1.set_message_edit_verify_phone_content() # 230808
 #s1.embed_on_member_update = s1.embed_on_member_update.format(">2351<")
 s1.message_edit_invite = s1.message_edit_invite.format("926715406683615294","925733227841343508","925722952568279091","1042336425808511016")
 
@@ -259,7 +259,7 @@ s2.channel_id['invite'] = 1085468422474829828
 s2.channel_id['rule']  = 1085468422474829827
 s2.channel_id['select_role'] = 1085468422474829830
 s2.channel_id['join_leave'] = 1085468422743277601
-s2.channel_id['verify_phone'] = 1138450597104853062
+s2.channel_id['verify_phone'] = 1138450597104853062 # 230808
 s2.channel_id['main_chat_list'] = [1085468422743277603,1085468422743277604,1085468423812825159]
 s2.message_id['role_main'] = 1085495104762032178
 s2.message_id['role_color'] = 1085495131081289738
@@ -332,7 +332,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
         await channel_2.send(content=(mention_message+message))#,embed=embed)
         #await channel.send(content=message,embed=embed)
         await member.send(content=message)#,embed=embed)
-    elif (member.guild.id in guild_list) and (invide_mode == 2) and (member.guild.id == s1.invite_guild_id):
+    elif (member.guild.id in guild_list) and (invide_mode == 4) and (member.guild.id == s1.invite_guild_id): # 230808
         svr             = guild_list[member.guild.id]
         channel         = client.get_channel(svr.channel_id['help'])
         mention_message = f'<@{member.id}>\n'
@@ -570,8 +570,6 @@ async def edit_verify_phone_s(ctx, guild_id:int): # 230808
         return
     if invide_mode != 2:
         return
-    if guild_id == s1.invite_guild_id: # 230808
-        return
     
     svr = guild_list[guild_id]
     channel = client.get_channel(svr.channel_id['verify_phone'])
@@ -635,11 +633,8 @@ async def on_raw_reaction_add(payload):
                     break
             if role is not None:
                 await payload.member.add_roles(role)
-
-        if payload.guild_id == s1.invite_guild_id: # 230808
-            return
         
-        if payload.message_id == svr.message_id['role_verify_phone']:
+        if payload.message_id == svr.message_id['role_verify_phone']: # 230808
             for i in range(len(svr.verify_phone_emoji)):
                 if str(payload.emoji) == svr.verify_phone_emoji[i]:
                     role = guild.get_role(svr.guest_role_id)
@@ -715,7 +710,7 @@ async def on_raw_reaction_remove(payload):
                     if i in [0,1,4,5]:
                         total = total - 1
                     break
-            if role is not None and (total or payload.guild_id == s1.invite_guild_id): # 230808
+            if role is not None and total: # 230808
                 await member.remove_roles(role)
 
         elif payload.message_id == svr.message_id['role_color']:
@@ -725,12 +720,8 @@ async def on_raw_reaction_remove(payload):
                     break
             if role is not None:
                 await member.remove_roles(role)
-
-
-        if payload.guild_id == s1.invite_guild_id: # 230808
-            return
         
-        if payload.message_id == svr.message_id['role_verify_phone']:
+        if payload.message_id == svr.message_id['role_verify_phone']: # 230808
             for i in range(len(svr.verify_phone_emoji)):
                 if str(payload.emoji) == svr.verify_phone_emoji[i]:
                     role = guild.get_role(svr.guest_role_id)
