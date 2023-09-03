@@ -695,9 +695,9 @@ async def on_raw_reaction_add(payload):
             users = set()
             for reaction in entry_msg.reactions:
                 async for user in reaction.users():
-                    if reaction.emoji.name == svr.emoji_jp:
+                    if str(reaction.emoji) == svr.emoji_jp:
                         users.add(user)
-            
+
             if bot_id not in [user.id for user in users]:
                 return
 
