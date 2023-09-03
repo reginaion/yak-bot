@@ -54,6 +54,7 @@ guild_ids = [702741572344610907]
 
 class server_item:
     def __init__(self):
+        self.bot_id = 853662081991311371
         self.invite_guild_id = 0
         self.channel_id = {'help':0,
                            'suggestion':0,
@@ -74,17 +75,30 @@ class server_item:
         self.role_color_id = []
         self.role_color_emoji = []
         self.verify_phone_emoji = []
+        self.emoji_jp = "🇯🇵"
+        self.jp_info = "※日本語は🇯🇵の絵文字でリアクション"
         self.message_on_member_join = "歡迎浮蓮子的加入~\n\
 你現在看不到所有的頻道\n\
 請先閱讀版規及填寫下方連結問卷，問卷提交後待STAFF審核，通過後我們會給你 <#{}> 選擇權限\n\n\
 重要!!\n\
 **請先填寫【入園申請】跟【閱讀 <#{}> 】~**\n\
-➡️入園申請︰ https://forms.gle/JVxeWbQ2E4wkb3Ee6 ⬅️\n\
-➡️日本語申込用紙︰ https://forms.gle/66dvtVJQCZZP41bS8 ⬅️\n\
+➡️入園申請(中　文)︰ https://forms.gle/JVxeWbQ2E4wkb3Ee6 ⬅️\n\
+➡️入園申請(日本語)︰ https://forms.gle/66dvtVJQCZZP41bS8 ⬅️\n\
 \n\
 ➡️如果需要幫助的話，請至 <#{}> 反應~⬅️\n\
 再次感謝大大的加入~"
-        self.message_verify_phone = "感謝浮蓮子的加入，請先至 <#{}> 進行手機驗證"
+        self.jp_message_on_member_join = "ようこそサーバーへ\n\
+あなたは今、見られるチャンネルを制限されている筈よ\n\
+先に規約を読んで、下のリンクの質問票（問卷）に記入して提出後、スタッフ審査で許可が出たら、あなたに <#{}> での選択権限を渡すわ\n\
+重要!!\n\
+**初めに【入園申請】の記入と【 <#{}> の熟読】はお願いするわ**\n\
+➡️中国語入園申請︰ https://forms.gle/JVxeWbQ2E4wkb3Ee6 ⬅️\n\
+➡️日本語入園申請︰ https://forms.gle/66dvtVJQCZZP41bS8 ⬅️\n\
+\n\
+➡️もし困ったことがあれば、 <#{}> でメッセージを送って ⬅️\n\
+改めて入ってきてくれて本当にありがとう"
+
+        self.message_verify_phone = "感謝浮蓮子的加入，請先至 <#{}> 進行手機驗證\n{}、加入してくれてありがとう\n最初に <#{}> で携帯認証をしてきて"
         self.message_on_member_update = "感謝浮蓮子的加入，群組介面操作上有任何疑難雜症都可以詢問~\n\n\
 可以在 <#{}> 領取你喜歡的【身份組】及【個性化名字染色】喔~\n\
 \n\
@@ -93,6 +107,15 @@ kemov聊天大廳在這裡︰<#{}>\n\
 王國聊天大廳在這裡︰<#{}>\n\
 群組上或操作上等有任何問題歡迎提出，或是至 <#{}> 反應\n\
 再次感謝大大的加入~"
+        self.jp_message_on_member_update = "加入してくれてありがとう\n\
+このサーバーの使い方で困ったことがあれば何でも質問するといいわ\n\
+ <#{}> であなたの好きな【ロール】と【ユーザー名の色変更】を選びましょう\n\
+\n\
+総合雑談部屋はこっち︰<#{}>\n\
+けもVチャット部屋はこっち︰<#{}>\n\
+キングダムチャット部屋はこっち︰<#{}>\n\
+グループや使い方等のことについては気軽に <#{}> で質問を送ってくれてもいいわ\n\
+改めて入ってきてくれて本当にありがとう"
         self.embed_on_member_update = "感謝您加入 {}!\n請至<#{}>閱讀守則\n請至<#{}>釘選處索取身分組以取得頻道瀏覽權限"
         self.embed_edit_invite = "Click the corresponding emoji to receive your role (select at least one).\n\
                                           {} - <@&{}>\n\
@@ -128,7 +151,7 @@ Click the corresponding emoji to receive your role.\n\
 <@&{}> - English friends\n\
 <@&{}> - Creator\n\
 "
-        self.message_edit_verify_phone_content = "請點 {} 進行手機驗證"
+        self.message_edit_verify_phone_content = "請點 {} 進行手機驗證\n最初に <#{}> で携帯認証をしてきて\n"
         self.message_edit_color = "這是看起來很棒的顏色身分組，可以為你的名字染色。歡迎領取 (無額外權限功能)\n"
         self.embed_edit_color = "Click the corresponding emoji to receive your role.\n\
                                           {} - <@&{}>\n\
@@ -153,6 +176,9 @@ Click the corresponding emoji to receive your role.\n\
         self.message_on_member_join = self.message_on_member_join.format(self.channel_id['select_role'],
                                                                          self.channel_id['rule'],
                                                                          self.channel_id['help'])
+        self.jp_message_on_member_join = self.jp_message_on_member_join.format(self.channel_id['select_role'],
+                                                                               self.channel_id['rule'],
+                                                                               self.channel_id['help'])
     def set_message_verify_phone(self):
         self.message_verify_phone = self.message_verify_phone.format(self.channel_id['verify_phone'])
 
@@ -162,6 +188,11 @@ Click the corresponding emoji to receive your role.\n\
                                                                              self.channel_id['main_chat_list'][1],
                                                                              self.channel_id['main_chat_list'][2],
                                                                              self.channel_id['suggestion'])
+        self.jp_message_on_member_update = self.jp_message_on_member_update.format(self.channel_id['select_role'],
+                                                                                   self.channel_id['main_chat_list'][0],
+                                                                                   self.channel_id['main_chat_list'][1],
+                                                                                   self.channel_id['main_chat_list'][2],
+                                                                                   self.channel_id['suggestion'])
         self.embed_on_member_update = self.embed_on_member_update.format('{}',
                                                                          self.channel_id['rule'],
                                                                          self.channel_id['select_role'])
@@ -212,7 +243,7 @@ Click the corresponding emoji to receive your role.\n\
                                                              self.role_color_emoji[16],self.role_color_id[16])
 
     def set_message_edit_verify_phone_content(self):
-        self.message_edit_verify_phone_content = self.message_edit_verify_phone_content.format(self.verify_phone_emoji[0])
+        self.message_edit_verify_phone_content = self.message_edit_verify_phone_content.format(self.verify_phone_emoji[0],self.verify_phone_emoji[0])
 
 test_guild = 1085468421870845952
 
@@ -349,8 +380,9 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
     elif (member.guild.id in guild_list) and (invide_mode == 2):
         svr             = guild_list[member.guild.id]
         channel         = client.get_channel(svr.channel_id['help'])
-        mention_message = f'<@{member.id}>\n'
+        mention_message = f'<@{member.id}>'
         message         = svr.message_verify_phone
+        message         = message.format(mention_message,mention_message)
         
         # await channel.send(content=(mention_message+message))#,embed=embed)
         await member.send(content=message)#,embed=embed)
@@ -403,7 +435,8 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
                 mention_message = f'<@{after.id}>\n'
                 message = svr.message_on_member_update
                 if [i.id for i in after.roles].count(svr.no_welcome_msg_role_id) == 0:
-                    await channel.send(content=(mention_message+message),embed=embed)
+                    msg_entry = await channel.send(content=(mention_message+message+'\n'+svr.jp_info),embed=embed)
+                    await msg_entry.add_reaction(svr.emoji_jp)
                 await after.send(content=message)
 
                 # friend_role = after.guild.get_role(svr.role_id[5]) # @friend role # 230808: phase out auto add role
@@ -625,6 +658,7 @@ async def on_raw_reaction_add(payload):
                     break
             if role is not None:
                 await payload.member.add_roles(role)
+            return
 
         elif payload.message_id == svr.message_id['role_color']:
             for i in range(len(svr.role_color_emoji)):
@@ -633,6 +667,7 @@ async def on_raw_reaction_add(payload):
                     break
             if role is not None:
                 await payload.member.add_roles(role)
+            return
         
         if payload.message_id == svr.message_id['role_verify_phone']: # 230808
             for i in range(len(svr.verify_phone_emoji)):
@@ -645,8 +680,38 @@ async def on_raw_reaction_add(payload):
                 channel         = client.get_channel(svr.channel_id['help'])
                 mention_message = f'<@{member.id}>\n'
                 message         = svr.message_on_member_join
-                await channel.send(content=(mention_message+message))#,embed=embed)
+                msg_entry = await channel.send(content=(mention_message+message+'\n'+svr.jp_info))#,embed=embed)
+                await msg_entry.add_reaction(svr.emoji_jp)
                 await payload.member.send(content=message)#,embed=embed)
+            return
+
+        if payload.channel_id == svr.channel_id['invite'] or payload.channel_id == svr.channel_id['help']:
+            entry_channel = client.get_channel(payload.channel_id)
+            entry_msg     = await channel.fetch_message(payload.message_id)
+            reaction      = get(entry_msg.reactions, emoji=svr.emoji_jp)
+
+            users_id = [user.id async for user in reaction.users()]
+            if svr.bot_id not in users_id:
+                return
+            
+            if payload.channel_id == svr.channel_id['invite']:
+                mention_msg   = f'<@{member.id}>\n'
+                jp_msg        = svr.jp_message_on_member_update
+                if [i.id for i in member.roles].count(svr.no_welcome_msg_role_id) == 0:
+                    await entry_channel.send(content=(mention_msg+jp_msg))
+                payload.member.send(content=jp_msg)
+                await entry_msg.clear_reactions()
+                return
+
+            elif payload.channel_id == svr.channel_id['help']:
+                mention_msg   = f'<@{member.id}>\n'
+                jp_msg        = svr.jp_message_on_member_join
+                await entry_channel.send(content=(mention_msg+jp_msg))
+                payload.member.send(content=jp_msg)
+                await entry_msg.clear_reactions()
+                return
+
+            return
 
         return
 
@@ -786,7 +851,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.13, date 230808, change verify method")
+    await ctx.send("ver 0.0.9.14, date 230903, add jp info")
 
 @client.event
 async def on_message_delete(message):
