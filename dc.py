@@ -693,15 +693,18 @@ async def on_raw_reaction_add(payload):
             entry_channel = client.get_channel(payload.channel_id)
             entry_msg     = await entry_channel.fetch_message(payload.message_id)
             users = set()
-            for reaction in entry_msg.reactions:
-                async for user in reaction.users():
-                    if str(reaction.emoji) == svr.emoji_jp:
-                        users.add(user)
-
-            if svr.bot_id not in [user.id for user in users]:
-                return
 
             if payload.emoji.name != svr.emoji_jp:
+                return
+
+            check = 0
+            for reaction in entry_msg.reactions:
+                if str(reaction.emoji) == svr.emoji_jp:
+                    async for user in reaction.users():
+                        if user.id == svr.bot_id:
+                            check = 1
+
+            if check == 0:
                 return
 
             if payload.channel_id == svr.channel_id['invite']:
