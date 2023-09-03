@@ -669,7 +669,7 @@ async def on_raw_reaction_add(payload):
                 await payload.member.add_roles(role)
             return
         
-        if payload.message_id == svr.message_id['role_verify_phone']: # 230808
+        elif payload.message_id == svr.message_id['role_verify_phone']: # 230808
             for i in range(len(svr.verify_phone_emoji)):
                 if str(payload.emoji) == svr.verify_phone_emoji[i]:
                     role = guild.get_role(svr.guest_role_id)
@@ -677,21 +677,24 @@ async def on_raw_reaction_add(payload):
             if role is not None:
                 await payload.member.add_roles(role)
 
-                channel         = client.get_channel(svr.channel_id['help'])
-                mention_message = f'<@{member.id}>\n'
-                message         = svr.message_on_member_join
-                msg_entry = await channel.send(content=(mention_message+message+'\n\n'+svr.jp_info))#,embed=embed)
-                await msg_entry.add_reaction(svr.emoji_jp)
-                await payload.member.send(content=message)#,embed=embed)
+            channel         = client.get_channel(svr.channel_id['help'])
+            mention_message = f'<@{member.id}>\n'
+            message         = svr.message_on_member_join
+            msg_entry = await channel.send(content=(mention_message+message+'\n\n'+svr.jp_info))#,embed=embed)
+            await msg_entry.add_reaction(svr.emoji_jp)
+            await payload.member.send(content=message)#,embed=embed)
+
             return
 
-        if payload.channel_id == svr.channel_id['invite'] or payload.channel_id == svr.channel_id['help']:
+        elif payload.channel_id == svr.channel_id['invite'] or payload.channel_id == svr.channel_id['help']:
             entry_channel = client.get_channel(payload.channel_id)
             entry_msg     = await entry_channel.fetch_message(payload.message_id)
-            users = set()
-            for reaction in entry_msg.reactions:
-                async for user in reaction.users():
-                    users.add(user)
+            # users = set()
+            # for reaction in entry_msg.reactions:
+            #     async for user in reaction.users():
+            #         users.add(user)
+            # if bot_id not in [user.id for user in users]:
+            #     return
 
             if payload.channel_id == svr.channel_id['invite']:
                 mention_msg   = f'<@{member.id}>\n'
