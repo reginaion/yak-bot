@@ -646,6 +646,9 @@ async def edit_color_s(ctx, guild_id:int):
 
 @client.event
 async def on_raw_reaction_add(payload):
+    if payload.member.author.bot:
+        return
+
     if payload.guild_id in guild_list:
         svr = guild_list[payload.guild_id]
         guild = client.get_guild(payload.guild_id)
@@ -695,6 +698,9 @@ async def on_raw_reaction_add(payload):
             #         users.add(user)
             # if bot_id not in [user.id for user in users]:
             #     return
+
+            if payload.emoji.name != svr.emoji_jp:
+                return
 
             if payload.channel_id == svr.channel_id['invite']:
                 mention_msg   = f'<@{member.id}>\n'
