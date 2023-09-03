@@ -435,7 +435,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
                 mention_message = f'<@{after.id}>\n'
                 message = svr.message_on_member_update
                 if [i.id for i in after.roles].count(svr.no_welcome_msg_role_id) == 0:
-                    msg_entry = await channel.send(content=(mention_message+message+'\n'+svr.jp_info),embed=embed)
+                    msg_entry = await channel.send(content=(mention_message+message+'\n\n'+svr.jp_info),embed=embed)
                     await msg_entry.add_reaction(svr.emoji_jp)
                 await after.send(content=message)
 
@@ -680,7 +680,7 @@ async def on_raw_reaction_add(payload):
                 channel         = client.get_channel(svr.channel_id['help'])
                 mention_message = f'<@{member.id}>\n'
                 message         = svr.message_on_member_join
-                msg_entry = await channel.send(content=(mention_message+message+'\n'+svr.jp_info))#,embed=embed)
+                msg_entry = await channel.send(content=(mention_message+message+'\n\n'+svr.jp_info))#,embed=embed)
                 await msg_entry.add_reaction(svr.emoji_jp)
                 await payload.member.send(content=message)#,embed=embed)
             return
