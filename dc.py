@@ -688,7 +688,11 @@ async def on_raw_reaction_add(payload):
         if payload.channel_id == svr.channel_id['invite'] or payload.channel_id == svr.channel_id['help']:
             entry_channel = client.get_channel(payload.channel_id)
             entry_msg     = await entry_channel.fetch_message(payload.message_id)
-            reaction      = discord.utils.get(entry_msg.reactions, emoji=payload.emoji)
+            for reaction in entry_msg.reactions:
+                async for user in reaction.users():
+                    users.add(user)
+            if svr.bot_id not in [user.id for user in users]:
+                return
 
             if payload.channel_id == svr.channel_id['invite']:
                 mention_msg   = f'<@{member.id}>\n'
