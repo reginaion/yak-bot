@@ -698,7 +698,7 @@ async def on_raw_reaction_add(payload):
                     if str(reaction.emoji) == svr.emoji_jp:
                         users.add(user)
 
-            if bot_id not in [user.id for user in users]:
+            if svr.bot_id not in [user.id for user in users]:
                 return
 
             if payload.emoji.name != svr.emoji_jp:
