@@ -151,7 +151,7 @@ Click the corresponding emoji to receive your role.\n\
 <@&{}> - English friends\n\
 <@&{}> - Creator\n\
 "
-        self.message_edit_verify_phone_content = "請點 {} 進行手機驗證\n最初に <#{}> で携帯認証をしてきて\n"
+        self.message_edit_verify_phone_content = "請點 {} 進行手機驗證\n最初に {} をタップして携帯認証をしてきて\n"
         self.message_edit_color = "這是看起來很棒的顏色身分組，可以為你的名字染色。歡迎領取 (無額外權限功能)\n"
         self.embed_edit_color = "Click the corresponding emoji to receive your role.\n\
                                           {} - <@&{}>\n\
