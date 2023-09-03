@@ -690,7 +690,7 @@ async def on_raw_reaction_add(payload):
             entry_msg     = await entry_channel.fetch_message(payload.message_id)
             reaction      = discord.utils.get(entry_msg.reactions, emoji=payload.emoji)
 
-            users_id = [user.id async for user in reaction.users()]
+            users_id = [user async for user in reaction.users()]
             if svr.bot_id not in users_id:
                 return
             
