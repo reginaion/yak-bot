@@ -692,8 +692,6 @@ async def on_raw_reaction_add(payload):
             for reaction in entry_msg.reactions:
                 async for user in reaction.users():
                     users.add(user)
-            if svr.bot_id not in [user.id for user in users]:
-                return
 
             if payload.channel_id == svr.channel_id['invite']:
                 mention_msg   = f'<@{member.id}>\n'
@@ -701,7 +699,7 @@ async def on_raw_reaction_add(payload):
                 if [i.id for i in member.roles].count(svr.no_welcome_msg_role_id) == 0:
                     await entry_channel.send(content=(mention_msg+jp_msg))
                 payload.member.send(content=jp_msg)
-                await entry_msg.clear_reactions()
+                await entry_msg.delete()
                 return
 
             elif payload.channel_id == svr.channel_id['help']:
@@ -709,7 +707,7 @@ async def on_raw_reaction_add(payload):
                 jp_msg        = svr.jp_message_on_member_join
                 await entry_channel.send(content=(mention_msg+jp_msg))
                 payload.member.send(content=jp_msg)
-                await entry_msg.clear_reactions()
+                await entry_msg.delete()
                 return
 
             return
