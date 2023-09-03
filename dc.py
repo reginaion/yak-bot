@@ -688,6 +688,7 @@ async def on_raw_reaction_add(payload):
         if payload.channel_id == svr.channel_id['invite'] or payload.channel_id == svr.channel_id['help']:
             entry_channel = client.get_channel(payload.channel_id)
             entry_msg     = await entry_channel.fetch_message(payload.message_id)
+            users = set()
             for reaction in entry_msg.reactions:
                 async for user in reaction.users():
                     users.add(user)
