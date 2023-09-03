@@ -54,7 +54,7 @@ guild_ids = [702741572344610907]
 
 class server_item:
     def __init__(self):
-        self.bot_id = 853662081991311371
+        self.bot_id = os.getenv('BOT_ID')
         self.invite_guild_id = 0
         self.channel_id = {'help':0,
                            'suggestion':0,
@@ -688,7 +688,7 @@ async def on_raw_reaction_add(payload):
         if payload.channel_id == svr.channel_id['invite'] or payload.channel_id == svr.channel_id['help']:
             entry_channel = client.get_channel(payload.channel_id)
             entry_msg     = await entry_channel.fetch_message(payload.message_id)
-            reaction      = get(entry_msg.reactions, emoji=svr.emoji_jp)
+            reaction      = discord.utils.get(entry_msg.reactions, emoji=svr.emoji_jp)
 
             users_id = [user.id async for user in reaction.users()]
             if svr.bot_id not in users_id:
