@@ -98,7 +98,7 @@ class server_item:
 ➡️もし困ったことがあれば、 <#{}> でメッセージを送って ⬅️\n\
 改めて入ってきてくれて本当にありがとう"
 
-        self.message_verify_phone = "感謝浮蓮子的加入，請先至 <#{}> 進行手機驗證\n{}、加入してくれてありがとう\n最初に <#{}> で携帯認証をしてきて"
+        self.message_verify_phone = "感謝{}的加入，請先至 <#{}> 進行手機驗證\n{}、加入してくれてありがとう\n最初に <#{}> で携帯認証をしてきて"
         self.message_on_member_update = "感謝浮蓮子的加入，群組介面操作上有任何疑難雜症都可以詢問~\n\n\
 可以在 <#{}> 領取你喜歡的【身份組】及【個性化名字染色】喔~\n\
 \n\
@@ -180,7 +180,7 @@ Click the corresponding emoji to receive your role.\n\
                                                                                self.channel_id['rule'],
                                                                                self.channel_id['help'])
     def set_message_verify_phone(self):
-        self.message_verify_phone = self.message_verify_phone.format(self.channel_id['verify_phone'])
+        self.message_verify_phone = self.message_verify_phone.format('{}',self.channel_id['verify_phone'],'{}',self.channel_id['verify_phone'])
 
     def set_on_member_update(self):
         self.message_on_member_update = self.message_on_member_update.format(self.channel_id['select_role'],
