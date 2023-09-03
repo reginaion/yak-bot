@@ -697,14 +697,8 @@ async def on_raw_reaction_add(payload):
             if payload.emoji.name != svr.emoji_jp:
                 return
 
-            check = 0
-            for reaction in entry_msg.reactions:
-                if str(reaction.emoji) == svr.emoji_jp:
-                    async for user in reaction.users():
-                        if user.id == svr.bot_id:
-                            check = 1
-
-            if check == 0:
+            reaction      = discord.utils.get(entry_msg.reactions, emoji=payload.emoji)
+            if reaction.count < 2:
                 return
 
             if payload.channel_id == svr.channel_id['invite']:
