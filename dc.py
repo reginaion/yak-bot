@@ -75,7 +75,7 @@ class server_item:
         self.role_color_id = []
         self.role_color_emoji = []
         self.verify_phone_emoji = []
-        self.emoji_jp = "🇯🇵"
+        self.emoji_jp = "<:japanflagemojiclipartmd:1147906462560043118>"
         self.jp_info = "※日本語は🇯🇵の絵文字でリアクション"
         self.message_on_member_join = "歡迎浮蓮子的加入~\n\
 你現在看不到所有的頻道\n\
