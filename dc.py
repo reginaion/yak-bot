@@ -690,26 +690,23 @@ async def on_raw_reaction_add(payload):
             entry_msg     = await entry_channel.fetch_message(payload.message_id)
             reaction      = discord.utils.get(entry_msg.reactions, emoji=payload.emoji)
 
-            users_id = [user async for user in reaction.users()]
-            if svr.bot_id not in users_id:
-                return
-            
-            if payload.channel_id == svr.channel_id['invite']:
-                mention_msg   = f'<@{member.id}>\n'
-                jp_msg        = svr.jp_message_on_member_update
-                if [i.id for i in member.roles].count(svr.no_welcome_msg_role_id) == 0:
-                    await entry_channel.send(content=(mention_msg+jp_msg))
-                payload.member.send(content=jp_msg)
-                await entry_msg.clear_reactions()
-                return
+            if (str(reaction) == svr.emoji_jp):
+                if payload.channel_id == svr.channel_id['invite']:
+                    mention_msg   = f'<@{member.id}>\n'
+                    jp_msg        = svr.jp_message_on_member_update
+                    if [i.id for i in member.roles].count(svr.no_welcome_msg_role_id) == 0:
+                        await entry_channel.send(content=(mention_msg+jp_msg))
+                    payload.member.send(content=jp_msg)
+                    await entry_msg.clear_reactions()
+                    return
 
-            elif payload.channel_id == svr.channel_id['help']:
-                mention_msg   = f'<@{member.id}>\n'
-                jp_msg        = svr.jp_message_on_member_join
-                await entry_channel.send(content=(mention_msg+jp_msg))
-                payload.member.send(content=jp_msg)
-                await entry_msg.clear_reactions()
-                return
+                elif payload.channel_id == svr.channel_id['help']:
+                    mention_msg   = f'<@{member.id}>\n'
+                    jp_msg        = svr.jp_message_on_member_join
+                    await entry_channel.send(content=(mention_msg+jp_msg))
+                    payload.member.send(content=jp_msg)
+                    await entry_msg.clear_reactions()
+                    return
 
             return
 
