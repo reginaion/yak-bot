@@ -646,7 +646,7 @@ async def edit_color_s(ctx, guild_id:int):
 
 @client.event
 async def on_raw_reaction_add(payload):
-    if payload.member.author.bot:
+    if payload.member.bot:
         return
 
     if payload.guild_id in guild_list:
