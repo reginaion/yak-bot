@@ -707,7 +707,7 @@ async def on_raw_reaction_add(payload):
                 jp_msg        = svr.jp_message_on_member_update
                 if [i.id for i in member.roles].count(svr.no_welcome_msg_role_id) == 0:
                     await entry_channel.send(content=(mention_msg+jp_msg))
-                payload.member.send(content=jp_msg)
+                await payload.member.send(content=jp_msg)
                 await entry_msg.delete()
                 return
 
@@ -715,7 +715,7 @@ async def on_raw_reaction_add(payload):
                 mention_msg   = f'<@{member.id}>\n'
                 jp_msg        = svr.jp_message_on_member_join
                 await entry_channel.send(content=(mention_msg+jp_msg))
-                payload.member.send(content=jp_msg)
+                await payload.member.send(content=jp_msg)
                 await entry_msg.delete()
                 return
 
