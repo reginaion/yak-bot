@@ -698,7 +698,7 @@ async def on_raw_reaction_add(payload):
             return
 
         elif payload.channel_id == svr.channel_id['invite'] or payload.channel_id == svr.channel_id['help']:
-            if str(payload.emoji) != svr.emoji_jp:
+            if str(payload.emoji) != svr.emoji_jp or str(reaction.emoji) != svr.emoji_cn:
                 return
 
             entry_channel = client.get_channel(payload.channel_id)
