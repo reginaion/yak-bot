@@ -433,10 +433,10 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
         svr = guild_list[after.guild.id]
         if [i.id for i in before.roles].count(svr.guest_role_id) == 1:
             if [i.id for i in after.roles].count(svr.guest_role_id) == 0:
+                channel = client.get_channel(svr.channel_id['invite'])
                 mention_message = f'<@{after.id}>\n'
                 await channel.send(content=(mention_message))
 
-                channel = client.get_channel(svr.channel_id['invite'])
                 embed   = discord.Embed(title=f"ようこそジャパリパークへ! {after.name}", description=svr.embed_on_member_update.format(after.guild.name))
                 embed.set_thumbnail(url=after.avatar_url) # Set the embed's thumbnail to the member's avatar image!
                 message = svr.message_on_member_update
@@ -686,10 +686,10 @@ async def on_raw_reaction_add(payload):
             if role is not None:
                 await payload.member.add_roles(role)
 
+            channel         = client.get_channel(svr.channel_id['help'])
             mention_message = f'<@{member.id}>\n'
             await channel.send(content=(mention_message))
 
-            channel         = client.get_channel(svr.channel_id['help'])
             message         = svr.message_on_member_join
             msg_entry = await channel.send(content=(message+"\n\n"+svr.jp_info))#,embed=embed)
             await msg_entry.add_reaction(svr.emoji_jp)
