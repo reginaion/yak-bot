@@ -711,37 +711,41 @@ async def on_raw_reaction_add(payload):
                         check = 1
 
             if payload.channel_id == svr.channel_id['invite']:
+                await entry_msg.clear_reactions()
+
                 msg = ""
                 info = ""
                 if str(reaction.emoji) == svr.emoji_jp:
                     msg = svr.jp_message_on_member_update
                     info = svr.cn_info
+                    await entry_msg.add_reaction(svr.emoji_cn)
                 elif str(reaction.emoji) == svr.emoji_cn:
                     msg = svr.message_on_member_update
                     info = svr.jp_info
+                    await entry_msg.add_reaction(svr.emoji_jp)
+
                 await entry_msg.edit(content=(msg+"\n\n"+info))
-                await payload.member.send(content=msg)
-                await entry_msg.clear_reactions()
-                
-                await msg_entry.add_reaction(svr.emoji_jp)
-                await msg_entry.add_reaction(svr.emoji_cn)
+                await payload.member.send(content=msg)\
+                    
                 return
 
             elif payload.channel_id == svr.channel_id['help']:
+                await entry_msg.clear_reactions()
+
                 msg = ""
                 info = ""
                 if str(reaction.emoji) == svr.emoji_jp:
                     msg = svr.jp_message_on_member_join
                     info = svr.cn_info
+                    await entry_msg.add_reaction(svr.emoji_cn)
                 elif str(reaction.emoji) == svr.emoji_cn:
                     msg = svr.message_on_member_join
                     info = svr.jp_info
+                    await entry_msg.add_reaction(svr.emoji_jp)
+
                 await entry_msg.edit(content=(msg+"\n\n"+info))
                 await payload.member.send(content=msg)
-                await entry_msg.clear_reactions()
                 
-                await msg_entry.add_reaction(svr.emoji_jp)
-                await msg_entry.add_reaction(svr.emoji_cn)
                 return
 
             return
