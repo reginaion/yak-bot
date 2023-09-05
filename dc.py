@@ -76,8 +76,11 @@ class server_item:
         self.role_color_emoji = []
         self.verify_phone_emoji = []
         self.emoji_jp = "<:japanflagemojiclipartmd:1147906462560043118>"
+        self.emoji_cn = "<:GS100000:824600807340638268>"
         self.jp_info = "※日本語は {} の絵文字でリアクション"
         self.jp_info = self.jp_info.format(self.emoji_jp)
+        self.cn_info = "※請點選 {} 切換中文"
+        self.cn_info = self.cn_info.format(self.emoji_cn)
         self.message_on_member_join = "歡迎浮蓮子的加入~\n\
 你現在看不到所有的頻道\n\
 請先閱讀版規及填寫下方連結問卷，問卷提交後待STAFF審核，通過後我們會給你 <#{}> 選擇權限\n\n\
@@ -430,13 +433,15 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
         svr = guild_list[after.guild.id]
         if [i.id for i in before.roles].count(svr.guest_role_id) == 1:
             if [i.id for i in after.roles].count(svr.guest_role_id) == 0:
+                mention_message = f'<@{after.id}>\n'
+                await channel.send(content=(mention_message))
+
                 channel = client.get_channel(svr.channel_id['invite'])
                 embed   = discord.Embed(title=f"ようこそジャパリパークへ! {after.name}", description=svr.embed_on_member_update.format(after.guild.name))
                 embed.set_thumbnail(url=after.avatar_url) # Set the embed's thumbnail to the member's avatar image!
-                mention_message = f'<@{after.id}>\n'
                 message = svr.message_on_member_update
                 if [i.id for i in after.roles].count(svr.no_welcome_msg_role_id) == 0:
-                    msg_entry = await channel.send(content=(mention_message+message+'\n\n'+svr.jp_info),embed=embed)
+                    msg_entry = await channel.send(content=(message+"\n\n"+svr.jp_info),embed=embed)
                     await msg_entry.add_reaction(svr.emoji_jp)
                 await after.send(content=message)
 
@@ -681,10 +686,12 @@ async def on_raw_reaction_add(payload):
             if role is not None:
                 await payload.member.add_roles(role)
 
-            channel         = client.get_channel(svr.channel_id['help'])
             mention_message = f'<@{member.id}>\n'
+            await channel.send(content=(mention_message))
+
+            channel         = client.get_channel(svr.channel_id['help'])
             message         = svr.message_on_member_join
-            msg_entry = await channel.send(content=(mention_message+message+'\n\n'+svr.jp_info))#,embed=embed)
+            msg_entry = await channel.send(content=(message+"\n\n"+svr.jp_info))#,embed=embed)
             await msg_entry.add_reaction(svr.emoji_jp)
             await payload.member.send(content=message)#,embed=embed)
 
@@ -699,29 +706,42 @@ async def on_raw_reaction_add(payload):
 
             check = 0
             for reaction in entry_msg.reactions:
-                if str(reaction.emoji) == svr.emoji_jp:
+                if str(reaction.emoji) == svr.emoji_jp or str(reaction.emoji) == svr.emoji_cn:
                     if reaction.count >= 2:
                         check = 1
 
-            if check == 0:
-                await entry_msg.clear_reactions()
-                return
-
             if payload.channel_id == svr.channel_id['invite']:
-                mention_msg   = f'<@{member.id}>\n'
-                jp_msg        = svr.jp_message_on_member_update
-                if [i.id for i in member.roles].count(svr.no_welcome_msg_role_id) == 0:
-                    await entry_msg.edit(content=(mention_msg+jp_msg))
-                await payload.member.send(content=jp_msg)
+                msg = ""
+                info = ""
+                if str(reaction.emoji) == svr.emoji_jp:
+                    msg = svr.jp_message_on_member_update
+                    info = svr.cn_info
+                elif str(reaction.emoji) == svr.emoji_cn:
+                    msg = svr.message_on_member_update
+                    info = svr.jp_info
+                await entry_msg.edit(content=(msg+"\n\n"+info))
+                await payload.member.send(content=msg)
                 await entry_msg.clear_reactions()
+                
+                await msg_entry.add_reaction(svr.emoji_jp)
+                await msg_entry.add_reaction(svr.emoji_cn)
                 return
 
             elif payload.channel_id == svr.channel_id['help']:
-                mention_msg   = f'<@{member.id}>\n'
-                jp_msg        = svr.jp_message_on_member_join
-                await entry_msg.edit(content=(mention_msg+jp_msg))
-                await payload.member.send(content=jp_msg)
+                msg = ""
+                info = ""
+                if str(reaction.emoji) == svr.emoji_jp:
+                    msg = svr.jp_message_on_member_join
+                    info = svr.cn_info
+                elif str(reaction.emoji) == svr.emoji_cn:
+                    msg = svr.message_on_member_join
+                    info = svr.jp_info
+                await entry_msg.edit(content=(msg+"\n\n"+info))
+                await payload.member.send(content=msg)
                 await entry_msg.clear_reactions()
+                
+                await msg_entry.add_reaction(svr.emoji_jp)
+                await msg_entry.add_reaction(svr.emoji_cn)
                 return
 
             return
