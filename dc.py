@@ -145,7 +145,6 @@ Click the corresponding emoji to receive your role.\n\
 <@&{}> - 動物朋友V粉絲 (Kemov fans)\n\
 <@&{}> - 動物朋友王國玩家 (Kemono friends kingdom player)\n\
 <@&{}> - 動物朋友粉絲 (Kemono fans)\n\
-<@&{}> - Coser\n\
 　\n\
 額外功能身份組\n\
 <@&{}> - R18頻道 (Access r18 channel)\n\
@@ -155,10 +154,12 @@ Click the corresponding emoji to receive your role.\n\
 <@&{}> - Japanese friends\n\
 <@&{}> - English friends\n\
 <@&{}> - Creator\n\
+<@&{}> - Coser\n\
 "
         self.message_edit_verify_phone_content = "請點 {} 進行手機驗證\n最初に {} をタップして携帯認証をしてきて\n"
         self.message_edit_color = "這是看起來很棒的顏色身分組，可以為你的名字染色。歡迎領取 (無額外權限功能)\n"
         self.embed_edit_color = "Click the corresponding emoji to receive your role.\n\
+                                          {} - <@&{}>\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>\n\
@@ -208,27 +209,27 @@ Click the corresponding emoji to receive your role.\n\
                                                                self.role_emoji[1],self.role_id[1],
                                                                self.role_emoji[4],self.role_id[4],
                                                                self.role_emoji[5],self.role_id[5],
-                                                               self.role_emoji[11],self.role_id[11],
                                                                self.role_emoji[2],self.role_id[2],
                                                                self.role_emoji[6],self.role_id[6],
                                                                self.role_emoji[3],self.role_id[3],
                                                                self.role_emoji[7],self.role_id[7],
                                                                self.role_emoji[8],self.role_id[8],
                                                                self.role_emoji[9],self.role_id[9],
-                                                               self.role_emoji[10],self.role_id[10])
+                                                               self.role_emoji[10],self.role_id[10],
+                                                               self.role_emoji[11],self.role_id[11])
         
         self.message_edit_invite = self.message_edit_invite.format("{}","{}","{}","{}",self.role_id[0],
                                                                                        self.role_id[1],
                                                                                        self.role_id[4],
                                                                                        self.role_id[5],
-                                                                                       self.role_id[11],
                                                                                        self.role_id[2],
                                                                                        self.role_id[6],
                                                                                        self.role_id[3],
                                                                                        self.role_id[7],
                                                                                        self.role_id[8],
                                                                                        self.role_id[9],
-                                                                                       self.role_id[10])
+                                                                                       self.role_id[10],
+                                                                                       self.role_id[11])
     
     def set_edit_color(self):
         self.embed_edit_color = self.embed_edit_color.format(self.role_color_emoji[0],self.role_color_id[0],
@@ -891,7 +892,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.15, date 231202, add new role")
+    await ctx.send("ver 0.0.9.16, date 231202, add new role")
 
 @client.event
 async def on_message_delete(message):
