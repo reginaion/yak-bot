@@ -86,9 +86,9 @@ class server_item:
 請先閱讀版規及填寫下方連結問卷，問卷提交後待STAFF審核，通過後我們會給你 <#{}> 選擇權限\n\n\
 重要!!\n\
 **請先填寫【入園申請】跟【閱讀 <#{}> 】~**\n\
-➡️入園申請(中　文)︰ https://forms.gle/JVxeWbQ2E4wkb3Ee6 ⬅️\n\
-➡️入園申請(日本語)︰ https://forms.gle/66dvtVJQCZZP41bS8 ⬅️\n\
-➡️Application form(EN)︰ https://forms.gle/XcR1RgJvHbWcyAxB8 ⬅️\n\
+➡️入園申請(中　文)︰ <https://forms.gle/JVxeWbQ2E4wkb3Ee6> ⬅️\n\
+➡️入園申請(日本語)︰ <https://forms.gle/66dvtVJQCZZP41bS8> ⬅️\n\
+➡️Application form(EN)︰ <https://forms.gle/XcR1RgJvHbWcyAxB8> ⬅️\n\
 \n\
 ➡️如果需要幫助的話，請至 <#{}> 反應~⬅️\n\
 再次感謝大大的加入~"
@@ -97,9 +97,9 @@ class server_item:
 先に規約を読んで、下のリンクの質問票（問卷）に記入して提出後、スタッフ審査で許可が出たら、あなたに <#{}> での選択権限を渡すわ\n\
 重要!!\n\
 **初めに【入園申請】の記入と【 <#{}> の熟読】はお願いするわ**\n\
-➡️中国語入園申請︰ https://forms.gle/JVxeWbQ2E4wkb3Ee6 ⬅️\n\
-➡️日本語入園申請︰ https://forms.gle/66dvtVJQCZZP41bS8 ⬅️\n\
-➡️Application form(EN)︰ https://forms.gle/XcR1RgJvHbWcyAxB8 ⬅️\n\
+➡️中国語入園申請︰ <https://forms.gle/JVxeWbQ2E4wkb3Ee6> ⬅️\n\
+➡️日本語入園申請︰ <https://forms.gle/66dvtVJQCZZP41bS8> ⬅️\n\
+➡️Application form(EN)︰ <https://forms.gle/XcR1RgJvHbWcyAxB8> ⬅️\n\
 \n\
 ➡️もし困ったことがあれば、 <#{}> でメッセージを送って ⬅️\n\
 改めて入ってきてくれて本当にありがとう"
@@ -894,7 +894,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.18, date 231202, add en's from")
+    await ctx.send("ver 0.0.9.19, date 231202, add en's from")
 
 @client.event
 async def on_message_delete(message):
