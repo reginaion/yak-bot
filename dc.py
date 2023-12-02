@@ -88,6 +88,7 @@ class server_item:
 **請先填寫【入園申請】跟【閱讀 <#{}> 】~**\n\
 ➡️入園申請(中　文)︰ https://forms.gle/JVxeWbQ2E4wkb3Ee6 ⬅️\n\
 ➡️入園申請(日本語)︰ https://forms.gle/66dvtVJQCZZP41bS8 ⬅️\n\
+➡️Application form(EN)︰ https://forms.gle/XcR1RgJvHbWcyAxB8 ⬅️\n\
 \n\
 ➡️如果需要幫助的話，請至 <#{}> 反應~⬅️\n\
 再次感謝大大的加入~"
@@ -98,6 +99,7 @@ class server_item:
 **初めに【入園申請】の記入と【 <#{}> の熟読】はお願いするわ**\n\
 ➡️中国語入園申請︰ https://forms.gle/JVxeWbQ2E4wkb3Ee6 ⬅️\n\
 ➡️日本語入園申請︰ https://forms.gle/66dvtVJQCZZP41bS8 ⬅️\n\
+➡️Application form(EN)︰ https://forms.gle/XcR1RgJvHbWcyAxB8 ⬅️\n\
 \n\
 ➡️もし困ったことがあれば、 <#{}> でメッセージを送って ⬅️\n\
 改めて入ってきてくれて本当にありがとう"
@@ -892,7 +894,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.17, date 231202, add new role and fix bug")
+    await ctx.send("ver 0.0.9.18, date 231202, add en's from")
 
 @client.event
 async def on_message_delete(message):
