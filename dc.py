@@ -133,6 +133,7 @@ Click the corresponding emoji to receive your role.\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>\n\
+                                          {} - <@&{}>\n\
                                           {} - <@&{}>"
         self.message_edit_invite = "頻道群組︰\n\
 <#{}> - 閒聊\n\
@@ -159,7 +160,6 @@ Click the corresponding emoji to receive your role.\n\
         self.message_edit_verify_phone_content = "請點 {} 進行手機驗證\n最初に {} をタップして携帯認証をしてきて\n"
         self.message_edit_color = "這是看起來很棒的顏色身分組，可以為你的名字染色。歡迎領取 (無額外權限功能)\n"
         self.embed_edit_color = "Click the corresponding emoji to receive your role.\n\
-                                          {} - <@&{}>\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>\n\
@@ -892,7 +892,7 @@ async def ping(ctx):
 
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.16, date 231202, add new role")
+    await ctx.send("ver 0.0.9.17, date 231202, add new role and fix bug")
 
 @client.event
 async def on_message_delete(message):
