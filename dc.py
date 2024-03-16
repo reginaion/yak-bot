@@ -898,9 +898,10 @@ async def ping(ctx):
 
 # ver 0.0.9.20, date 240316, add recorder of edit/del msg
 # ver 0.0.9.21, date 240316, add recorder of edit/del msg, fix bug
+# ver 0.0.9.22, date 240316, add recorder of edit/del msg, fix bug
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.21, date 240316, add recorder of edit/del msg, fix bug")
+    await ctx.send("ver 0.0.9.22, date 240316, add recorder of edit/del msg, fix bug")
 
 @client.event
 async def on_message_delete(message):
@@ -922,7 +923,7 @@ async def on_message_delete(message):
     await channel_simp.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C{mea_prx}: ({mca:%H:%M}){mea_msg_simp})')
     await channel.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S.%f %p}{mea_msg})')
     if (message.guild.id in guild_list):
-        svr = guild_list[payload.guild_id]
+        svr = guild_list[message.guild_id]
         if svr.channel_id['recorder_msg_del']:
             channel_simp_svr = client.get_channel(svr.channel_id['recorder_msg_del'])
             await channel_simp_svr.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S.%f %p}{mea_msg})')
@@ -941,7 +942,7 @@ async def on_message_edit(message_before, message_after):
 [Ed][Be] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content} (C: {mcab:%Y-%m-%d %H:%M:%S.%f %p})\n\
 [Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mcaa:%Y-%m-%d %H:%M:%S.%f %p})')
     if (message.guild.id in guild_list):
-        svr = guild_list[payload.guild_id]
+        svr = guild_list[message.guild_id]
         if svr.channel_id['recorder_msg_edit']:
             channel_simp_svr = client.get_channel(svr.channel_id['recorder_msg_edit'])
             await channel_simp_svr.send(f'=================================================\n\
