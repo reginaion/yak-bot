@@ -900,10 +900,10 @@ async def ping(ctx):
 # ver 0.0.9.21, date 240316, add recorder of edit/del msg, fix bug
 # ver 0.0.9.22, date 240316, add recorder of edit/del msg, fix bug
 # ver 0.0.9.23, date 240316, add recorder of edit/del msg, fix bug
-# ver 0.0.9.24, date 240316, add recorder of edit/del msg, fix bug
+# ver 0.0.9.25, date 240316, add recorder of edit/del msg, fix bug
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.24, date 240316, add recorder of edit/del msg, fix bug")
+    await ctx.send("ver 0.0.9.25, date 240316, add recorder of edit/del msg, fix bug")
 
 @client.event
 async def on_message_delete(message):
