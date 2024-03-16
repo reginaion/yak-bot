@@ -268,12 +268,12 @@ s1.channel_id['rule'] = 925779385729032262
 s1.channel_id['select_role'] = 925732268197167125
 s1.channel_id['join_leave'] = 925745745410269224
 s1.channel_id['verify_phone'] = 1138494443746504724 # 230808
+s1.channel_id['recorder_msg_edit'] = 1218454206126489600 # 240316
+s1.channel_id['recorder_msg_del'] = 1218454250363949138 # 240316
 s1.channel_id['main_chat_list'] = [925717531082235935,925722682178293782,981035850429251594]
 s1.message_id['role_main'] = 925960555943051284
 s1.message_id['role_color'] = 926769088980738108
 s1.message_id['role_verify_phone'] = 1138494764694638613 # 230808
-s1.message_id['recorder_msg_edit'] = 1218454206126489600 # 240316
-s1.message_id['recorder_msg_del'] = 1218454250363949138 # 240316
 s1.guest_role_id = 1079793661304393800
 s1.no_welcome_msg_role_id = 1080847909513330759
 s1.role_id = [925727966137290774,925729158577930310,925895939628105778,929747501727244368,1042010855396622407,1061155255880007771,1023127510801715201,1095689201757995069,
@@ -901,9 +901,10 @@ async def ping(ctx):
 # ver 0.0.9.22, date 240316, add recorder of edit/del msg, fix bug
 # ver 0.0.9.23, date 240316, add recorder of edit/del msg, fix bug
 # ver 0.0.9.26, date 240316, add recorder of edit/del msg, fix bug
+# ver 0.0.9.27, date 240316, add recorder of edit/del msg, fix bug
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.26, date 240316, add recorder of edit/del msg, fix bug")
+    await ctx.send("ver 0.0.9.27, date 240316, add recorder of edit/del msg, fix bug")
 
 @client.event
 async def on_message_delete(message):
