@@ -63,6 +63,8 @@ class server_item:
                            'select_role':0,
                            'join_leave':0,
                            'verify_phone':0,       # Update at 230808
+                           'recorder_msg_edit':0,  # Update at 240316
+                           'recorder_msg_del':0,   # Update at 240316
                            'main_chat_list':[]}
         self.message_id = {'role_main':0,
                            'role_color':0,
@@ -270,6 +272,8 @@ s1.channel_id['main_chat_list'] = [925717531082235935,925722682178293782,9810358
 s1.message_id['role_main'] = 925960555943051284
 s1.message_id['role_color'] = 926769088980738108
 s1.message_id['role_verify_phone'] = 1138494764694638613 # 230808
+s1.message_id['recorder_msg_edit'] = 1218454206126489600 # 240316
+s1.message_id['recorder_msg_del'] = 1218454250363949138 # 240316
 s1.guest_role_id = 1079793661304393800
 s1.no_welcome_msg_role_id = 1080847909513330759
 s1.role_id = [925727966137290774,925729158577930310,925895939628105778,929747501727244368,1042010855396622407,1061155255880007771,1023127510801715201,1095689201757995069,
@@ -892,9 +896,10 @@ async def test(ctx: discord_slash.SlashContext, first_option):               # Y
 async def ping(ctx):
     await ctx.send("ping")
 
+# ver 0.0.9.20, date 240316, add recorder of edit/del msg
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.19, date 231202, add en's from")
+    await ctx.send("ver 0.0.9.20, date 240316, add recorder of edit/del msg")
 
 @client.event
 async def on_message_delete(message):
@@ -915,6 +920,11 @@ async def on_message_delete(message):
     channel_simp = client.get_channel(channel_message_backup_delete_simp)
     await channel_simp.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C{mea_prx}: ({mca:%H:%M}){mea_msg_simp})')
     await channel.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S.%f %p}{mea_msg})')
+    if (message.guild.id in guild_list):
+        svr = guild_list[payload.guild_id]
+        if svr.channel_id['recorder_msg_del']:
+            channel_simp_svr = client.get_channel(svr.channel_id['recorder_msg_del']:)
+            await channel_simp_svr.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S.%f %p}{mea_msg})')
 
 @client.event
 async def on_message_edit(message_before, message_after):
@@ -929,6 +939,14 @@ async def on_message_edit(message_before, message_after):
     await channel.send(f'=================================================\n\
 [Ed][Be] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content} (C: {mcab:%Y-%m-%d %H:%M:%S.%f %p})\n\
 [Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mcaa:%Y-%m-%d %H:%M:%S.%f %p})')
+    if (message.guild.id in guild_list):
+        svr = guild_list[payload.guild_id]
+        if svr.channel_id['recorder_msg_edit']:
+            channel_simp_svr = client.get_channel(svr.channel_id['recorder_msg_edit']:)
+            await channel_simp_svr.send(f'=================================================\n\
+[Ed][Be] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content}\n\
+[Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C->E: ({mcab:%H:%M}) -> ({mcaa:%H:%M}))')
+
 
 #@client.slash_command(guild_ids=[702741572344610907])
 #async def hello(ctx):
