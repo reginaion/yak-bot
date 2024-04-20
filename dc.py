@@ -332,6 +332,7 @@ s2.set_message_edit_verify_phone_content() # 230808
 s2.message_edit_invite = s2.message_edit_invite.format("1085468422743277602","1085468423041056822","1085468424190296074","1085468423334662199")
 
 guild_list = {s1.invite_guild_id: s1, s2.invite_guild_id: s2}
+channal_ignore_channal = [s1.channel_id['recorder_msg_edit'], s1.channel_id['recorder_msg_del']]
 
 
 @client.event
@@ -905,7 +906,7 @@ async def ping(ctx):
 # ver 0.0.9.28, date 240316, add recorder of edit/del msg, fix bug
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.28, date 240316, add recorder of edit/del msg, fix bug")
+    await ctx.send("ver 0.0.9.29, date 240420, fix recorder record msg from edit/del")
 
 @client.event
 async def on_message_delete(message):
@@ -928,7 +929,7 @@ async def on_message_delete(message):
     await channel.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S.%f %p}{mea_msg})')
     if (message.guild.id in guild_list):
         svr = guild_list[message.guild.id]
-        if svr.channel_id['recorder_msg_del']:
+        if svr.channel_id['recorder_msg_del'] and message.channel.id not in channal_ignore_channal:
             channel_simp_svr = client.get_channel(svr.channel_id['recorder_msg_del'])
             await channel_simp_svr.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C{mea_prx}: ({mca:%H:%M}){mea_msg_simp})')
 
@@ -947,7 +948,7 @@ async def on_message_edit(message_before, message_after):
 [Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mcaa:%Y-%m-%d %H:%M:%S.%f %p})')
     if (message_after.guild.id in guild_list):
         svr = guild_list[message_after.guild.id]
-        if svr.channel_id['recorder_msg_edit']:
+        if svr.channel_id['recorder_msg_edit'] and message.channel.id not in channal_ignore_channal:
             channel_simp_svr = client.get_channel(svr.channel_id['recorder_msg_edit'])
             await channel_simp_svr.send(f'=================================================\n\
 [Ed][Be] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content}\n\
