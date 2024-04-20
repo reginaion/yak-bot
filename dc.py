@@ -906,7 +906,7 @@ async def ping(ctx):
 # ver 0.0.9.28, date 240316, add recorder of edit/del msg, fix bug
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.29, date 240420, fix recorder record msg from edit/del")
+    await ctx.send("ver 0.0.9.30, date 240420, fix recorder record msg from edit/del, fix bug")
 
 @client.event
 async def on_message_delete(message):
@@ -948,7 +948,7 @@ async def on_message_edit(message_before, message_after):
 [Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mcaa:%Y-%m-%d %H:%M:%S.%f %p})')
     if (message_after.guild.id in guild_list):
         svr = guild_list[message_after.guild.id]
-        if svr.channel_id['recorder_msg_edit'] and message.channel.id not in channal_ignore_channal:
+        if svr.channel_id['recorder_msg_edit'] and message_after.channel.id not in channal_ignore_channal:
             channel_simp_svr = client.get_channel(svr.channel_id['recorder_msg_edit'])
             await channel_simp_svr.send(f'=================================================\n\
 [Ed][Be] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content}\n\
