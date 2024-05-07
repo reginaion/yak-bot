@@ -331,8 +331,49 @@ s2.set_message_edit_verify_phone_content() # 230808
 #s2.embed_on_member_update = s2.embed_on_member_update.format(">2352<")
 s2.message_edit_invite = s2.message_edit_invite.format("1085468422743277602","1085468423041056822","1085468424190296074","1085468423334662199")
 
-guild_list = {s1.invite_guild_id: s1, s2.invite_guild_id: s2}
-channal_ignore_channal = [s1.channel_id['recorder_msg_edit'], s1.channel_id['recorder_msg_del']]
+s3 = server_item()
+s3.invite_guild_id = 1237351637383774219
+s3.channel_id['help'] = 1237351638151336037
+s3.channel_id['suggestion'] = 1237351638520430670
+s3.channel_id['invite'] = 1237351638520430665
+s3.channel_id['rule']  = 1237351638520430663
+s3.channel_id['select_role'] = 1237351638520430666
+s3.channel_id['join_leave'] = 1237351638151336038
+s3.channel_id['verify_phone'] = 1237351638151336042 # 230808
+s1.channel_id['recorder_msg_edit'] = 1237351638151336043 # 240316
+s1.channel_id['recorder_msg_del'] = 1237351638151336044 # 240316
+s3.channel_id['main_chat_list'] = [1237351638856110081,1237351638856110084,1237351640085041172]
+s3.message_id['role_main'] = 1237414705220423864
+s3.message_id['role_color'] = 1237414711851745322
+s3.message_id['role_verify_phone'] = 1237414891116298371 # 230808
+s3.guest_role_id = 1237351637383774223
+s3.no_welcome_msg_role_id = 1237351637383774222
+s3.role_id = [1237351637568192567,1237351637530710135,1237351637530710131,1237351637383774226,1237351637530710137,1237351637530710136,1237351637383774224,1237351637383774225,
+1237351637530710130,1237351637530710129,1237351637530710128,1237351637383774227]
+s3.role_emoji = ["<:geoffory_A:925962558349934593>","<:dhole_A:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>","<:EzoSmug:788033424928669736>","🔊",
+"🌸","🆒","🎨","<:aquagf:706822828900483093>"]
+s3.role_color_id = [1237351637610266672,1237351637610266671,1237351637610266670,1237351637610266669,1237351637610266668,1237351637610266667,\
+1237351637610266666,1237351637610266665,1237351637568192576,1237351637568192575,1237351637568192574,1237351637568192573,\
+1237351637568192572,1237351637568192571,1237351637568192570,1237351637568192569,1237351637568192568]
+s3.role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","<:cape_confuse:926401561125601310>","<:hululu_happy:926399458764263494>","<:shimahai_hai:926405048706166784>","<:coyote_sleepy:926397039393263636>",\
+"<:dire_3:1080865933591052388>","<:caracal_3:1080862045563523134>","<:geoffory_worry:1080862839079706716>","<:genet_XD:1080865745195503667>","<:shimarisu_happy:1080863928160100403>",\
+"<:junglecat_x:1080865791550963752>","<:usako_3:1080863905858986154>"]
+s3.verify_phone_emoji = ["📱"] # 230808
+s3.set_on_member_join()
+s3.set_message_verify_phone() # 230808
+s3.set_on_member_update()
+s3.set_edit_invite()
+s3.set_edit_color()
+s3.set_message_edit_verify_phone_content() # 230808
+#s2.embed_on_member_update = s2.embed_on_member_update.format(">2352<")
+s3.message_edit_invite = s3.message_edit_invite.format("1237351638856110080","1237351639220748309","1237351640575508484","1237351639623532551")
+
+
+
+
+guild_list = {s1.invite_guild_id: s1, s2.invite_guild_id: s2, s3.invite_guild_id: s3}
+channal_ignore_channal = [s1.channel_id['recorder_msg_edit'], s1.channel_id['recorder_msg_del'],
+s3.channel_id['recorder_msg_edit'], s3.channel_id['recorder_msg_del']]
 
 
 @client.event
@@ -378,7 +419,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
         await channel_2.send(content=(mention_message+message))#,embed=embed)
         #await channel.send(content=message,embed=embed)
         await member.send(content=message)#,embed=embed)
-    elif (member.guild.id in guild_list) and (invide_mode == 4) and (member.guild.id == s1.invite_guild_id): # 230808
+    elif (member.guild.id in guild_list) and (invide_mode == 4) and (member.guild.id == s1.invite_guild_id or member.guild.id == s3.invite_guild_id): # 230808
         svr             = guild_list[member.guild.id]
         channel         = client.get_channel(svr.channel_id['help'])
         mention_message = f'<@{member.id}>\n'
@@ -906,7 +947,7 @@ async def ping(ctx):
 # ver 0.0.9.28, date 240316, add recorder of edit/del msg, fix bug
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.30, date 240420, fix recorder record msg from edit/del, fix bug")
+    await ctx.send("ver 0.0.9.31, date 240507, add s3 server")
 
 @client.event
 async def on_message_delete(message):
