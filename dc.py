@@ -340,8 +340,8 @@ s3.channel_id['rule']  = 1237351638520430663
 s3.channel_id['select_role'] = 1237351638520430666
 s3.channel_id['join_leave'] = 1237351638151336038
 s3.channel_id['verify_phone'] = 1237351638151336042 # 230808
-s1.channel_id['recorder_msg_edit'] = 1237351638151336043 # 240316
-s1.channel_id['recorder_msg_del'] = 1237351638151336044 # 240316
+s3.channel_id['recorder_msg_edit'] = 1237351638151336043 # 240316
+s3.channel_id['recorder_msg_del'] = 1237351638151336044 # 240316
 s3.channel_id['main_chat_list'] = [1237351638856110081,1237351638856110084,1237351640085041172]
 s3.message_id['role_main'] = 1237414705220423864
 s3.message_id['role_color'] = 1237414711851745322
@@ -947,7 +947,7 @@ async def ping(ctx):
 # ver 0.0.9.28, date 240316, add recorder of edit/del msg, fix bug
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.31, date 240507, add s3 server")
+    await ctx.send("ver 0.0.9.32, date 240507, add s3 server")
 
 @client.event
 async def on_message_delete(message):
