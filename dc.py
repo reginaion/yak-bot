@@ -187,18 +187,18 @@ Click the corresponding emoji to receive your role.\n\
                                           {} - <@&{}>"
 
         self.message_edit_icon = "圖標身分組。歡迎領取 (無額外權限功能)\nRole of icon, welcome to receive (No specfic permission)\n\
-Kemo3\
+* Kemo3\n\
 {} - <@&{}>\n\
 {} - <@&{}>\n\
 {} - <@&{}>\n\
 {} - <@&{}>\n\
-KemoV\
+* KemoV\n\
 {} - <@&{}>\n\
 {} - <@&{}>\n\
 {} - <@&{}>\n\
-Kingdom\
+* Kingdom\n\
 {} - <@&{}>\n\
-Friends\
+* Friends\n\
 {} - <@&{}>\n"
         
     def set_on_member_join(self):
@@ -1034,9 +1034,10 @@ async def ping(ctx):
 # ver 0.0.9.32, date 240507, add s3 server
 # ver 0.0.9.33, date 240512, add new role receiver
 # ver 0.0.9.34, date 240512, add new role receiver, fix bug
+# ver 0.0.9.35, date 240512, add new role receiver, change message format
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.34, date 240512, add new role receiver, fix bug")
+    await ctx.send("ver 0.0.9.35, date 240512, add new role receiver, change message format")
 
 @client.event
 async def on_message_delete(message):
