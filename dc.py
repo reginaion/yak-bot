@@ -68,7 +68,9 @@ class server_item:
                            'main_chat_list':[]}
         self.message_id = {'role_main':0,
                            'role_color':0,
-                           'role_verify_phone':0}
+                           'role_verify_phone':0,
+                           'role_icon':0}         # Update at 240512
+        self.message_id_enable = {'role_icon':0}  # Update at 240512
         self.main_chat_channel_list = []
         self.guest_role_id = 0
         self.no_welcome_msg_role_id = 0
@@ -76,6 +78,8 @@ class server_item:
         self.role_emoji = []
         self.role_color_id = []
         self.role_color_emoji = []
+        self.role_icon_id = []
+        self.role_icon_emoji = []
         self.verify_phone_emoji = []
         self.emoji_jp = "<:japanflagemojiclipartmd:1147906462560043118>"
         self.emoji_cn = "<:GS100000:824600807340638268>"
@@ -181,6 +185,21 @@ Click the corresponding emoji to receive your role.\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>"
+
+        self.message_edit_icon = "圖標身分組。歡迎領取 (無額外權限功能)\nRole of icon, welcome to receive (No specfic permission)\n\
+Kemo3\
+{} - <@&{}>\n\
+{} - <@&{}>\n\
+{} - <@&{}>\n\
+{} - <@&{}>\n\
+KemoV\
+{} - <@&{}>\n\
+{} - <@&{}>\n\
+{} - <@&{}>\n\
+Kingdom\
+{} - <@&{}>\n\
+Friends\
+{} - <@&{}>\n"
         
     def set_on_member_join(self):
         self.message_on_member_join = self.message_on_member_join.format(self.channel_id['select_role'],
@@ -254,6 +273,19 @@ Click the corresponding emoji to receive your role.\n\
                                                              self.role_color_emoji[15],self.role_color_id[15],
                                                              self.role_color_emoji[16],self.role_color_id[16])
 
+    def set_edit_icon(self):
+        if self.message_id_enable['role_icon'] == 0:
+            return
+        self.message_edit_icon = self.message_edit_icon.format(self.role_icon_emoji[0],self.role_icon_id[0],
+                                                               self.role_icon_emoji[1],self.role_icon_id[1],
+                                                               self.role_icon_emoji[2],self.role_icon_id[2],
+                                                               self.role_icon_emoji[3],self.role_icon_id[3],
+                                                               self.role_icon_emoji[4],self.role_icon_id[4],
+                                                               self.role_icon_emoji[5],self.role_icon_id[5],
+                                                               self.role_icon_emoji[6],self.role_icon_id[6],
+                                                               self.role_icon_emoji[7],self.role_icon_id[7],
+                                                               self.role_icon_emoji[8],self.role_icon_id[8])
+
     def set_message_edit_verify_phone_content(self):
         self.message_edit_verify_phone_content = self.message_edit_verify_phone_content.format(self.verify_phone_emoji[0],self.verify_phone_emoji[0])
 
@@ -274,6 +306,9 @@ s1.channel_id['main_chat_list'] = [925717531082235935,925722682178293782,9810358
 s1.message_id['role_main'] = 925960555943051284
 s1.message_id['role_color'] = 926769088980738108
 s1.message_id['role_verify_phone'] = 1138494764694638613 # 230808
+s1.message_id['role_icon'] = 925732268197167125 # 240512
+s1.message_id_enable['role_icon'] = 1 # 240512
+
 s1.guest_role_id = 1079793661304393800
 s1.no_welcome_msg_role_id = 1080847909513330759
 s1.role_id = [925727966137290774,925729158577930310,925895939628105778,929747501727244368,1042010855396622407,1061155255880007771,1023127510801715201,1095689201757995069,
@@ -286,12 +321,27 @@ s1.role_color_id = [926766604602200074,926765413856067595,926767008891162674,926
 s1.role_color_emoji = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","<:cape_confuse:926401561125601310>","<:hululu_happy:926399458764263494>","<:shimahai_hai:926405048706166784>","<:coyote_sleepy:926397039393263636>",\
 "<:dire_3:1080865933591052388>","<:caracal_3:1080862045563523134>","<:geoffory_worry:1080862839079706716>","<:genet_XD:1080865745195503667>","<:shimarisu_happy:1080863928160100403>",\
 "<:junglecat_x:1080865791550963752>","<:usako_3:1080863905858986154>"]
+
+# line 1: kemo3
+# line 2: kemoV
+# line 3: kingdom
+# line 4: friends
+s1.role_icon_id = [1238790596072701972,1238878017619497053,1238886890548105268,1239027403280617545,
+1238784494903889992,1239027840184356885,1239088337776803870,
+1239087973757358131,
+1239088455263457370]
+s1.role_icon_emoji = ['<:hana_maru:1239098685720236053>','<:japari_dan:1239088908755533824>','<:Picnic240:1239089096954089523>','<:kirakira:1239089673507438705>',
+'<:kemov_logo:1239089128511901736>','<:kani_hai:1239089219821899806>','<:shimahai_Pantsu:1239089588216139796>',
+'<:paperairplane:1239088780217024522>',
+'<:kemono_logo:1239088704996376636>']
+
 s1.verify_phone_emoji = ["📱"] # 230808
 s1.set_on_member_join()
 s1.set_message_verify_phone() # 230808
 s1.set_on_member_update()
 s1.set_edit_invite()
 s1.set_edit_color()
+s1.set_edit_icon() # 240512
 s1.set_message_edit_verify_phone_content() # 230808
 #s1.embed_on_member_update = s1.embed_on_member_update.format(">2351<")
 s1.message_edit_invite = s1.message_edit_invite.format("926715406683615294","925733227841343508","925722952568279091","1042336425808511016")
@@ -701,6 +751,23 @@ async def edit_color_s(ctx, guild_id:int):
     for i in range(len(svr.role_color_emoji)):
         await msg.add_reaction(svr.role_color_emoji[i])
 
+@client.command()
+@commands.is_owner()
+async def edit_icon_s(ctx, guild_id:int):
+    if guild_id not in guild_list:
+        return
+    if invide_mode != 2:
+        return
+    svr = guild_list[guild_id]
+    if svr.message_id_enable['role_icon'] == 0:
+        return
+
+    channel = client.get_channel(svr.channel_id['select_role'])
+    msg = await channel.fetch_message(svr.message_id['role_icon'])
+    await msg.edit(content=svr.message_edit_icon)
+    for i in range(len(svr.role_icon_emoji)):
+        await msg.add_reaction(svr.role_icon_emoji[i])
+
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -725,6 +792,16 @@ async def on_raw_reaction_add(payload):
             for i in range(len(svr.role_color_emoji)):
                 if str(payload.emoji) == svr.role_color_emoji[i]:
                     role = guild.get_role(svr.role_color_id[i])
+                    break
+            if role is not None:
+                await payload.member.add_roles(role)
+            return
+
+        #240512
+        elif payload.message_id == svr.message_id['role_icon']:
+            for i in range(len(svr.role_icon_emoji)):
+                if str(payload.emoji) == svr.role_icon_emoji[i]:
+                    role = guild.get_role(svr.role_icon_id[i])
                     break
             if role is not None:
                 await payload.member.add_roles(role)
@@ -874,6 +951,15 @@ async def on_raw_reaction_remove(payload):
                     break
             if role is not None:
                 await member.remove_roles(role)
+
+        # 240512
+        elif payload.message_id == svr.message_id['role_icon']:
+            for i in range(len(svr.role_icon_emoji)):
+                if str(payload.emoji) == svr.role_icon_emoji[i]:
+                    role = guild.get_role(svr.role_icon_id[i])
+                    break
+            if role is not None:
+                await member.remove_roles(role)
         
         if payload.message_id == svr.message_id['role_verify_phone']: # 230808
             for i in range(len(svr.verify_phone_emoji)):
@@ -945,9 +1031,11 @@ async def ping(ctx):
 # ver 0.0.9.26, date 240316, add recorder of edit/del msg, fix bug
 # ver 0.0.9.27, date 240316, add recorder of edit/del msg, fix bug
 # ver 0.0.9.28, date 240316, add recorder of edit/del msg, fix bug
+# ver 0.0.9.32, date 240507, add s3 server
+# ver 0.0.9.33, date 240512, add new role receiver
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.32, date 240507, add s3 server")
+    await ctx.send("ver 0.0.9.33, date 240512, add new role receiver")
 
 @client.event
 async def on_message_delete(message):
