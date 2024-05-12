@@ -186,20 +186,21 @@ Click the corresponding emoji to receive your role.\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>"
 
-        self.message_edit_icon = "圖標身分組。歡迎領取 (無額外權限功能)\nRole of icon, welcome to receive (No specfic permission)\n\
+        self.message_edit_icon = "圖標身分組。歡迎領取 (無額外權限功能)\nRole of icon, welcome to receive (No specfic permission)\n"
+        self.embed_edit_icon = "\
 Kemo3\n\
-> {} - <@&{}>\n\
-> {} - <@&{}>\n\
-> {} - <@&{}>\n\
-> {} - <@&{}>\n\
+{} - <@&{}>\n\
+{} - <@&{}>\n\
+{} - <@&{}>\n\
+{} - <@&{}>\n\
 KemoV\n\
-> {} - <@&{}>\n\
-> {} - <@&{}>\n\
-> {} - <@&{}>\n\
+{} - <@&{}>\n\
+{} - <@&{}>\n\
+{} - <@&{}>\n\
 Kingdom\n\
-> {} - <@&{}>\n\
+{} - <@&{}>\n\
 Friends\n\
-> {} - <@&{}>\n"
+{} - <@&{}>\n"
         
     def set_on_member_join(self):
         self.message_on_member_join = self.message_on_member_join.format(self.channel_id['select_role'],
@@ -276,15 +277,15 @@ Friends\n\
     def set_edit_icon(self):
         if self.message_id_enable['role_icon'] == 0:
             return
-        self.message_edit_icon = self.message_edit_icon.format(self.role_icon_emoji[0],self.role_icon_id[0],
-                                                               self.role_icon_emoji[1],self.role_icon_id[1],
-                                                               self.role_icon_emoji[2],self.role_icon_id[2],
-                                                               self.role_icon_emoji[3],self.role_icon_id[3],
-                                                               self.role_icon_emoji[4],self.role_icon_id[4],
-                                                               self.role_icon_emoji[5],self.role_icon_id[5],
-                                                               self.role_icon_emoji[6],self.role_icon_id[6],
-                                                               self.role_icon_emoji[7],self.role_icon_id[7],
-                                                               self.role_icon_emoji[8],self.role_icon_id[8])
+        self.embed_edit_icon = self.embed_edit_icon.format(self.role_icon_emoji[0],self.role_icon_id[0],
+                                                           self.role_icon_emoji[1],self.role_icon_id[1],
+                                                           self.role_icon_emoji[2],self.role_icon_id[2],
+                                                           self.role_icon_emoji[3],self.role_icon_id[3],
+                                                           self.role_icon_emoji[4],self.role_icon_id[4],
+                                                           self.role_icon_emoji[5],self.role_icon_id[5],
+                                                           self.role_icon_emoji[6],self.role_icon_id[6],
+                                                           self.role_icon_emoji[7],self.role_icon_id[7],
+                                                           self.role_icon_emoji[8],self.role_icon_id[8])
 
     def set_message_edit_verify_phone_content(self):
         self.message_edit_verify_phone_content = self.message_edit_verify_phone_content.format(self.verify_phone_emoji[0],self.verify_phone_emoji[0])
@@ -762,9 +763,11 @@ async def edit_icon_s(ctx, guild_id:int):
     if svr.message_id_enable['role_icon'] == 0:
         return
 
+    embedvar = discord.Embed(title="請選取圖標身分組! (Receive your icon's role)",
+                              description=svr.embed_edit_icon, color=0x00ff00)
     channel = client.get_channel(svr.channel_id['select_role'])
     msg = await channel.fetch_message(svr.message_id['role_icon'])
-    await msg.edit(content=svr.message_edit_icon)
+    await msg.edit(content=svr.message_edit_icon,embed=embedvar)
     for i in range(len(svr.role_icon_emoji)):
         await msg.add_reaction(svr.role_icon_emoji[i])
 
@@ -1036,9 +1039,10 @@ async def ping(ctx):
 # ver 0.0.9.34, date 240512, add new role receiver, fix bug
 # ver 0.0.9.35, date 240512, add new role receiver, change message format
 # ver 0.0.9.36, date 240512, add new role receiver, change message format
+# ver 0.0.9.37, date 240512, add new role receiver, change message format
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.36, date 240512, add new role receiver, change message format")
+    await ctx.send("ver 0.0.9.37, date 240512, add new role receiver, change message format")
 
 @client.event
 async def on_message_delete(message):
