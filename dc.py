@@ -187,19 +187,19 @@ Click the corresponding emoji to receive your role.\n\
                                           {} - <@&{}>"
 
         self.message_edit_icon = "圖標身分組。歡迎領取 (無額外權限功能)\nRole of icon, welcome to receive (No specfic permission)\n\
-* Kemo3\n\
-{} - <@&{}>\n\
-{} - <@&{}>\n\
-{} - <@&{}>\n\
-{} - <@&{}>\n\
-* KemoV\n\
-{} - <@&{}>\n\
-{} - <@&{}>\n\
-{} - <@&{}>\n\
-* Kingdom\n\
-{} - <@&{}>\n\
-* Friends\n\
-{} - <@&{}>\n"
+Kemo3\n\
+> {} - <@&{}>\n\
+> {} - <@&{}>\n\
+> {} - <@&{}>\n\
+> {} - <@&{}>\n\
+KemoV\n\
+> {} - <@&{}>\n\
+> {} - <@&{}>\n\
+> {} - <@&{}>\n\
+Kingdom\n\
+> {} - <@&{}>\n\
+Friends\n\
+> {} - <@&{}>\n"
         
     def set_on_member_join(self):
         self.message_on_member_join = self.message_on_member_join.format(self.channel_id['select_role'],
@@ -1035,9 +1035,10 @@ async def ping(ctx):
 # ver 0.0.9.33, date 240512, add new role receiver
 # ver 0.0.9.34, date 240512, add new role receiver, fix bug
 # ver 0.0.9.35, date 240512, add new role receiver, change message format
+# ver 0.0.9.36, date 240512, add new role receiver, change message format
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.35, date 240512, add new role receiver, change message format")
+    await ctx.send("ver 0.0.9.36, date 240512, add new role receiver, change message format")
 
 @client.event
 async def on_message_delete(message):
