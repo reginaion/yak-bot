@@ -306,7 +306,7 @@ s1.channel_id['main_chat_list'] = [925717531082235935,925722682178293782,9810358
 s1.message_id['role_main'] = 925960555943051284
 s1.message_id['role_color'] = 926769088980738108
 s1.message_id['role_verify_phone'] = 1138494764694638613 # 230808
-s1.message_id['role_icon'] = 925732268197167125 # 240512
+s1.message_id['role_icon'] = 1239097361628926044 # 240512
 s1.message_id_enable['role_icon'] = 1 # 240512
 
 s1.guest_role_id = 1079793661304393800
@@ -1033,9 +1033,10 @@ async def ping(ctx):
 # ver 0.0.9.28, date 240316, add recorder of edit/del msg, fix bug
 # ver 0.0.9.32, date 240507, add s3 server
 # ver 0.0.9.33, date 240512, add new role receiver
+# ver 0.0.9.34, date 240512, add new role receiver, fix bug
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.33, date 240512, add new role receiver")
+    await ctx.send("ver 0.0.9.34, date 240512, add new role receiver, fix bug")
 
 @client.event
 async def on_message_delete(message):
