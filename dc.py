@@ -1041,10 +1041,9 @@ async def ping(ctx):
 # ver 0.0.9.36, date 240512, add new role receiver, change message format
 # ver 0.0.9.37, date 240512, add new role receiver, change message format
 # ver 0.0.9.38, date 240710, silent message
-# ver 0.0.9.39, date 240710, silent message, fix bug
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.39, date 240710, silent message, fix bug")
+    await ctx.send("ver 0.0.9.38, date 240710, silent message")
 
 @client.event
 async def on_message_delete(message):
@@ -1063,13 +1062,13 @@ async def on_message_delete(message):
         pass
     period = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')) - mca
     channel_simp = client.get_channel(channel_message_backup_delete_simp)
-    await channel_simp.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C{mea_prx}: ({mca:%H:%M}){mea_msg_simp})', silent=True)
-    await channel.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S.%f %p}{mea_msg})', silent=True)
+    await channel_simp.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C{mea_prx}: ({mca:%H:%M}){mea_msg_simp})', slient=True)
+    await channel.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S.%f %p}{mea_msg})', slient=True)
     if (message.guild.id in guild_list):
         svr = guild_list[message.guild.id]
         if svr.channel_id['recorder_msg_del'] and message.channel.id not in channal_ignore_channal:
             channel_simp_svr = client.get_channel(svr.channel_id['recorder_msg_del'])
-            await channel_simp_svr.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C{mea_prx}: ({mca:%H:%M}){mea_msg_simp})', silent=True)
+            await channel_simp_svr.send(f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C{mea_prx}: ({mca:%H:%M}){mea_msg_simp})', slient=True)
 
 @client.event
 async def on_message_edit(message_before, message_after):
@@ -1080,17 +1079,17 @@ async def on_message_edit(message_before, message_after):
     channel_simp = client.get_channel(channel_message_backup_edit_simp)
     await channel_simp.send(f'=================================================\n\
 [Ed][Be] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content}\n\
-[Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C->E: ({mcab:%H:%M}) -> ({mcaa:%H:%M}))', silent=True)
+[Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C->E: ({mcab:%H:%M}) -> ({mcaa:%H:%M}))', slient=True)
     await channel.send(f'=================================================\n\
 [Ed][Be] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content} (C: {mcab:%Y-%m-%d %H:%M:%S.%f %p})\n\
-[Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mcaa:%Y-%m-%d %H:%M:%S.%f %p})', silent=True)
+[Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mcaa:%Y-%m-%d %H:%M:%S.%f %p})', slient=True)
     if (message_after.guild.id in guild_list):
         svr = guild_list[message_after.guild.id]
         if svr.channel_id['recorder_msg_edit'] and message_after.channel.id not in channal_ignore_channal:
             channel_simp_svr = client.get_channel(svr.channel_id['recorder_msg_edit'])
             await channel_simp_svr.send(f'=================================================\n\
 [Ed][Be] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content}\n\
-[Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C->E: ({mcab:%H:%M}) -> ({mcaa:%H:%M}))', silent=True)
+[Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C->E: ({mcab:%H:%M}) -> ({mcaa:%H:%M}))', slient=True)
 
 
 #@client.slash_command(guild_ids=[702741572344610907])
