@@ -6,14 +6,14 @@ import pytz
 import os
 from discord.ext import commands
 from discord.ext import tasks
-import discord_slash
+# import discord_slash
 
 
 intents = discord.Intents.all()
 intents.members = True
 intents.reactions = True
 client = commands.Bot(command_prefix=';', intents=intents)
-slash = discord_slash.SlashCommand(client, sync_commands=True)
+# slash = discord_slash.SlashCommand(client, sync_commands=True)
 
 alarm_time = '23:03'#24hrs
 channel_id = 387998196422672386
@@ -1018,10 +1018,10 @@ async def on_raw_reaction_remove(payload):
         if role is not None:
             await member.remove_roles(role)
 
-@slash.slash(name="test", description="Those burgers look tasty",        # Adding a new slash command with our slash variable
-             options=[discord_slash.manage_commands.create_option(name="first_option", description="Please enter what you want on your burger", option_type=3, required=False)])
-async def test(ctx: discord_slash.SlashContext, first_option):               # You have to name the function the 
-    await ctx.send(f'I am now gonna get you a burger with {first_option}')   # same as the command
+# @slash.slash(name="test", description="Those burgers look tasty",        # Adding a new slash command with our slash variable
+#              options=[discord_slash.manage_commands.create_option(name="first_option", description="Please enter what you want on your burger", option_type=3, required=False)])
+# async def test(ctx: discord_slash.SlashContext, first_option):               # You have to name the function the 
+#     await ctx.send(f'I am now gonna get you a burger with {first_option}')   # same as the command
 
 @client.command(name="ping") # Test command which works
 async def ping(ctx):
@@ -1040,9 +1040,10 @@ async def ping(ctx):
 # ver 0.0.9.35, date 240512, add new role receiver, change message format
 # ver 0.0.9.36, date 240512, add new role receiver, change message format
 # ver 0.0.9.37, date 240512, add new role receiver, change message format
+# ver 0.0.9.38, date 240710, fix crash
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.37, date 240512, add new role receiver, change message format")
+    await ctx.send("ver 0.0.9.38, date 240710, fix crash")
 
 @client.event
 async def on_message_delete(message):
@@ -1226,6 +1227,6 @@ async def on_member_remove(member):
 """
 
 
-time_check.start()
+# time_check.start()
 
 client.run(os.getenv('BOT_TOKEN'))
