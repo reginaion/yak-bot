@@ -1231,6 +1231,6 @@ async def on_member_remove(member):
 """
 
 
-# time_check.start()
+time_check.start()
 
 client.run(os.getenv('BOT_TOKEN'))
