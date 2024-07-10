@@ -1197,6 +1197,10 @@ async def shutdown(ctx):
 async def time_check():
     cst = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')).time()
     weekday = datetime.datetime.now(tz=pytz.timezone('Asia/Taipei')).weekday()
+
+    ch = client.get_channel(925763452281159680)
+    await channel.send('```123```')
+
     if weekday == 6 and cst.hour == 22 and cst.minute == 30:
         await client.wait_until_ready()
         channel = client.get_channel(channel_id_2)
