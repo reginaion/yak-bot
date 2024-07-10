@@ -9,4 +9,3 @@ multidict
 typing-extensions
 yarl
 pytz
-discord-ext-bot
