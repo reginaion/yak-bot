@@ -564,6 +564,8 @@ async def on_ready():
     await client.change_presence(status=discord.Status.online, activity=activity)
     #await client.change_presence(activity=activity)
     #await client.change_presence(activity=discord.Streaming(name='Fortnite', url='https://www.twitch.tv/UR_TWITCH_GOES_HERE You cant do YT only Twitch.'))
+    print('time_check.start()')
+    time_check.start()
     print('Logged in as')
     print(client.user.name)
     print(client.user.id)
@@ -1231,6 +1233,6 @@ async def on_member_remove(member):
 """
 
 
-time_check.start()
+# time_check.start()
 
 client.run(os.getenv('BOT_TOKEN'))
