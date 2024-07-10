@@ -8,4 +8,4 @@ idna
 multidict
 typing-extensions
 yarl
-pytz
+pytzdiscord-ext-bot==2.4.0
