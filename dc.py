@@ -1066,10 +1066,10 @@ async def on_message_delete(message):
     channel_simp = client.get_channel(channel_message_backup_delete_simp)
 
     msg_channel_simp = f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C{mea_prx}: ({mca:%H:%M}){mea_msg_simp})'
-    await channel_simp.send(content=msg_channel_simp)
+    await channel_simp.send(content=msg_channel_simp,silent=True)
 
     msg_channel = f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C: {mca:%Y-%m-%d %H:%M:%S.%f %p}{mea_msg})'
-    await channel.send(content=msg_channel)
+    await channel.send(content=msg_channel,silent=True)
 
     if (message.guild.id in guild_list):
         svr = guild_list[message.guild.id]
@@ -1077,7 +1077,7 @@ async def on_message_delete(message):
             channel_simp_svr = client.get_channel(svr.channel_id['recorder_msg_del'])
 
             msg_channel_simp_svr = f'[Del] <#{message.channel.id}> <{message.channel}> --- {message.author}: {message.content} (P: {period.total_seconds():.2f}s) (C{mea_prx}: ({mca:%H:%M}){mea_msg_simp})'
-            await channel_simp_svr.send(content=msg_channel_simp_svr)
+            await channel_simp_svr.send(content=msg_channel_simp_svr,silent=True)
 
 @client.event
 async def on_message_edit(message_before, message_after):
