@@ -1090,12 +1090,12 @@ async def on_message_edit(message_before, message_after):
     msg_channel_simp = f'=================================================\n\
 [Ed][Be] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content}\n\
 [Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C->E: ({mcab:%H:%M}) -> ({mcaa:%H:%M}))'
-    await channel_simp.send(content=msg_channel_simp)
+    await channel_simp.send(content=msg_channel_simp,silent=True)
 
     msg_channel = f'=================================================\n\
 [Ed][Be] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content} (C: {mcab:%Y-%m-%d %H:%M:%S.%f %p})\n\
 [Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C: {mcaa:%Y-%m-%d %H:%M:%S.%f %p})'
-    await channel.send(content=msg_channel)
+    await channel.send(content=msg_channel,silent=True)
 
     if (message_after.guild.id in guild_list):
         svr = guild_list[message_after.guild.id]
@@ -1105,7 +1105,7 @@ async def on_message_edit(message_before, message_after):
             msg_channel_simp_svr = f'=================================================\n\
 [Ed][Be] <#{message_before.channel.id}> <{message_before.channel}> --- {message_before.author}: {message_before.content}\n\
 [Ed][Af] <#{message_after.channel.id}> <{message_after.channel}> --- {message_after.author}: {message_after.content} (P: {period.total_seconds():.2f}s) (C->E: ({mcab:%H:%M}) -> ({mcaa:%H:%M}))'
-            await channel_simp_svr.send(content=msg_channel_simp_svr)
+            await channel_simp_svr.send(content=msg_channel_simp_svr,silent=True)
 
 
 #@client.slash_command(guild_ids=[702741572344610907])
