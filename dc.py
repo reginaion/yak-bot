@@ -158,6 +158,7 @@ Click the corresponding emoji to receive your role.\n\
 　\n\
 額外功能身份組\n\
 <@&{}> - R18頻道 (Access r18 channel)\n\
+<@&{}> - R18G頻道 (Access r18g channel)\n\
 <@&{}> - 活動通知提醒 (Send event notifications to you)\n\
 <@&{}> - 日版客家道場提醒 (For KF3 (JP) only, reminded every Sunday at 22:30 (UTC+8))\n\
 <@&{}> - 繁中版客家道場提醒 (For KF3 (ZH) only, reminded every Sunday at 23:30 (UTC+8))\n\
@@ -235,14 +236,14 @@ Friends\n\
                                                                self.role_emoji[4],self.role_id[4],
                                                                self.role_emoji[5],self.role_id[5],
                                                                self.role_emoji[2],self.role_id[2],
+                                                               self.role_emoji[12],self.role_id[12],
                                                                self.role_emoji[6],self.role_id[6],
                                                                self.role_emoji[3],self.role_id[3],
                                                                self.role_emoji[7],self.role_id[7],
                                                                self.role_emoji[8],self.role_id[8],
                                                                self.role_emoji[9],self.role_id[9],
                                                                self.role_emoji[10],self.role_id[10],
-                                                               self.role_emoji[11],self.role_id[11],
-                                                               self.role_emoji[12],self.role_id[12])
+                                                               self.role_emoji[11],self.role_id[11])
         
         self.message_edit_invite = self.message_edit_invite.format("{}","{}","{}","{}",self.role_id[0],
                                                                                        self.role_id[1],
