@@ -250,14 +250,14 @@ Friends\n\
                                                                                        self.role_id[4],
                                                                                        self.role_id[5],
                                                                                        self.role_id[2],
+                                                                                       self.role_id[12],
                                                                                        self.role_id[6],
                                                                                        self.role_id[3],
                                                                                        self.role_id[7],
                                                                                        self.role_id[8],
                                                                                        self.role_id[9],
                                                                                        self.role_id[10],
-                                                                                       self.role_id[11],
-                                                                                       self.role_id[12])
+                                                                                       self.role_id[11])
     
     def set_edit_color(self):
         self.embed_edit_color = self.embed_edit_color.format(self.role_color_emoji[0],self.role_color_id[0],
