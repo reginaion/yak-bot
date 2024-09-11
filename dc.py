@@ -523,7 +523,8 @@ async def on_member_update(before, after):
             if [i.id for i in after.roles].count(guest_role_id) == 0:
                 channel = client.get_channel(invite_channel_id)
                 embed=discord.Embed(title=f"ようこそジャパリパークへ! {after.name}", description=f"感謝您加入 {after.guild.name}!\n請至<#925779385729032262>閱讀守則\n請至<#925732268197167125>釘選處索取身分組以取得頻道瀏覽權限") # F-Strings!
-                embed.set_thumbnail(url=after.avatar.url) # Set the embed's thumbnail to the member's avatar image!
+                if (after.avatar and after.avatar.url):
+                    embed.set_thumbnail(url=after.avatar.url) # Set the embed's thumbnail to the member's avatar image!
                 mention_message = f'<@{after.id}>\n'
                 message="感謝浮蓮子的加入，群組介面操作上有任何疑難雜症都可以詢問~\n\n\
 可以在 <#925732268197167125> 領取你喜歡的【身份組】及【個性化名字染色】喔~\n\
@@ -546,7 +547,7 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
                 await channel.send(content=(mention_message))
 
                 embed   = discord.Embed(title=f"ようこそジャパリパークへ! {after.name}", description=svr.embed_on_member_update.format(after.guild.name))
-                if (after.avatar and after.avatar.url)
+                if (after.avatar and after.avatar.url):
                     embed.set_thumbnail(url=after.avatar.url) # Set the embed's thumbnail to the member's avatar image!
                 message = svr.message_on_member_update
                 if [i.id for i in after.roles].count(svr.no_welcome_msg_role_id) == 0:
@@ -1050,10 +1051,11 @@ async def ping(ctx):
 # ver 0.0.9.37, date 240512, add new role receiver, change message format
 # ver 0.0.9.38, date 240710, fix crash
 # ver 0.0.9.39, date 240715, add new role
-# ver 0.0.9.40, date 240718, fix avatar bug"
+# ver 0.0.9.40, date 240718, fix avatar bug
+# ver 0.0.9.44, date 240911, update to Heroku-24 & fix avatar bug
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.43, date 240911, update to Heroku-24 & fix avatar bug")
+    await ctx.send("ver 0.0.9.44, date 240911, update to Heroku-24 & fix avatar bug")
 
 @client.event
 async def on_message_delete(message):
