@@ -546,7 +546,8 @@ kemov聊天大廳在這裡︰<#925722682178293782>\n\
                 await channel.send(content=(mention_message))
 
                 embed   = discord.Embed(title=f"ようこそジャパリパークへ! {after.name}", description=svr.embed_on_member_update.format(after.guild.name))
-                embed.set_thumbnail(url=after.avatar.url) # Set the embed's thumbnail to the member's avatar image!
+                if (after.avatar and after.avatar.url)
+                    embed.set_thumbnail(url=after.avatar.url) # Set the embed's thumbnail to the member's avatar image!
                 message = svr.message_on_member_update
                 if [i.id for i in after.roles].count(svr.no_welcome_msg_role_id) == 0:
                     msg_entry = await channel.send(content=(message+"\n\n"+svr.jp_info),embed=embed)
@@ -1052,7 +1053,7 @@ async def ping(ctx):
 # ver 0.0.9.40, date 240718, fix avatar bug"
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.42, date 240911, update to Heroku-24")
+    await ctx.send("ver 0.0.9.43, date 240911, update to Heroku-24 & fix avatar bug")
 
 @client.event
 async def on_message_delete(message):
