@@ -1052,7 +1052,7 @@ async def ping(ctx):
 # ver 0.0.9.40, date 240718, fix avatar bug"
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.41, date 240911, fix avatar bug")
+    await ctx.send("ver 0.0.9.42, date 240911, update to Heroku-24")
 
 @client.event
 async def on_message_delete(message):
