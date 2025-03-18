@@ -160,7 +160,6 @@ Click the corresponding emoji to receive your role.\n\
 <@&{}> - R18G頻道 (Access r18g channel)\n\
 <@&{}> - 活動通知提醒 (Send event notifications to you)\n\
 <@&{}> - 日版客家道場提醒 (For KF3 (JP) only, reminded every Sunday at 22:30 (UTC+8))\n\
-<@&{}> - 繁中版客家道場提醒 (For KF3 (ZH) only, reminded every Sunday at 23:30 (UTC+8))\n\
 <@&{}> - Japanese friends\n\
 <@&{}> - English friends\n\
 <@&{}> - Creator\n\
