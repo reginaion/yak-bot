@@ -236,10 +236,9 @@ Friends\n\
                                                                self.role_emoji[4],self.role_id[4],
                                                                self.role_emoji[5],self.role_id[5],
                                                                self.role_emoji[2],self.role_id[2],
-                                                               self.role_emoji[12],self.role_id[12],
+                                                               self.role_emoji[7],self.role_id[7],
                                                                self.role_emoji[6],self.role_id[6],
                                                                self.role_emoji[3],self.role_id[3],
-                                                               self.role_emoji[7],self.role_id[7],
                                                                self.role_emoji[8],self.role_id[8],
                                                                self.role_emoji[9],self.role_id[9],
                                                                self.role_emoji[10],self.role_id[10],
@@ -250,10 +249,9 @@ Friends\n\
                                                                                        self.role_id[4],
                                                                                        self.role_id[5],
                                                                                        self.role_id[2],
-                                                                                       self.role_id[12],
+                                                                                       self.role_id[7],
                                                                                        self.role_id[6],
                                                                                        self.role_id[3],
-                                                                                       self.role_id[7],
                                                                                        self.role_id[8],
                                                                                        self.role_id[9],
                                                                                        self.role_id[10],
@@ -316,10 +314,10 @@ s1.message_id_enable['role_icon'] = 1 # 240512
 
 s1.guest_role_id = 1079793661304393800
 s1.no_welcome_msg_role_id = 1080847909513330759
-s1.role_id = [925727966137290774,925729158577930310,925895939628105778,929747501727244368,1042010855396622407,1061155255880007771,1023127510801715201,1095689201757995069,
-1097790288904343635,1097790097916690433,1097791345709563947,1180406024126074972,1262272402734448710]
-s1.role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>","<:EzoSmug:788033424928669736>","🔊",
-"🌸","🆒","🎨","<:aquagf:706822828900483093>","🇬"]
+s1.role_id = [925727966137290774,925729158577930310,925895939628105778,929747501727244368,1042010855396622407,1061155255880007771,1023127510801715201,1262272402734448710,
+1097790288904343635,1097790097916690433,1097791345709563947,1180406024126074972]
+s1.role_emoji = ["<:geofforyA:925962558349934593>","<:dholeA:925962613718929490>","🔞","🔔","👑","<:suzakureservedenthusiasm:1061192355107053588>","<:EzoSmug:788033424928669736>","🇬",
+"🌸","🆒","🎨","<:aquagf:706822828900483093>"]
 s1.role_color_id = [926766604602200074,926765413856067595,926767008891162674,926767203695611914,926767499914117131,926767717011316746,\
 1080844701306986556,1080859136465584210,1080845993169399910,1080857106019799080,1080852277117591552,1080852769646325820,\
 1080853366843899925,1080856574135910480,1080857411130232864,1080858479494959184,1080858658344288348]
@@ -1053,9 +1051,10 @@ async def ping(ctx):
 # ver 0.0.9.39, date 240715, add new role
 # ver 0.0.9.40, date 240718, fix avatar bug
 # ver 0.0.9.44, date 240911, update to Heroku-24 & fix avatar bug
+# ver 0.0.9.45, date 250318, remove 1 role
 @client.command(name="check_version") # Test command which works
 async def check_version(ctx):
-    await ctx.send("ver 0.0.9.44, date 240911, update to Heroku-24 & fix avatar bug")
+    await ctx.send("ver 0.0.9.45, date 250318, remove 1 role")
 
 @client.event
 async def on_message_delete(message):
