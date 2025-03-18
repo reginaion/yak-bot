@@ -1225,10 +1225,10 @@ async def time_check():
         await client.wait_until_ready()
         channel = client.get_channel(channel_id_2)
         await channel.send('<@&929747501727244368>```客家道場 (JP dojo)```')
-    if weekday == 6 and cst.hour == 23 and cst.minute == 30:
-        await client.wait_until_ready()
-        channel = client.get_channel(channel_id_2)
-        await channel.send('<@&1095689201757995069>```客家道場 (ZH dojo)```')
+    # if weekday == 6 and cst.hour == 23 and cst.minute == 30:
+    #     await client.wait_until_ready()
+    #     channel = client.get_channel(channel_id_2)
+    #     await channel.send('<@&1095689201757995069>```客家道場 (ZH dojo)```')
     if weekday == 6 and cst.hour == 22 and cst.minute == 31:
         await client.wait_until_ready()
         channel = client.get_channel(channel_id)
