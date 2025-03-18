@@ -142,7 +142,6 @@ Click the corresponding emoji to receive your role.\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>\n\
                                           {} - <@&{}>\n\
-                                          {} - <@&{}>\n\
                                           {} - <@&{}>"
         self.message_edit_invite = "頻道群組︰\n\
 <#{}> - 閒聊\n\
